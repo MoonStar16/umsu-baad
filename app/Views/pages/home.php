@@ -2,8 +2,8 @@
 
 <?= $this->section('content'); ?>
 <!-- START PAGE CONTAINER -->
-<div class="page-container">
-    <?= view('layout/templateSidebar',['menus'=>$menu]); ?>
+<div class="page-container page-navigation-toggled page-container-wide">
+    <?= view('layout/templateSidebar', ['menus' => $menu]); ?>
     <!-- PAGE CONTENT -->
     <div class="page-content">
         <?= $this->include('layout/templateHead'); ?>
@@ -17,11 +17,11 @@
         <div class="page-content-wrap">
             <div class="row">
                 <div class="col-md-12">
-                <div class="panel panel-default">
+                    <div class="panel panel-default">
                         <div class="panel-heading">
                             <div class="panel-title-box">
                                 <h3>UNIVERSITAS MUHAMMADIYAH SUMATERA UTARA</h3>
-                                <span>Aplikasi Rekap BAAD</span>
+                                <span>Aplikasi UMSU BAAD</span>
                             </div>
                         </div>
                         <div class="panel-body panel-body-table">
@@ -32,10 +32,10 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <!-- END PAGE CONTENT -->
     </div>
-    <!-- END PAGE CONTENT -->
-</div>
-<!-- END PAGE CONTAINER -->
+    <!-- END PAGE CONTAINER -->
 
 
-<?= $this->endSection(); ?>
+    <?= $this->endSection(); ?>

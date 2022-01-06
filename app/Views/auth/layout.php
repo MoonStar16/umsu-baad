@@ -18,7 +18,7 @@
 
 <body>
 
-    <div class="login-container">
+    <div class="login-container lightmode">
         <div class="login-box animated fadeInDown">
             <?= $this->renderSection('main'); ?>
 
