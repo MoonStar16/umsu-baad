@@ -19,15 +19,6 @@
     },
     {
         "id": "3",
-        "nama": "Setting",
-        "parent": "0",
-        "level":"title",
-        "status": true,
-        "icon":"",
-        "pages": "#"
-    },
-    {
-        "id": "4",
         "nama": "Dashboard",
         "parent": "1",
         "level":"child",
@@ -36,192 +27,48 @@
         "pages": "/home"
     },
     {
-        "id": "5",
-        "nama": "Laporan Tunggakan",
+        "id": "4",
+        "nama": "Data Calon Pendaftar",
         "parent": "2",
-        "level":"parent",
+        "level": "parent",
         "status": true,
-        "icon":"fa fa-ban",
-        "pages": "#"
-    }, 
+        "icon":"",
+        "pages": "/home"
+    },
+    {
+        "id": "5",
+        "nama": "Data Calon Mahasiswa",
+        "parent": "2",
+        "level": "parent",
+        "status": true,
+        "icon": "",
+        "pages":"/home"
+    },
     {
         "id": "6",
-        "nama": "Laporan Pembayaran",
+        "nama": "Data Mahasiswa",
         "parent": "2",
-        "level":"parent",
+        "level": "parent",
         "status": true,
-        "icon":"fa fa-money",
-        "pages": "#"
-    }, 
+        "icon": "",
+        "pages":"/home"
+    },
     {
         "id": "7",
-        "nama": "Jumlah KRS Aktif",
-        "parent": "24",
-        "level":"child",
+        "nama": "Data Feeder",
+        "parent": "2",
+        "level": "parent",
         "status": true,
-        "icon":"glyphicon glyphicon-user",
-        "pages": "/krsAktif"
+        "icon": "",
+        "pages":"/home"
     },
     {
         "id": "8",
-        "nama": "Setting Tanggal Tahap",
-        "parent": "3",
-        "level":"parent",
+        "nama": "Pendaftar Perangkatan",
+        "parent": "4",
+        "level": "child",
         "status": true,
-        "icon":"fa fa-edit",
-        "pages": "#"
-    },
-    {
-        "id": "9",
-        "nama": "Tunggakan Per Mahasiswa",
-        "parent": "5",
-        "level":"child",
-        "status": true,
-        "icon":"",
-        "pages": "/tunggakanPerMahasiswa"
-    },
-    {
-        "id": "10",
-        "nama": "Detail Tunggakan",
-        "parent": "5",
-        "level":"child",
-        "status": true,
-        "icon":"",
-        "pages": "/tunggakanDetail"
-    },
-    {
-        "id": "11",
-        "nama": "Total Tunggakan",
-        "parent": "5",
-        "level":"child",
-        "status": true,
-        "icon":"",
-        "pages": "/tunggakanTotal"
-    },
-    {
-        "id": "12",
-        "nama": "Detail Pembayaran Pokok",
-        "parent": "6",
-        "level":"child",
-        "status": true,
-        "icon":"",
-        "pages": "/pembayaranDetail"
-    },
-    {
-        "id": "13",
-        "nama": "Total Pembayaran Pokok",
-        "parent": "6",
-        "level":"child",
-        "status": true,
-        "icon":"",
-        "pages": "/pembayaranTotal"
-    },
-    {
-        "id": "14",
-        "nama": "Pembayaran Lain-Lain",
-        "parent": "6",
-        "level":"child",
-        "status": true,
-        "icon":"",
-        "pages": "/pembayaranLain"
-    },
-    {
-        "id": "15",
-        "nama": "Per Angkatan",
-        "parent": "8",
-        "level":"child",
-        "status": true,
-        "icon":"",
-        "pages": "/ubahAngkatan"
-    },
-    {
-        "id": "16",
-        "nama": "Per Fakultas",
-        "parent": "8",
-        "level":"parent",
-        "status": true,
-        "icon":"",
-        "pages": "#"
-    },
-    {
-        "id": "17",
-        "nama": "Per Prodi",
-        "parent": "8",
-        "level":"parent",
-        "status": true,
-        "icon":"",
-        "pages": "#"
-    },
-    {
-        "id": "18",
-        "nama": "Fakultas Non Kedokteran",
-        "parent": "16",
-        "level":"child",
-        "status": true,
-        "icon":"",
-        "pages": "/ubahFakultasNonKedokteran"
-    },
-    {
-        "id": "19",
-        "nama": "Fakultas Kedokteran",
-        "parent": "16",
-        "level":"child",
-        "status": true,
-        "icon":"",
-        "pages": "/ubahFakultasKedokteran"
-    },
-    {
-        "id": "20",
-        "nama": "Fakultas Pascasarjana",
-        "parent": "16",
-        "level":"child",
-        "status": true,
-        "icon":"",
-        "pages": "/ubahFakultasPascasarjana"
-    },
-    {
-        "id": "21",
-        "nama": "Prodi Non Kedokteran",
-        "parent": "17",
-        "level":"child",
-        "status": true,
-        "icon":"",
-        "pages": "/ubahProdiNonKedokteran"
-    },
-    {
-        "id": "22",
-        "nama": "Prodi Kedokteran",
-        "parent": "17",
-        "level":"child",
-        "status": true,
-        "icon":"",
-        "pages": "/ubahProdiKedokteran"
-    },
-    {
-        "id": "23",
-        "nama": "Prodi Pascasarjana",
-        "parent": "17",
-        "level":"child",
-        "status": true,
-        "icon":"",
-        "pages": "/ubahProdiPascasarjana"
-    },
-    {
-        "id": "24",
-        "nama": "Laporan KRS Atif",
-        "parent": "2",
-        "level":"parent",
-        "status": true,
-        "icon":"fa fa-ban",
-        "pages": "#"
-    }, 
-    {
-        "id": "25",
-        "nama": "Mahasiswa KRS Aktif",
-        "parent": "24",
-        "level":"child",
-        "status": true,
-        "icon":"glyphicon glyphicon-user",
-        "pages": "/mahasiswaKrsAktif"
+        "icon": "",
+        "pages":"/home"
     }
 ]

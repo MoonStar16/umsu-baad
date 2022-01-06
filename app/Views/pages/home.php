@@ -21,7 +21,7 @@
                         <div class="panel-heading">
                             <div class="panel-title-box">
                                 <h3>UNIVERSITAS MUHAMMADIYAH SUMATERA UTARA</h3>
-                                <span>Aplikasi Laporan Keuangan</span>
+                                <span>Aplikasi Rekap BAAD</span>
                             </div>
                         </div>
                         <div class="panel-body panel-body-table">
