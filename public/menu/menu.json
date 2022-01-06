@@ -23,7 +23,7 @@
         "parent": "1",
         "level":"child",
         "status": true,
-        "icon":" fa fa-home",
+        "icon":"fa fa-home",
         "pages": "/home"
     },
     {
@@ -32,7 +32,7 @@
         "parent": "2",
         "level": "parent",
         "status": true,
-        "icon":"",
+        "icon":"fa fa-users",
         "pages": "/home"
     },
     {
@@ -41,7 +41,7 @@
         "parent": "2",
         "level": "parent",
         "status": true,
-        "icon": "",
+        "icon": "fa fa-graduation-cap",
         "pages":"/home"
     },
     {
@@ -50,7 +50,7 @@
         "parent": "2",
         "level": "parent",
         "status": true,
-        "icon": "",
+        "icon": "fa fa-user",
         "pages":"/home"
     },
     {
@@ -59,7 +59,7 @@
         "parent": "2",
         "level": "parent",
         "status": true,
-        "icon": "",
+        "icon": "fa fa-database",
         "pages":"/home"
     },
     {
@@ -68,7 +68,25 @@
         "parent": "4",
         "level": "child",
         "status": true,
+        "icon": "fa fa-pencil-square ",
+        "pages":"/home"
+    },
+    {
+        "id":"9",
+        "nama": "KRS Aktif",
+        "parent": "6",
+        "level": "child",
+        "status": true,
         "icon": "",
         "pages":"/home"
-    }
+    },
+    {
+        "id":"10",
+        "nama": "KHS Mahasiswa",
+        "parent": "6",
+        "level": "child",
+        "status": true,
+        "icon": "",
+        "pages":"/home"
+    },
 ]
