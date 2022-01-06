@@ -19,20 +19,56 @@
     },
     {
         "id": "3",
-        "nama": "Setting",
-        "parent": "0",
-        "level":"title",
-        "status": true,
-        "icon":"",
-        "pages": "#"
-    },
-    {
-        "id": "4",
         "nama": "Dashboard",
         "parent": "1",
         "level":"child",
         "status": true,
         "icon":" fa fa-home",
         "pages": "/home"
+    },
+    {
+        "id": "4",
+        "nama": "Data Calon Pendaftar",
+        "parent": "2",
+        "level": "parent",
+        "status": true,
+        "icon":"",
+        "pages": "/home"
+    },
+    {
+        "id": "5",
+        "nama": "Data Calon Mahasiswa",
+        "parent": "2",
+        "level": "parent",
+        "status": true,
+        "icon": "",
+        "pages":"/home"
+    },
+    {
+        "id": "6",
+        "nama": "Data Mahasiswa",
+        "parent": "2",
+        "level": "parent",
+        "status": true,
+        "icon": "",
+        "pages":"/home"
+    },
+    {
+        "id": "7",
+        "nama": "Data Feeder",
+        "parent": "2",
+        "level": "parent",
+        "status": true,
+        "icon": "",
+        "pages":"/home"
+    },
+    {
+        "id": "8",
+        "nama": "Pendaftar Perangkatan",
+        "parent": "4",
+        "level": "child",
+        "status": true,
+        "icon": "",
+        "pages":"/home"
     }
 ]
