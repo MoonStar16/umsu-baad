@@ -14,22 +14,23 @@
 # ENVIRONMENT
 #--------------------------------------------------------------------
 
+CI_ENVIRONMENT = development
 # CI_ENVIRONMENT = production
 
 #--------------------------------------------------------------------
 # APP
 #--------------------------------------------------------------------
 
-# app.baseURL = ''
+app.baseURL = 'https://rekapkeuangan.umsu.ac.id/'
 # app.forceGlobalSecureRequests = false
 
-# app.sessionDriver = 'CodeIgniter\Session\Handlers\FileHandler'
-# app.sessionCookieName = 'ci_session'
-# app.sessionExpiration = 7200
-# app.sessionSavePath = null
-# app.sessionMatchIP = false
-# app.sessionTimeToUpdate = 300
-# app.sessionRegenerateDestroy = false
+app.sessionDriver = 'CodeIgniter\Session\Handlers\FileHandler'
+app.sessionCookieName = 'ci_session'
+app.sessionExpiration = 7200
+app.sessionSavePath = null
+app.sessionMatchIP = false
+app.sessionTimeToUpdate = 300
+app.sessionRegenerateDestroy = false
 
 # app.CSPEnabled = false
 
@@ -37,12 +38,13 @@
 # DATABASE
 #--------------------------------------------------------------------
 
-# database.default.hostname = localhost
-# database.default.database = ci4
-# database.default.username = root
-# database.default.password = root
-# database.default.DBDriver = MySQLi
-# database.default.DBPrefix =
+database.default.hostname = rekapkeuangan.umsu.ac.id
+database.default.port = 8306
+database.default.database = web_rekapkeuangan
+database.default.username = web_rekapkeuangan
+database.default.password = .M1H7nI(V[@y27bh
+database.default.DBDriver = MySQLi
+database.default.DBPrefix =
 
 # database.tests.hostname = localhost
 # database.tests.database = ci4
@@ -110,8 +112,6 @@
 # SECURITY
 #--------------------------------------------------------------------
 
-# security.csrfProtection = 'cookie'
-# security.tokenRandomize = false
 # security.tokenName = 'csrf_token_name'
 # security.headerName = 'X-CSRF-TOKEN'
 # security.cookieName = 'csrf_cookie_name'
@@ -125,9 +125,3 @@
 #--------------------------------------------------------------------
 
 # logger.threshold = 4
-
-#--------------------------------------------------------------------
-# CURLRequest
-#--------------------------------------------------------------------
-
-# curlrequest.shareOptions = true
