@@ -14,13 +14,13 @@
 # ENVIRONMENT
 #--------------------------------------------------------------------
 
-# CI_ENVIRONMENT = production
+CI_ENVIRONMENT = production
 
 #--------------------------------------------------------------------
 # APP
 #--------------------------------------------------------------------
 
-# app.baseURL = ''
+ app.baseURL = 'http://localhost:8080/'
 # app.forceGlobalSecureRequests = false
 
 # app.sessionDriver = 'CodeIgniter\Session\Handlers\FileHandler'
@@ -37,12 +37,13 @@
 # DATABASE
 #--------------------------------------------------------------------
 
-# database.default.hostname = localhost
-# database.default.database = ci4
-# database.default.username = root
-# database.default.password = root
-# database.default.DBDriver = MySQLi
-# database.default.DBPrefix =
+ database.default.hostname = rekapbaad.umsu.ac.id 
+ database.default.port = 8306
+ database.default.database = web_rekapbaad
+ database.default.username = web_rekapbaad
+ database.default.password = mYMgoHPl@0WjPxPO
+ database.default.DBDriver = MySQLi
+ database.default.DBPrefix =
 
 # database.tests.hostname = localhost
 # database.tests.database = ci4
