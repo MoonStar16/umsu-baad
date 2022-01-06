@@ -2,7 +2,7 @@
 
 <?= $this->section('content'); ?>
 <!-- START PAGE CONTAINER -->
-<div class="page-container page-navigation-toggled page-container-wide">
+<div class="page-container">
     <?= view('layout/templateSidebar', ['menus' => $menu]); ?>
     <!-- PAGE CONTENT -->
     <div class="page-content">
