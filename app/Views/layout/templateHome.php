@@ -17,7 +17,7 @@
 
 </head>
 
-<body>
+<body class="page-container-boxed">
 
     <?= $this->renderSection('content'); ?>
 

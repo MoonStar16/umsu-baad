@@ -54,10 +54,10 @@
 		<div class="form-group">
 			<div class="col-md-8 form-text text-muted">
 				<?php if ($config->activeResetter) : ?>
-					<p><?= lang('Auth.forgotYourPassword') ?> <a href="<?= route_to('forgot') ?>"><?= lang('Auth.forgot') ?></a></p>
+					<p class="login-subtitle"><?= lang('Auth.forgotYourPassword') ?> <a href="<?= route_to('forgot') ?>"><?= lang('Auth.forgot') ?></a></p>
 				<?php endif; ?>
 				<?php if ($config->allowRegistration) : ?>
-					<p><?= lang('Auth.needAnAccount') ?> <a href="<?= route_to('register') ?>"><?= lang('Auth.register') ?></a></p>
+					<p class="login-subtitle"><?= lang('Auth.needAnAccount') ?> <a href="<?= route_to('register') ?>"><?= lang('Auth.register') ?></a></p>
 				<?php endif; ?>
 			</div>
 		</div>
