@@ -77,7 +77,7 @@
         "parent": "6",
         "level": "child",
         "status": true,
-        "icon": "",
+        "icon": "fa fa-address-card-o",
         "pages":"/home"
     },
     {
@@ -86,7 +86,25 @@
         "parent": "6",
         "level": "child",
         "status": true,
-        "icon": "",
+        "icon": "fa fa-address-card",
         "pages":"/home"
     },
+    {
+        "id":"11",
+        "nama": "Fakultas",
+        "parent": "5",
+        "level": "child",
+        "status": true,
+        "icon": "fa fa-building-o",
+        "pages":"/home"
+    },
+    {
+        "id":"11",
+        "nama": "Pendaftar Perangkatan",
+        "parent": "5",
+        "level": "child",
+        "status": true,
+        "icon": "fa fa-pencil-square",
+        "pages":"/home"
+    }
 ]
