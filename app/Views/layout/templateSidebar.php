@@ -1,5 +1,5 @@
 <!-- START PAGE SIDEBAR -->
-<div class="page-sidebar page-navigation-toggled page-container-wide">
+<div class="page-sidebar">
     <!-- START X-NAVIGATION -->
     <ul class="x-navigation">
         <li class="xn-logo">
