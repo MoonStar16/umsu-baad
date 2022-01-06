@@ -91,9 +91,9 @@ class BaseController extends Controller
                     foreach ($childs as $child) {
                         if ($parent->id == $child->parent) {
                             if ($child->status) {
-                                $menu .= '<li><a href="' . $child->pages . '"><span class="' . $child->icon . '"><span class="xn-text">' . $child->nama . '</span></a></li>';
+                                $menu .= '<li><a href="' . $child->pages . '"><span class="xn-text">' . $child->nama . '</span></a></li>';
                             } else {
-                                $menu .= '<li><a href="/maintenance"><span class="' . $child->icon . '"><span class="xn-text">' . $child->nama . '</span></a></li>';
+                                $menu .= '<li><a href="/maintenance"><span class="xn-text">' . $child->nama . '</span></a></li>';
                             }
                         }
                     }
