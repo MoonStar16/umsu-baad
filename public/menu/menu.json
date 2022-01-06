@@ -91,15 +91,6 @@
     },
     {
         "id":"11",
-        "nama": "Fakultas",
-        "parent": "5",
-        "level": "child",
-        "status": true,
-        "icon": "fa fa-building-o",
-        "pages":"/home"
-    },
-    {
-        "id":"11",
         "nama": "Pendaftar Perangkatan",
         "parent": "5",
         "level": "child",
