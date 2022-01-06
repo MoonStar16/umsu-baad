@@ -35,7 +35,7 @@ class BaseController extends Controller
      *
      * @var array
      */
-    protected $helpers = [];
+    protected $helpers = ['auth','number'];
 
     /**
      * Constructor.
@@ -44,9 +44,92 @@ class BaseController extends Controller
     {
         // Do Not Edit This Line
         parent::initController($request, $response, $logger);
+        session();
 
         // Preload any models, libraries, etc, here.
 
         // E.g.: $this->session = \Config\Services::session();
+    }
+
+    public function fetchMenu()
+    {
+        $file = "public/menu/menu.json";
+        $data = file_get_contents(ROOTPATH.$file);
+
+        $data = json_decode($data, false);
+
+        $titles=[];
+        $parents=[];
+        $childs=[];
+
+        foreach ($data as $resource){
+            if ($resource->parent == 0 && $resource->level=='title'){
+                $titles[] = $resource;
+            }
+
+            if ($resource->parent != 0 && $resource->level=='parent'){
+                $parents[] = $resource;
+            }
+
+            if ($resource->parent != 0 && $resource->level=='child'){
+                $childs[] = $resource;
+            }
+        }
+
+        $menu="";
+        foreach ($titles as $title) {
+            $menu .= '<li class="xn-title">'.$title->nama.'</li>';
+
+            foreach ($parents as $parent) {
+                if ($title->id == $parent->parent) {
+                    if ($parent->status) {
+                        $menu .= '<li class="xn-openable"><a href="'.$parent->pages.'"><span class="'.$parent->icon.'"></span><span class="xn-text">'.$parent->nama.'</span></a><ul>';
+                    } else {
+                        $menu .= '<li class="xn-openable"><a href="/maintenance"><span class="'.$parent->icon.'"></span><span class="xn-text">'.$parent->nama.'</span></a><ul>';
+                    }
+                    
+                    foreach ($childs as $child) {
+                        if ($parent->id == $child->parent) {
+                            if ($child->status) {
+                                $menu .= '<li><a href="'.$child->pages.'"><span class="xn-text">'.$child->nama.'</span></a></li>';
+                            } else {
+                                $menu .= '<li><a href="/maintenance"><span class="xn-text">'.$child->nama.'</span></a></li>';
+                            }
+                        }
+                    }
+
+                    foreach ($parents as $subParent) {
+                        if ($parent->id == $subParent->parent) {
+                            if ($subParent->status) {
+                                $menu .= '<li class="xn-openable"><a href="#"><span class="xn-text">'.$subParent->nama.'</span></a><ul>';
+                                foreach ($childs as $child) {
+                                    if ($subParent->id == $child->parent) {
+                                        if ($child->status) {
+                                            $menu .= '<li><a href="'.$child->pages.'"><span class="xn-text">'.$child->nama.'</span></a></li>';
+                                        } else {
+                                            $menu .= '<li><a href="/maintenance"><span class="xn-text">'.$child->nama.'</span></a></li>';
+                                        }
+                                    }
+                                }
+                                $menu .= '</ul></li>';
+                            }
+                        }
+                    }
+                    $menu .= '</ul></li>';
+                }
+            }
+            foreach ($childs as $child) {
+                if ($title->id==$child->parent) {
+                    if ($child->status) {
+                        $menu .= '<li><a href="'.$child->pages.'"><span class="'.$child->icon.'"></span><span class="xn-text">'.$child->nama.'</span></a></li>';
+                    } else {
+                        $menu .= '<li><a href="/maintenance"><span class="'.$child->icon.'"></span><span class="xn-text">'.$child->nama.'</span></a></li>';
+                    }
+                    
+                }
+            }
+        }
+
+        return $menu;
     }
 }

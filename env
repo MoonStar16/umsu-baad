@@ -14,22 +14,31 @@
 # ENVIRONMENT
 #--------------------------------------------------------------------
 
+<<<<<<< HEAD
 CI_ENVIRONMENT = production
+=======
+CI_ENVIRONMENT = development
+# CI_ENVIRONMENT = production
+>>>>>>> 1bbe5682cad93bd4c334651bd679cc8aca992fdd
 
 #--------------------------------------------------------------------
 # APP
 #--------------------------------------------------------------------
 
+<<<<<<< HEAD
  app.baseURL = 'http://localhost:8080/'
+=======
+app.baseURL = 'https://rekapkeuangan.umsu.ac.id/'
+>>>>>>> 1bbe5682cad93bd4c334651bd679cc8aca992fdd
 # app.forceGlobalSecureRequests = false
 
-# app.sessionDriver = 'CodeIgniter\Session\Handlers\FileHandler'
-# app.sessionCookieName = 'ci_session'
-# app.sessionExpiration = 7200
-# app.sessionSavePath = null
-# app.sessionMatchIP = false
-# app.sessionTimeToUpdate = 300
-# app.sessionRegenerateDestroy = false
+app.sessionDriver = 'CodeIgniter\Session\Handlers\FileHandler'
+app.sessionCookieName = 'ci_session'
+app.sessionExpiration = 7200
+app.sessionSavePath = null
+app.sessionMatchIP = false
+app.sessionTimeToUpdate = 300
+app.sessionRegenerateDestroy = false
 
 # app.CSPEnabled = false
 
@@ -37,6 +46,7 @@ CI_ENVIRONMENT = production
 # DATABASE
 #--------------------------------------------------------------------
 
+<<<<<<< HEAD
  database.default.hostname = rekapbaad.umsu.ac.id 
  database.default.port = 8306
  database.default.database = web_rekapbaad
@@ -44,6 +54,15 @@ CI_ENVIRONMENT = production
  database.default.password = mYMgoHPl@0WjPxPO
  database.default.DBDriver = MySQLi
  database.default.DBPrefix =
+=======
+database.default.hostname = rekapkeuangan.umsu.ac.id
+database.default.port = 8306
+database.default.database = web_rekapkeuangan
+database.default.username = web_rekapkeuangan
+database.default.password = .M1H7nI(V[@y27bh
+database.default.DBDriver = MySQLi
+database.default.DBPrefix =
+>>>>>>> 1bbe5682cad93bd4c334651bd679cc8aca992fdd
 
 # database.tests.hostname = localhost
 # database.tests.database = ci4
@@ -111,8 +130,6 @@ CI_ENVIRONMENT = production
 # SECURITY
 #--------------------------------------------------------------------
 
-# security.csrfProtection = 'cookie'
-# security.tokenRandomize = false
 # security.tokenName = 'csrf_token_name'
 # security.headerName = 'X-CSRF-TOKEN'
 # security.cookieName = 'csrf_cookie_name'
@@ -126,9 +143,3 @@ CI_ENVIRONMENT = production
 #--------------------------------------------------------------------
 
 # logger.threshold = 4
-
-#--------------------------------------------------------------------
-# CURLRequest
-#--------------------------------------------------------------------
-
-# curlrequest.shareOptions = true
