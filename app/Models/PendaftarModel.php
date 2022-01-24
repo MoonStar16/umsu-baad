@@ -13,7 +13,7 @@ class PendaftarModel extends Model
         $this->curl = service('curlrequest');
     }
 
-    public function getListKelompok()
+    public function getFakultas()
     {
         $response = $this->curl->request("GET", "https://api.umsu.ac.id/baad/filter", [
             "headers" => [
@@ -31,24 +31,6 @@ class PendaftarModel extends Model
             ],
 
         ]);
-        return json_decode($response->getBody())->data;
-    }
-
-    public function getFakultas($kelompok)
-    {
-        $response = $this->curl->request(
-            "POST",
-            "https://api.umsu.ac.id/baad/fakultas",
-            [
-                "headers" => [
-                    "Accept" => "application/json"
-                ],
-                "form_params" => [
-                    "kelompok" => $kelompok,
-                ]
-            ]
-        );
-
         return json_decode($response->getBody())->data;
     }
 }
