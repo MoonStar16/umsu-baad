@@ -53,21 +53,16 @@
                             <div class="col-md-2">
                                 <label>Pilih Fakultas</label>
                                 <select class="form-control" name="fakultas" id="fakultas">
-                                    <option value="">Pilih Fakultas</option>
+                                    <option value="">--Select--</option>
                                 </select>
                             </div>
                             <div class="col-md-2">
                                 <label>Tahun Ajar</label>
                                 <select class="form-control" name="tahunAjar">
                                     <option value="">-- Select --</option>
-                                    <?php //foreach ($listTermYear as $rows) : 
-                                    ?>
-                                    <!-- <option value="<? //= $rows->Term_Year_Id 
-                                                        ?>" <?php //if ($rows->Term_Year_Id == $termYear) echo " selected" 
-                                                            ?>><? //= $rows->Term_Year_Name 
-                                                                ?></option> -->
-                                    <?php //endforeach 
-                                    ?>
+                                    <?php foreach ($listTermYear as $rows) : ?>
+                                        <option value="<?= $rows->Term_Year_Id ?>" <?php if ($rows->Term_Year_Id == $termYear) echo " selected" ?>><?= $rows->Term_Year_Name ?></option> -->
+                                    <?php endforeach ?>
                                 </select>
                             </div>
                             <div class="col-md-2">

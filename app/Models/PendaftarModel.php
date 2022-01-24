@@ -31,6 +31,7 @@ class PendaftarModel extends Model
             ],
 
         ]);
+        return json_decode($response->getBody())->data;
     }
 
     public function getFakultas($kelompok)

@@ -49,7 +49,7 @@
         "parent": "2",
         "level": "child",
         "status": true,
-        "icon": "fa fa-graduation-cap",
+        "icon": "fa fa-external-link",
         "pages": "/registrasiUlang"
     },
     {

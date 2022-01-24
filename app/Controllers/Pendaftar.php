@@ -16,8 +16,8 @@ class Pendaftar extends BaseController
     public function index()
     {
         $data = [
-            'title' => "Pendaftar",
-            'appName' => "Rekap BAAD",
+            'title' => "Data Calon Pendaftar",
+            'appName' => "UMSU",
             'breadcrumb' => ['Laporan Penmaru', 'Data Calon Pendaftar'],
             'validation' => \Config\Services::validation(),
             'menu' => $this->fetchMenu(),
@@ -35,7 +35,7 @@ class Pendaftar extends BaseController
     {
         $kelompok = $this->request->getVar('kelompok');
         $dataFakultas = $this->pendaftarModel->getFakultas($kelompok);
-        $lists = "<option value=''>Pilih Fakultas</option>";
+        $lists = "<option value=''>--Select--</option>";
         foreach ($dataFakultas as $row_fakultas) {
             $lists .= "<option value='" . $row_fakultas->fakNamaSingkat . "'>" . $row_fakultas->fakNamaResmi . "</option>";
         }
