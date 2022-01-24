@@ -16,15 +16,18 @@ class Pendaftar extends BaseController
     public function index()
     {
         $data = [
-            'title' => "Jumlah KRS Aktif",
-            'appName' => "UMSU",
-            'breadcrumb' => ['Home', 'Laporan KRS Aktif', 'Jumlah KRS Aktif'],
+            'title' => "Pendaftar",
+            'appName' => "Rekap BAAD",
+            'breadcrumb' => ['Laporan Penmaru', 'Data Calon Pendaftar'],
             'validation' => \Config\Services::validation(),
             'menu' => $this->fetchMenu(),
-            'dataFromApi' => $this->pendaftarModel->fromApi(),
+            'listKelompok' => $this->pendaftarModel->getListKelompok(),
+            'listTermYear' => $this->pendaftarModel->getTermYear(),
+            'termYear' => null,
+            'entryYear' => null,
         ];
-        dd($data);
+        // dd($data);
 
-        return view('pages/krsAktif', $data);
+        return view('pages/pendaftar', $data);
     }
 }
