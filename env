@@ -21,7 +21,7 @@ CI_ENVIRONMENT = development
 # APP
 #--------------------------------------------------------------------
 
-app.baseURL = 'https://rekapkeuangan.umsu.ac.id/'
+ app.baseURL = 'http://localhost:8080/'
 # app.forceGlobalSecureRequests = false
 
 app.sessionDriver = 'CodeIgniter\Session\Handlers\FileHandler'
@@ -38,14 +38,13 @@ app.sessionRegenerateDestroy = false
 # DATABASE
 #--------------------------------------------------------------------
 
-database.default.hostname = rekapkeuangan.umsu.ac.id
-database.default.port = 8306
-database.default.database = web_rekapkeuangan
-database.default.username = web_rekapkeuangan
-database.default.password = .M1H7nI(V[@y27bh
-database.default.DBDriver = MySQLi
-database.default.DBPrefix =
-database.default.DBDebug = CI_ENVIRONMENT
+ database.default.hostname = rekapbaad.umsu.ac.id 
+ database.default.port = 8306
+ database.default.database = web_rekapbaad
+ database.default.username = web_rekapbaad
+ database.default.password = mYMgoHPl@0WjPxPO
+ database.default.DBDriver = MySQLi
+ database.default.DBPrefix =
 
 # database.tests.hostname = localhost
 # database.tests.database = ci4

@@ -13,52 +13,43 @@ class PendaftarModel extends Model
         $this->curl = service('curlrequest');
     }
 
-    public function fromApi()
+    public function getListKelompok()
     {
-        $result = [];
-        $response = $this->curl->request("POST", "https://api.umsu.ac.id/baad/lapCama", [
+        $response = $this->curl->request("GET", "https://api.umsu.ac.id/baad/filter", [
             "headers" => [
                 "Accept" => "application/json"
             ],
-            'form_params' => [
-                'angkatan' => '2021',
-                'kelompok' => 'NonKedokteran',
-                'filter' => 'fai',
-            ],
         ]);
-        // array_push($result, json_decode($response->getBody())->data);
-
-        // $response1 = $this->curl->request("POST", "https://api.umsu.ac.id/baad/lapCama", [
-        //     "headers" => [
-        //         "Accept" => "application/json"
-        //     ],
-        //     'form_params' => [
-        //         'angkatan' => '2021',
-        //         'kelompok' => 'NonKedokteran',
-        //         'prodi' => 202,
-        //     ],
-        // ]);
-        // array_push($result, json_decode($response->getBody())->data);
-
-        // $response2 = $this->curl->request("POST", "https://api.umsu.ac.id/baad/lapCama", [
-        //     "headers" => [
-        //         "Accept" => "application/json"
-        //     ],
-        //     'form_params' => [
-        //         'angkatan' => '2021',
-        //         'kelompok' => 'NonKedokteran',
-        //         'prodi' => 12,
-        //     ],
-        // ]);
-        // array_push($result, json_decode($response->getBody())->data);
-        // $hasil = array();
-        // foreach ($result as $array) {
-        //     $hasil = array_merge($hasil, $array);
-        // }
-
-        // $result = array_merge(json_decode($response->getBody())->data, json_decode($response1->getBody())->data, json_decode($response2->getBody())->data);
-
-        // return $hasil;
         return json_decode($response->getBody())->data;
+    }
+
+    public function getTermYear()
+    {
+        $response = $this->curl->request("GET", "https://api.umsu.ac.id/Laporankeu/getTermYear", [
+            "headers" => [
+                "Accept" => "application/json"
+            ],
+
+        ]);
+
+        return json_decode($response->getBody())->data;
+    }
+
+    public function getFakultas()
+    {
+        $kelompok = trim($this->request->getPost('kelompok'));
+
+        $response = $this->curl->request(
+            "POST",
+            "https://api.umsu.ac.id/baad/fakultas",
+            [
+                "headers" => [
+                    "Accept" => "application/json"
+                ],
+                "form_params" => [
+                    "kelompokId" => $kelompok,
+                ]
+            ]
+        );
     }
 }

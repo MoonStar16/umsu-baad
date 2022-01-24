@@ -1,92 +1,100 @@
-[   
-    {
+[{
         "id": "1",
         "nama": "Home",
         "parent": "0",
-        "level":"title",
+        "level": "title",
         "status": true,
-        "icon":"",
+        "icon": "",
         "pages": "#"
     },
     {
         "id": "2",
-        "nama": "Laporan",
+        "nama": "Laporan Penmaru",
         "parent": "0",
-        "level":"title",
+        "level": "title",
         "status": true,
-        "icon":"",
-        "pages": "#"
+        "icon": "",
+        "pages": ""
     },
     {
         "id": "3",
         "nama": "Dashboard",
         "parent": "1",
-        "level":"child",
+        "level": "child",
         "status": true,
-        "icon":"fa fa-home",
+        "icon": "fa fa-home",
         "pages": "/home"
     },
     {
         "id": "4",
         "nama": "Data Calon Pendaftar",
         "parent": "2",
-        "level": "parent",
+        "level": "child",
         "status": true,
-        "icon":"fa fa-users",
-        "pages": "/home"
+        "icon": "fa fa-users",
+        "pages": "/pendaftar"
     },
     {
         "id": "5",
         "nama": "Data Calon Mahasiswa",
         "parent": "2",
-        "level": "parent",
+        "level": "child",
         "status": true,
         "icon": "fa fa-graduation-cap",
-        "pages":"/home"
+        "pages": "/calonMahasiswa"
+    },
+    {
+        "id": "11",
+        "nama": "Data Registrasi Ulang",
+        "parent": "2",
+        "level": "child",
+        "status": true,
+        "icon": "fa fa-graduation-cap",
+        "pages": "/registrasiUlang"
+    },
+    {
+        "id": "12",
+        "nama": "Laporan Mahasiswa",
+        "parent": "0",
+        "level": "title",
+        "status": true,
+        "icon": "",
+        "pages": ""
     },
     {
         "id": "6",
         "nama": "Data Mahasiswa",
-        "parent": "2",
+        "parent": "12",
         "level": "parent",
         "status": true,
         "icon": "fa fa-user",
-        "pages":"/home"
+        "pages": ""
     },
     {
         "id": "7",
         "nama": "Data Feeder",
-        "parent": "2",
-        "level": "parent",
-        "status": true,
-        "icon": "fa fa-database",
-        "pages":"/home"
-    },
-    {
-        "id": "8",
-        "nama": "Pendaftar Perangkatan",
-        "parent": "4",
+        "parent": "12",
         "level": "child",
         "status": true,
-        "icon": "fa fa-pencil-square ",
-        "pages":"/pendaftar"
+        "icon": "fa fa-database",
+        "pages": "/feeder"
     },
     {
-        "id":"9",
+        "id": "9",
         "nama": "KRS Aktif",
         "parent": "6",
         "level": "child",
         "status": true,
         "icon": "",
-        "pages":"/home"
+        "pages": "/krsAktif"
     },
     {
-        "id":"10",
+        "id": "10",
         "nama": "KHS Mahasiswa",
         "parent": "6",
         "level": "child",
         "status": true,
         "icon": "",
-        "pages":"/home"
+        "pages": "/khsMahasiswa"
     }
 ]
