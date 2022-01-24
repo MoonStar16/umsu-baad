@@ -7,6 +7,7 @@
           kelompok: $('#kelompok').val()
         }, 
         success: function(response) {
+          $('#fakultas').empty()
           $('#fakultas').append(response);
         }
       });

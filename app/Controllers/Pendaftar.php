@@ -35,7 +35,7 @@ class Pendaftar extends BaseController
     {
         $kelompok = $this->request->getVar('kelompok');
         $dataFakultas = $this->pendaftarModel->getFakultas($kelompok);
-        $lists = "";
+        $lists = "<option value=''>Pilih Fakultas</option>";
         foreach ($dataFakultas as $row_fakultas) {
             $lists .= "<option value='" . $row_fakultas->fakNamaSingkat . "'>" . $row_fakultas->fakNamaResmi . "</option>";
         }
