@@ -30,4 +30,16 @@ class Pendaftar extends BaseController
 
         return view('pages/pendaftar', $data);
     }
+
+    public function fakultas()
+    {
+        $kelompok = $this->request->getVar('kelompok');
+        $dataFakultas = $this->pendaftarModel->getFakultas($kelompok);
+        $lists = "";
+        foreach ($dataFakultas as $row_fakultas) {
+            $lists .= "<option value='" . $row_fakultas->fakNamaSingkat . "'>" . $row_fakultas->fakNamaResmi . "</option>";
+        }
+
+        echo $lists;
+    }
 }

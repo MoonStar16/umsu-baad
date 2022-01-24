@@ -42,7 +42,8 @@
                         <form autocomplete="off" class="form-horizontal" action="/ubahAngkatan" method="POST">
                             <div class="col-md-2">
                                 <label>Kelompok</label>
-                                <select class="form-control select" name="kelompok">
+                                <select class="form-control" name="kelompok" id="kelompok">
+
                                     <option value="">-- Select --</option>
                                     <?php foreach ($listKelompok as $rows) : ?>
                                         <option value="<?= $rows->nilaiTipe ?>"><?= $rows->nilaiTipe ?></option>
@@ -51,22 +52,27 @@
                             </div>
                             <div class="col-md-2">
                                 <label>Pilih Fakultas</label>
-                                <select class="form-control select" name="fakultas">
-                                    <option value="">--Select--</option>
+                                <select class="form-control" name="fakultas" id="fakultas">
+                                    <option value="">Pilih Fakultas</option>
                                 </select>
                             </div>
                             <div class="col-md-2">
                                 <label>Tahun Ajar</label>
-                                <select class="form-control select" name="tahunAjar">
+                                <select class="form-control" name="tahunAjar">
                                     <option value="">-- Select --</option>
-                                    <?php foreach ($listTermYear as $rows) : ?>
-                                        <option value="<?= $rows->Term_Year_Id ?>" <?php if ($rows->Term_Year_Id == $termYear) echo " selected" ?>><?= $rows->Term_Year_Name ?></option>
-                                    <?php endforeach ?>
+                                    <?php //foreach ($listTermYear as $rows) : 
+                                    ?>
+                                    <!-- <option value="<? //= $rows->Term_Year_Id 
+                                                        ?>" <?php //if ($rows->Term_Year_Id == $termYear) echo " selected" 
+                                                            ?>><? //= $rows->Term_Year_Name 
+                                                                ?></option> -->
+                                    <?php //endforeach 
+                                    ?>
                                 </select>
                             </div>
                             <div class="col-md-2">
                                 <label>Tahun Angkatan</label>
-                                <select class="form-control select" name="tahunAngkatan">
+                                <select class="form-control" name="tahunAngkatan">
                                     <option value="">--Select--</option>
                                     <?php for ($i = date("Y"); $i >= 2016; $i--) : ?>
                                         <option value="<?= $i ?>" <?php if ($i == $entryYear) echo " selected" ?>><?= $i ?></option>

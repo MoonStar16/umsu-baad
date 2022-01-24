@@ -31,14 +31,10 @@ class PendaftarModel extends Model
             ],
 
         ]);
-
-        return json_decode($response->getBody())->data;
     }
 
-    public function getFakultas()
+    public function getFakultas($kelompok)
     {
-        $kelompok = trim($this->request->getPost('kelompok'));
-
         $response = $this->curl->request(
             "POST",
             "https://api.umsu.ac.id/baad/fakultas",
@@ -47,9 +43,11 @@ class PendaftarModel extends Model
                     "Accept" => "application/json"
                 ],
                 "form_params" => [
-                    "kelompokId" => $kelompok,
+                    "kelompok" => $kelompok,
                 ]
             ]
         );
+
+        return json_decode($response->getBody())->data;
     }
 }

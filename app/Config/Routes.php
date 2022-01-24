@@ -45,6 +45,7 @@ $routes->get('/maintenance/(:any)', 'Maintenance::index');
 
 //pendaftar
 $routes->get('/pendaftar/(:any)', 'Pendaftar::index');
+$routes->get('/pendaftar/fakultas', 'Pendaftar::fakultas');
 
 
 /*

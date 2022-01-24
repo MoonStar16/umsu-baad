@@ -92,6 +92,7 @@
     <!-- START TEMPLATE -->
     <script type="text/javascript" src="<?= base_url('theme/js/plugins.js'); ?>"></script>
     <script type="text/javascript" src="<?= base_url('theme/js/actions.js'); ?>"></script>
+    <script src="<?= base_url() ?>/js/script.js"></script>
     <!-- END TEMPLATE -->
     <!-- END TIME -->
     <!-- END SCRIPTS -->
