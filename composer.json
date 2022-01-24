@@ -7,12 +7,8 @@
     "require": {
         "php": "^7.3 || ^8.0",
         "codeigniter4/framework": "^4",
-<<<<<<< HEAD
-        "myth/auth": "^1.0"
-=======
         "myth/auth": "^1.0",
         "phpoffice/phpspreadsheet": "^1.19"
->>>>>>> 1bbe5682cad93bd4c334651bd679cc8aca992fdd
     },
     "require-dev": {
         "fakerphp/faker": "^1.9",
