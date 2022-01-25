@@ -39,23 +39,15 @@
                 <?php endif; ?>
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <form autocomplete="off" class="form-horizontal" action="/ubahAngkatan" method="POST">
-                            <div class="col-md-2">
-                                <label>Kelompok</label>
-                                <select class="form-control" name="kelompok" id="kelompok">
+                        <form autocomplete="off" class="form-horizontal" action="/pendaftar/proses" method="POST">
 
-                                    <option value="">-- Select --</option>
-                                    <?php foreach ($listKelompok as $rows) : ?>
-                                        <option value="<?= $rows->nilaiTipe ?>"><?= $rows->nilaiTipe ?></option>
-                                    <?php endforeach ?>
-                                </select>
-                            </div>
                             <div class="col-md-2">
                                 <label>Pilih Fakultas</label>
                                 <select class="form-control" name="fakultas" id="fakultas">
                                     <option value="">Pilih Fakultas</option>
                                 </select>
                             </div>
+
                             <div class="col-md-2">
                                 <label>Tahun Ajar</label>
                                 <select class="form-control" name="tahunAjar">

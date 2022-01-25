@@ -33,7 +33,7 @@ class PendaftarModel extends Model
         ]);
     }
 
-    public function getFakultas($kelompok)
+    public function getLapPendaftar($data)
     {
         $response = $this->curl->request(
             "POST",
@@ -43,7 +43,9 @@ class PendaftarModel extends Model
                     "Accept" => "application/json"
                 ],
                 "form_params" => [
-                    "kelompok" => $kelompok,
+                    "filter" => $data['fakultas'],
+                    "tahunAjaran" => $data['tahunAjar'],
+                    "angkatan" => $data['tahunAngkatan'],
                 ]
             ]
         );

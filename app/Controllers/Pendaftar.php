@@ -31,15 +31,18 @@ class Pendaftar extends BaseController
         return view('pages/pendaftar', $data);
     }
 
-    public function fakultas()
+    public function proses()
     {
-        $kelompok = $this->request->getVar('kelompok');
-        $dataFakultas = $this->pendaftarModel->getFakultas($kelompok);
-        $lists = "<option value=''>Pilih Fakultas</option>";
-        foreach ($dataFakultas as $row_fakultas) {
-            $lists .= "<option value='" . $row_fakultas->fakNamaSingkat . "'>" . $row_fakultas->fakNamaResmi . "</option>";
-        }
+        $data = array(
+            'fakultas' => trim($this->request->getPost('fakultas')),
+            'tahunAjar' => trim($this->request->getPost('tahunAjar')),
+            'tahunAngkatan' => trim($this->request->getPost('tahunAngkatan')),
+        );
 
-        echo $lists;
+        $lapPendaftar = $this->pendaftarModel->getLapPendaftar($data);
+        dd(
+            $lapPendaftar
+        );
+        return $lapPendaftar;
     }
 }
