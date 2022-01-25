@@ -14,39 +14,33 @@
         <!-- START BREADCRUMB -->
         <ul class="breadcrumb">
             <li><a href="/home"><?= $breadcrumb[0]; ?></a></li>
-            <li class="active"><?= $breadcrumb[1]; ?></li>
+            <li><a href="/pendaftar"><?= $breadcrumb[1]; ?></a></li>
+            <li class="active"><?= $breadcrumb[2]; ?></li>
         </ul>
         <!-- END BREADCRUMB  ->getBody()-->
         <div class="row">
             <div class="col-md-12">
                 <?php if (!empty(session()->getFlashdata('success'))) : ?>
-                    <div class="alert alert-success" role="alert">
-                        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                        <?php echo session()->getFlashdata('success'); ?>
-                    </div>
+                    <?= view('layout/templateAlert', ['msg' => ['success', session()->getFlashdata('success')]]); ?>
+                <?php endif; ?>
+                <?php if ($validation->hasError('fakultas')) : ?>
+                    <?= view('layout/templateAlert', ['msg' => ['danger', "<strong>Failed ! </strong>" . $validation->getError('fakultas')]]); ?>
                 <?php endif; ?>
                 <?php if ($validation->hasError('tahunAjar')) : ?>
-                    <div class="alert alert-danger" role="alert">
-                        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                        <strong>Failed ! </strong><?= $validation->getError('tahunAjar'); ?>
-                    </div>
+                    <?= view('layout/templateAlert', ['msg' => ['danger', "<strong>Failed ! </strong>" . $validation->getError('tahunAjar')]]); ?>
                 <?php endif; ?>
-                <?php if ($validation->hasError('tahap')) : ?>
-                    <div class="alert alert-danger" role="alert">
-                        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                        <strong>Failed ! </strong><?= $validation->getError('tahap'); ?>
-                    </div>
+                <?php if ($validation->hasError('tahunAngkatan')) : ?>
+                    <?= view('layout/templateAlert', ['msg' => ['danger', "<strong>Failed ! </strong>" . $validation->getError('tahunAngkatan')]]); ?>
                 <?php endif; ?>
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <form autocomplete="off" class="form-horizontal" action="/pendaftar/proses" method="POST">
-
                             <div class="col-md-2">
                                 <label>Pilih Fakultas</label>
                                 <select class="form-control select" name="fakultas">
                                     <option value="">--Select--</option>
                                     <?php foreach ($listFakultas as $rows) : ?>
-                                        <option value="<?= $rows->fakNamaSingkat ?>"><?= $rows->fakNamaResmi ?></option>
+                                        <option value="<?= $rows->fakNamaSingkat ?>" <?php if ($rows->fakNamaSingkat == $filter) echo " selected" ?>><?= $rows->fakNamaResmi ?></option>
                                     <?php endforeach ?>
                                 </select>
                             </div>
@@ -70,7 +64,16 @@
                                 </select>
                             </div>
                             <ul class="panel-controls">
-                                <button style="display: inline-block; margin-top: 11px;" type="submit" class="btn btn-success"><span class="fa fa-arrow-circle-right"></span>
+                                <?php if ($filter != null  && $termYear != null  && $entryYear != null) : ?>
+                                    <form action="/pendaftar/cetak" method="POST">
+                                        <input type="hidden" name="fakultas" value="<?= $filter; ?>">
+                                        <input type="hidden" name="tahunAjar" value="<?= $termYear; ?>">
+                                        <input type="hidden" name="tahunAngkatan" value="<?= $entryYear; ?>">
+                                        <button style="display: inline-block; margin-top: 11px;;margin-right: 5px;" type="submit" class="btn btn-info"><span class="glyphicon glyphicon-print"></span>
+                                            Export</button>
+                                    </form>
+                                <?php endif ?>
+                                <button style="display: inline-block; margin-top: 11px" type="submit" class="btn btn-success"><span class="fa fa-arrow-circle-right"></span>
                                     Proses</button>
                             </ul>
                         </form>
@@ -82,7 +85,7 @@
                             </center>
                         <?php else : ?>
                             <center>
-                                <h1><?= count($dataResult) . " Data Ditemukan"; ?></h1>
+                                <lottie-player src="https://assets8.lottiefiles.com/packages/lf20_y2hxPc.json" background="transparent" speed="1" style="width: 500px; height: 500px;" loop autoplay></lottie-player>
                             </center>
                         <?php endif ?>
                     </div>
