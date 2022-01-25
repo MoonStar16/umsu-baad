@@ -76,9 +76,15 @@
                         </form>
                     </div>
                     <div class="panel-body col-md-12">
-                        <center>
-                            <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_s6bvy00o.json" background="transparent" speed="1" style="width: 500px; height: 500px;" loop autoplay></lottie-player>
-                        </center>
+                        <?php if (count($dataResult) < 1) : ?>
+                            <center>
+                                <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_s6bvy00o.json" background="transparent" speed="1" style="width: 500px; height: 500px;" loop autoplay></lottie-player>
+                            </center>
+                        <?php else : ?>
+                            <center>
+                                <h1><?= count($dataResult) . " Data Ditemukan"; ?></h1>
+                            </center>
+                        <?php endif ?>
                     </div>
                 </div>
             </div>

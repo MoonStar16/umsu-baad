@@ -25,6 +25,7 @@ class Pendaftar extends BaseController
             'listTermYear' => $this->pendaftarModel->getTermYear(),
             'termYear' => null,
             'entryYear' => null,
+            'dataResult' => null
         ];
         // dd($data);
 
@@ -33,6 +34,7 @@ class Pendaftar extends BaseController
 
     public function proses()
     {
+
         $data = array(
             'fakultas' => trim($this->request->getPost('fakultas')),
             'tahunAjar' => trim($this->request->getPost('tahunAjar')),
@@ -40,9 +42,18 @@ class Pendaftar extends BaseController
         );
 
         $lapPendaftar = $this->pendaftarModel->getLapPendaftar($data);
-        dd(
-            $lapPendaftar
-        );
-        return $lapPendaftar;
+        $data = [
+            'title' => "Data Calon Pendaftar",
+            'appName' => "UMSU",
+            'breadcrumb' => ['Laporan Penmaru', 'Data Calon Pendaftar'],
+            'validation' => \Config\Services::validation(),
+            'menu' => $this->fetchMenu(),
+            'listFakultas' => $this->pendaftarModel->getFakultas(),
+            'listTermYear' => $this->pendaftarModel->getTermYear(),
+            'termYear' => $data['tahunAjar'],
+            'entryYear' => $data['tahunAngkatan'],
+            'dataResult' => $lapPendaftar
+        ];
+        return view('pages/pendaftar', $data);
     }
 }

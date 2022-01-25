@@ -31,13 +31,14 @@ class PendaftarModel extends Model
             ],
 
         ]);
+        return json_decode($response->getBody())->data;
     }
 
     public function getLapPendaftar($data)
     {
         $response = $this->curl->request(
             "POST",
-            "https://api.umsu.ac.id/baad/fakultas",
+            "https://api.umsu.ac.id/baad/lapPendaftar",
             [
                 "headers" => [
                     "Accept" => "application/json"
