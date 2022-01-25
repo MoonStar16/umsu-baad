@@ -51,10 +51,7 @@ $routes->post('/pendaftar/proses', 'Pendaftar::proses');
 //calon mahasiswa
 $routes->get('/cama/(:any)', 'Cama::index');
 $routes->post('/cama/proses', 'Cama::proses');
-$routes->post('/cama/cetak', 'Cama::cetak');
-
-//cama perangkatan
-$routes->get('/cama/(:any)', 'Cama::index');
+$routes->post('/cama/cetak', 'Cama::exportCama');
 
 
 
