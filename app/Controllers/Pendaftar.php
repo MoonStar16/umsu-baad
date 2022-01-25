@@ -3,14 +3,18 @@
 namespace App\Controllers;
 
 use App\Models\PendaftarModel;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class Pendaftar extends BaseController
 {
     protected $pendaftarModel;
+    protected $spreadsheet;
 
     public function __construct()
     {
         $this->pendaftarModel = new PendaftarModel();
+        $this->spreadsheet = new Spreadsheet();
     }
 
     public function index()
@@ -65,6 +69,7 @@ class Pendaftar extends BaseController
         );
 
         $lapPendaftar = $this->pendaftarModel->getLapPendaftar($data);
+        dd($lapPendaftar);
         $data = [
             'title' => "Per Angkatan",
             'appName' => "UMSU",
@@ -80,5 +85,42 @@ class Pendaftar extends BaseController
         ];
         session()->setFlashdata('success', 'Berhasil Memuat ' . '<strong>' . count($lapPendaftar) . ' Data' . '</strong> ,Klik Export Untuk Download !');
         return view('pages/pendaftar', $data);
+    }
+
+    public function cetak()
+    {
+        $data = array(
+            'fakultas' => trim($this->request->getPost('fakultas')),
+            'tahunAjar' => trim($this->request->getPost('tahunAjar')),
+            'tahunAngkatan' => trim($this->request->getPost('tahunAngkatan')),
+        );
+
+        $lapPendaftar = $this->pendaftarModel->getLapPendaftar($data);
+        $row = 1;
+        $this->spreadsheet->setActiveSheetIndex(0)->setCellValue('A' . $row, 'Data Pendaftar')->mergeCells("A" . $row . ":I" . $row)->getStyle("A" . $row . ":I" . $row)->getFont()->setBold(true);
+        $row++;
+        $this->spreadsheet->setActiveSheetIndex(0)
+            ->setCellValue('A' . $row, 'No.')
+            ->setCellValue('B' . $row, 'Nomor Registrasi')
+            ->setCellValue('C' . $row, 'Nama Lengkap')
+            ->setCellValue('D' . $row, 'Email')
+            ->setCellValue('E' . $row, 'Kode Prodi')
+            ->setCellValue('F' . $row, 'Nama Prodi')
+            ->setCellValue('G' . $row, 'Nomor Hp')
+            ->setCellValue('H' . $row, 'Nama Ayah')
+            ->setCellValue('I' . $row, 'Nama Ibu')->getStyle("A2:I2")->getFont()->setBold(true);
+        $row++;
+        foreach ($lapPendaftar as $pendaftar) {
+            $this->spreadsheet->setActiveSheetIndex(0)
+                ->setCellValue('A' . $row, 'No.')
+                ->setCellValue('B' . $row, 'regNoRegistrasi')
+                ->setCellValue('C' . $row, 'regNamaLengkap')
+                ->setCellValue('D' . $row, 'regEmail')
+                ->setCellValue('E' . $row, 'prodiBankId')
+                ->setCellValue('F' . $row, 'prodiNamaResmi')
+                ->setCellValue('G' . $row, 'regNoHp')
+                ->setCellValue('H' . $row, 'regNamaAyah')
+                ->setCellValue('I' . $row, 'regNamaIbu')->getStyle("A" . $row . ":" . "I" . $row)->getFont()->setBold(true);
+        }
     }
 }
