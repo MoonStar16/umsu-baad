@@ -3,14 +3,18 @@
 namespace App\Controllers;
 
 use App\Models\PendaftarModel;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class Pendaftar extends BaseController
 {
     protected $pendaftarModel;
+    protected $spreadsheet;
 
     public function __construct()
     {
         $this->pendaftarModel = new PendaftarModel();
+        $this->spreadsheet = new Spreadsheet();
     }
 
     public function index()
@@ -55,7 +59,7 @@ class Pendaftar extends BaseController
                 ]
             ],
         ])) {
-            return redirect()->to('pembayaranDetail')->withInput();
+            return redirect()->to('pendaftar')->withInput();
         }
 
         $data = array(
@@ -65,6 +69,7 @@ class Pendaftar extends BaseController
         );
 
         $lapPendaftar = $this->pendaftarModel->getLapPendaftar($data);
+        // dd($lapPendaftar);
         $data = [
             'title' => "Per Angkatan",
             'appName' => "UMSU",
@@ -80,5 +85,53 @@ class Pendaftar extends BaseController
         ];
         session()->setFlashdata('success', '<strong>' . count($lapPendaftar) . ' Data' . '</strong> Telah Ditemukan ,Klik Export Untuk Download!');
         return view('pages/pendaftar', $data);
+    }
+
+    public function cetak()
+    {
+        // dd($_POST);
+        $data = array(
+            'fakultas' => trim($this->request->getVar('fakultas')),
+            'tahunAjar' => trim($this->request->getVar('tahunAjar')),
+            'tahunAngkatan' => trim($this->request->getVar('tahunAngkatan')),
+        );
+
+        $lapPendaftar = $this->pendaftarModel->getLapPendaftar($data);
+        $row = 1;
+        $this->spreadsheet->setActiveSheetIndex(0)->setCellValue('A' . $row, 'Data Pendaftar')->mergeCells("A" . $row . ":I" . $row)->getStyle("A" . $row . ":I" . $row)->getFont()->setBold(true);
+        $row++;
+        $this->spreadsheet->setActiveSheetIndex(0)
+            ->setCellValue('A' . $row, 'No.')
+            ->setCellValue('B' . $row, 'Nomor Registrasi')
+            ->setCellValue('C' . $row, 'Nama Lengkap')
+            ->setCellValue('D' . $row, 'Email')
+            ->setCellValue('E' . $row, 'Kode Prodi')
+            ->setCellValue('F' . $row, 'Nama Prodi')
+            ->setCellValue('G' . $row, 'Nomor Hp')
+            ->setCellValue('H' . $row, 'Nama Ayah')
+            ->setCellValue('I' . $row, 'Nama Ibu')->getStyle("A2:I2")->getFont()->setBold(true);
+        $row++;
+        foreach ($lapPendaftar as $pendaftar) {
+            $this->spreadsheet->setActiveSheetIndex(0)
+                ->setCellValue('A' . $row, 'No.')
+                ->setCellValue('B' . $row, 'regNoRegistrasi')
+                ->setCellValue('C' . $row, 'regNamaLengkap')
+                ->setCellValue('D' . $row, 'regEmail')
+                ->setCellValue('E' . $row, 'prodiBankId')
+                ->setCellValue('F' . $row, 'prodiNamaResmi')
+                ->setCellValue('G' . $row, 'regNoHp')
+                ->setCellValue('H' . $row, 'regNamaAyah')
+                ->setCellValue('I' . $row, 'regNamaIbu')->getStyle("A" . $row . ":" . "I" . $row)->getFont()->setBold(true);
+            $row++;
+        }
+        $writer = new Xlsx($this->spreadsheet);
+        $fileName = 'Data Pendaftar';
+
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename=' . $fileName . '.xlsx');
+        header('Cache-Control: max-age=0');
+
+        // session()->setFlashdata('success', 'Berhasil Export Data Tunggakan !');
+        $writer->save('php://output');
     }
 }

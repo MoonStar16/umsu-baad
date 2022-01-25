@@ -44,9 +44,9 @@ $routes->get('/home/(:any)', 'Home::index');
 $routes->get('/maintenance/(:any)', 'Maintenance::index');
 
 //pendaftar perangkatan
-$routes->get('/pendaftar/(:any)', 'Pendaftar::index');
-$routes->post('/pendaftar/proses', 'Pendaftar::proses');
-$routes->post('/pendaftar/cetak', 'Pendaftar::cetak');
+$routes->get('pendaftar/(:any)', 'Pendaftar::index');
+$routes->post('pendaftar/cetak', 'Pendaftar::cetak');
+$routes->post('pendaftar/proses', 'Pendaftar::proses');
 
 //calon mahasiswa
 $routes->get('/cama/(:any)', 'Cama::index');

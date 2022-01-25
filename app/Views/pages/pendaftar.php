@@ -34,7 +34,7 @@
                 <?php endif; ?>
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <form autocomplete="off" class="form-horizontal" action="/pendaftar/proses" method="POST">
+                        <form name="proses" autocomplete="off" class="form-horizontal" action="/pendaftar/proses" method="POST" id="proses">
                             <div class="col-md-2">
                                 <label>Pilih Fakultas</label>
                                 <select class="form-control select" name="fakultas">
@@ -65,7 +65,8 @@
                             </div>
                             <ul class="panel-controls">
                                 <?php if ($filter != null  && $termYear != null  && $entryYear != null) : ?>
-                                    <form action="/pendaftar/cetak" method="POST">
+                                    <form name="cetak" action="/pendaftar/cetak" method="POST" id="cetak">
+                                        <?= csrf_field() ?>
                                         <input type="hidden" name="fakultas" value="<?= $filter; ?>">
                                         <input type="hidden" name="tahunAjar" value="<?= $termYear; ?>">
                                         <input type="hidden" name="tahunAngkatan" value="<?= $entryYear; ?>">
