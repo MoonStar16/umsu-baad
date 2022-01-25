@@ -111,17 +111,19 @@ class Pendaftar extends BaseController
             ->setCellValue('H' . $row, 'Nama Ayah')
             ->setCellValue('I' . $row, 'Nama Ibu')->getStyle("A2:I2")->getFont()->setBold(true);
         $row++;
+        $no = 1;
         foreach ($lapPendaftar as $pendaftar) {
+            $noHp = (substr($pendaftar->regNoHp, 0, 3) == "+62") ? "0" . substr($pendaftar->regNoHp, 3, strlen($pendaftar->regNoHp)) : $pendaftar->regNoHp;
             $this->spreadsheet->setActiveSheetIndex(0)
-                ->setCellValue('A' . $row, 'No.')
-                ->setCellValue('B' . $row, 'regNoRegistrasi')
-                ->setCellValue('C' . $row, 'regNamaLengkap')
-                ->setCellValue('D' . $row, 'regEmail')
-                ->setCellValue('E' . $row, 'prodiBankId')
-                ->setCellValue('F' . $row, 'prodiNamaResmi')
-                ->setCellValue('G' . $row, 'regNoHp')
-                ->setCellValue('H' . $row, 'regNamaAyah')
-                ->setCellValue('I' . $row, 'regNamaIbu')->getStyle("A" . $row . ":" . "I" . $row)->getFont()->setBold(true);
+                ->setCellValue('A' . $row, $no++)
+                ->setCellValue('B' . $row, $pendaftar->regNoRegistrasi)
+                ->setCellValue('C' . $row, $pendaftar->regNamaLengkap)
+                ->setCellValue('D' . $row, $pendaftar->regEmail)
+                ->setCellValue('E' . $row, $pendaftar->prodiBankId)
+                ->setCellValue('F' . $row, $pendaftar->prodiNamaResmi)
+                ->setCellValue('G' . $row, $noHp)
+                ->setCellValue('H' . $row, $pendaftar->regNamaAyah)
+                ->setCellValue('I' . $row, $pendaftar->regNamaIbu);
             $row++;
         }
         $writer = new Xlsx($this->spreadsheet);
