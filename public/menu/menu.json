@@ -27,11 +27,20 @@
     },
     {
         "id": "4",
-        "nama": "Data Calon Pendaftar",
+        "nama": "Data Pendaftar",
         "parent": "2",
-        "level": "child",
+        "level": "parent",
         "status": true,
         "icon": "fa fa-users",
+        "pages": ""
+    },
+    {
+        "id": "13",
+        "nama": "Per Angkatan",
+        "parent": "4",
+        "level": "child",
+        "status": true,
+        "icon": "",
         "pages": "/pendaftar"
     },
     {

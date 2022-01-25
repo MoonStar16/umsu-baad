@@ -43,9 +43,11 @@ $routes->get('/home/(:any)', 'Home::index');
 // Route Maintenance
 $routes->get('/maintenance/(:any)', 'Maintenance::index');
 
-//pendaftar
+//pendaftar perangkatan
 $routes->get('/pendaftar/(:any)', 'Pendaftar::index');
 $routes->post('/pendaftar/proses', 'Pendaftar::proses');
+$routes->post('/pendaftar/cetak', 'Pendaftar::cetak');
+
 
 
 /*
