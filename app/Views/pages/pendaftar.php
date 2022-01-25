@@ -65,16 +65,11 @@
                             </div>
                             <ul class="panel-controls">
                                 <?php if ($filter != null  && $termYear != null  && $entryYear != null) : ?>
-                                    <form name="cetak" action="/pendaftar/cetak" method="POST" id="cetak">
-                                        <?= csrf_field() ?>
-                                        <input type="hidden" name="fakultas" value="<?= $filter; ?>">
-                                        <input type="hidden" name="tahunAjar" value="<?= $termYear; ?>">
-                                        <input type="hidden" name="tahunAngkatan" value="<?= $entryYear; ?>">
-                                        <button style="display: inline-block; margin-top: 11px;;margin-right: 5px;" type="submit" class="btn btn-info"><span class="glyphicon glyphicon-print"></span>
-                                            Export</button>
-                                    </form>
+
+                                    <button style="display: inline-block; margin-top: 11px;;margin-right: 5px;" type="submit" form="cetak" class="btn btn-info"><span class="glyphicon glyphicon-print"></span>
+                                        Export</button>
                                 <?php endif ?>
-                                <button style="display: inline-block; margin-top: 11px" type="submit" class="btn btn-success"><span class="fa fa-arrow-circle-right"></span>
+                                <button style="display: inline-block; margin-top: 11px" type="submit" class="btn btn-success"><span class=" fa fa-arrow-circle-right"></span>
                                     Proses</button>
                             </ul>
                         </form>
@@ -87,6 +82,14 @@
                         <?php else : ?>
                             <center>
                                 <lottie-player src="https://assets8.lottiefiles.com/packages/lf20_y2hxPc.json" background="transparent" speed="1" style="width: 500px; height: 500px;" loop autoplay></lottie-player>
+                                <?php if ($filter != null  && $termYear != null  && $entryYear != null) : ?>
+                                    <form name="cetak" action="/pendaftar/cetak" method="POST" id="cetak">
+                                        <?= csrf_field() ?>
+                                        <input type="hidden" name="fakultas" value="<?= $filter; ?>">
+                                        <input type="hidden" name="tahunAjar" value="<?= $termYear; ?>">
+                                        <input type="hidden" name="tahunAngkatan" value="<?= $entryYear; ?>">
+                                    </form>
+                                <?php endif ?>
                             </center>
                         <?php endif ?>
                     </div>
