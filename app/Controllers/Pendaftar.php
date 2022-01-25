@@ -78,7 +78,7 @@ class Pendaftar extends BaseController
             'entryYear' => $data['tahunAngkatan'],
             'dataResult' => $lapPendaftar
         ];
-        session()->setFlashdata('success', 'Berhasil Memuat ' . '<strong>' . count($lapPendaftar) . ' Data' . '</strong> ,Klik Export Untuk Download !');
+        session()->setFlashdata('success', '<strong>' . count($lapPendaftar) . ' Data' . '</strong> Telah Ditemukan ,Klik Export Untuk Download!');
         return view('pages/pendaftar', $data);
     }
 }
