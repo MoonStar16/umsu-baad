@@ -16,13 +16,14 @@ class Pendaftar extends BaseController
     public function index()
     {
         $data = [
-            'title' => "Data Calon Pendaftar",
+            'title' => "Per Angkatan",
             'appName' => "UMSU",
-            'breadcrumb' => ['Laporan Penmaru', 'Data Calon Pendaftar'],
+            'breadcrumb' => ['Laporan Penmaru', 'Data Pendaftar', 'Per Angkatan'],
             'validation' => \Config\Services::validation(),
             'menu' => $this->fetchMenu(),
             'listFakultas' => $this->pendaftarModel->getFakultas(),
             'listTermYear' => $this->pendaftarModel->getTermYear(),
+            'filter' => null,
             'termYear' => null,
             'entryYear' => null,
             'dataResult' => []
@@ -34,6 +35,28 @@ class Pendaftar extends BaseController
 
     public function proses()
     {
+        if (!$this->validate([
+            'fakultas' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Fakultas Harus Dipilih!',
+                ]
+            ],
+            'tahunAngkatan' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Tahun Angkatan Harus Dipilih!',
+                ]
+            ],
+            'tahunAjar' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Tahun Ajar Harus Dipilih!',
+                ]
+            ],
+        ])) {
+            return redirect()->to('pembayaranDetail')->withInput();
+        }
 
         $data = array(
             'fakultas' => trim($this->request->getPost('fakultas')),
@@ -43,17 +66,19 @@ class Pendaftar extends BaseController
 
         $lapPendaftar = $this->pendaftarModel->getLapPendaftar($data);
         $data = [
-            'title' => "Data Calon Pendaftar",
+            'title' => "Per Angkatan",
             'appName' => "UMSU",
-            'breadcrumb' => ['Laporan Penmaru', 'Data Calon Pendaftar'],
+            'breadcrumb' => ['Laporan Penmaru', 'Data Pendaftar', 'Per Angkatan'],
             'validation' => \Config\Services::validation(),
             'menu' => $this->fetchMenu(),
             'listFakultas' => $this->pendaftarModel->getFakultas(),
             'listTermYear' => $this->pendaftarModel->getTermYear(),
+            'filter' => $data['fakultas'],
             'termYear' => $data['tahunAjar'],
             'entryYear' => $data['tahunAngkatan'],
             'dataResult' => $lapPendaftar
         ];
+        session()->setFlashdata('success', 'Berhasil Memuat ' . '<strong>' . count($lapPendaftar) . ' Data' . '</strong> ,Klik Export Untuk Download !');
         return view('pages/pendaftar', $data);
     }
 }
