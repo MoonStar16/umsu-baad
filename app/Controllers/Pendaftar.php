@@ -25,7 +25,7 @@ class Pendaftar extends BaseController
             'listTermYear' => $this->pendaftarModel->getTermYear(),
             'termYear' => null,
             'entryYear' => null,
-            'dataResult' => null
+            'dataResult' => []
         ];
         // dd($data);
 
