@@ -39,7 +39,8 @@
                 <?php endif; ?>
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <form autocomplete="off" class="form-horizontal" action="/ubahAngkatan" method="POST">
+                        <form autocomplete="off" class="form-horizontal" action="/pendaftar/proses" method="POST">
+
                             <div class="col-md-2">
                                 <label>Pilih Fakultas</label>
                                 <select class="form-control select" name="fakultas">
@@ -49,6 +50,7 @@
                                     <?php endforeach ?>
                                 </select>
                             </div>
+
                             <div class="col-md-2">
                                 <label>Tahun Ajar</label>
                                 <select class="form-control select" name="tahunAjar">

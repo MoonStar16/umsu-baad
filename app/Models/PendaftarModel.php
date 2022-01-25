@@ -31,6 +31,25 @@ class PendaftarModel extends Model
             ],
 
         ]);
+    }
+
+    public function getLapPendaftar($data)
+    {
+        $response = $this->curl->request(
+            "POST",
+            "https://api.umsu.ac.id/baad/fakultas",
+            [
+                "headers" => [
+                    "Accept" => "application/json"
+                ],
+                "form_params" => [
+                    "filter" => $data['fakultas'],
+                    "tahunAjaran" => $data['tahunAjar'],
+                    "angkatan" => $data['tahunAngkatan'],
+                ]
+            ]
+        );
+
         return json_decode($response->getBody())->data;
     }
 }
