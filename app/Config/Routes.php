@@ -48,6 +48,9 @@ $routes->get('/pendaftar/(:any)', 'Pendaftar::index');
 $routes->post('/pendaftar/proses', 'Pendaftar::proses');
 $routes->post('/pendaftar/cetak', 'Pendaftar::cetak');
 
+//cama perangkatan
+$routes->get('/cama/(:any)', 'Cama::index');
+
 
 
 /*

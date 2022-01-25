@@ -3,6 +3,8 @@
 namespace App\Controllers;
 
 use App\Models\PendaftarModel;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class Pendaftar extends BaseController
 {
