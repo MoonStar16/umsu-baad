@@ -16,15 +16,44 @@ class Pendaftar extends BaseController
     public function index()
     {
         $data = [
-            'title' => "Jumlah KRS Aktif",
+            'title' => "Data Calon Pendaftar",
             'appName' => "UMSU",
-            'breadcrumb' => ['Home', 'Laporan KRS Aktif', 'Jumlah KRS Aktif'],
+            'breadcrumb' => ['Laporan Penmaru', 'Data Calon Pendaftar'],
             'validation' => \Config\Services::validation(),
             'menu' => $this->fetchMenu(),
-            'dataFromApi' => $this->pendaftarModel->fromApi(),
+            'listFakultas' => $this->pendaftarModel->getFakultas(),
+            'listTermYear' => $this->pendaftarModel->getTermYear(),
+            'termYear' => null,
+            'entryYear' => null,
+            'dataResult' => null
         ];
-        dd($data);
+        // dd($data);
 
-        return view('pages/krsAktif', $data);
+        return view('pages/pendaftar', $data);
+    }
+
+    public function proses()
+    {
+
+        $data = array(
+            'fakultas' => trim($this->request->getPost('fakultas')),
+            'tahunAjar' => trim($this->request->getPost('tahunAjar')),
+            'tahunAngkatan' => trim($this->request->getPost('tahunAngkatan')),
+        );
+
+        $lapPendaftar = $this->pendaftarModel->getLapPendaftar($data);
+        $data = [
+            'title' => "Data Calon Pendaftar",
+            'appName' => "UMSU",
+            'breadcrumb' => ['Laporan Penmaru', 'Data Calon Pendaftar'],
+            'validation' => \Config\Services::validation(),
+            'menu' => $this->fetchMenu(),
+            'listFakultas' => $this->pendaftarModel->getFakultas(),
+            'listTermYear' => $this->pendaftarModel->getTermYear(),
+            'termYear' => $data['tahunAjar'],
+            'entryYear' => $data['tahunAngkatan'],
+            'dataResult' => $lapPendaftar
+        ];
+        return view('pages/pendaftar', $data);
     }
 }

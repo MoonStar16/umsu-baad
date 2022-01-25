@@ -2,17 +2,17 @@
 
 namespace App\Controllers;
 
-class Home extends BaseController
+class Cama extends BaseController
 {
     public function index()
     {
         $data = [
-            'title' => "Home",
+            'title' => "Cama",
             'appName' => "Rekap BAAD",
-            'breadcrumb' => ['Home', 'Dashboard'],
+            'breadcrumb' => ['Home', 'Cama'],
             'validation' => \Config\Services::validation(),
             'menu' => $this->fetchMenu()
         ];
-        return view('pages/home', $data);
+        return view('pages/cama', $data);
     }
 }
