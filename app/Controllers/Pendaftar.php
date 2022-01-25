@@ -87,7 +87,7 @@ class Pendaftar extends BaseController
         return view('pages/pendaftar', $data);
     }
 
-    public function cetak()
+    public function exportPendaftar()
     {
         // dd($_POST);
         $data = array(
