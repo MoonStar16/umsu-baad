@@ -53,6 +53,9 @@ $routes->get('/cama/(:any)', 'Cama::index');
 $routes->post('/cama/proses', 'Cama::proses');
 $routes->post('/cama/cetak', 'Cama::cetak');
 
+//cama perangkatan
+$routes->get('/cama/(:any)', 'Cama::index');
+
 
 
 /*
