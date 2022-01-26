@@ -2,31 +2,31 @@
 
 namespace App\Controllers;
 
-use App\Models\KrsAktifModel;
+use App\Models\KrsMahasiswaModel;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
-class KrsAktif extends BaseController
+class KrsMahasiswa extends BaseController
 {
-    protected $krsAktifModel;
+    protected $krsMahasiswaModel;
     protected $spreadsheet;
 
     public function __construct()
     {
-        $this->krsAktifModel = new KrsAktifModel();
+        $this->krsMahasiswaModel = new KrsMahasiswaModel();
         $this->spreadsheet = new Spreadsheet();
     }
 
     public function index()
     {
         $data = [
-            'title' => "KRS Aktif",
+            'title' => "KRS Mahasiswa",
             'appName' => "UMSU",
-            'breadcrumb' => ['Laporan Mahasiswa', 'Data Mahasiswa', 'KRS Aktif'],
+            'breadcrumb' => ['Laporan Mahasiswa', 'Data KRS Dan Nilai', 'KRS Mahasiswa'],
             'validation' => \Config\Services::validation(),
             'menu' => $this->fetchMenu(),
-            'listProdi' => $this->krsAktifModel->getProdi(),
-            'listTermYear' => $this->krsAktifModel->getTermYear(),
+            'listProdi' => $this->krsMahasiswaModel->getProdi(),
+            'listTermYear' => $this->krsMahasiswaModel->getTermYear(),
             'filter' => null,
             'termYear' => null,
             'entryYear' => null,
@@ -34,7 +34,7 @@ class KrsAktif extends BaseController
         ];
         // dd($data);
 
-        return view('pages/krsAktif', $data);
+        return view('pages/krsMahasiswa', $data);
     }
 
     public function proses()
@@ -59,7 +59,7 @@ class KrsAktif extends BaseController
                 ]
             ],
         ])) {
-            return redirect()->to('krsAktif')->withInput();
+            return redirect()->to('krsMahasiswa')->withInput();
         }
 
         $data = array(
@@ -68,26 +68,26 @@ class KrsAktif extends BaseController
             'tahunAngkatan' => trim($this->request->getPost('tahunAngkatan')),
         );
 
-        $lapKrsAktif = $this->krsAktifModel->getLapKrsAktif($data);
-        // dd($lapKrsAktif);
+        $lapKrsMahasiswa = $this->krsMahasiswaModel->getLapKrsMahasiswa($data);
+        // dd($lapKrsMahasiswa);
         $data = [
-            'title' => "KRS Aktif",
+            'title' => "KRS Mahasiswa",
             'appName' => "UMSU",
-            'breadcrumb' => ['Laporan Mahasiswa', 'Data Mahasiswa', 'KRS Aktif'],
+            'breadcrumb' => ['Laporan Mahasiswa', 'Data KRS Dan Nilai', 'KRS Mahasiswa'],
             'validation' => \Config\Services::validation(),
             'menu' => $this->fetchMenu(),
-            'listProdi' => $this->krsAktifModel->getProdi(),
-            'listTermYear' => $this->krsAktifModel->getTermYear(),
+            'listProdi' => $this->krsMahasiswaModel->getProdi(),
+            'listTermYear' => $this->krsMahasiswaModel->getTermYear(),
             'filter' => $data['fakultas'],
             'termYear' => $data['tahunAjar'],
             'entryYear' => $data['tahunAngkatan'],
-            'dataResult' => $lapKrsAktif
+            'dataResult' => $lapKrsMahasiswa
         ];
-        session()->setFlashdata('success', '<strong>' . count($lapKrsAktif) . ' Data' . '</strong> Telah Ditemukan ,Klik Export Untuk Download!');
-        return view('pages/krsAktif', $data);
+        session()->setFlashdata('success', '<strong>' . count($lapKrsMahasiswa) . ' Data' . '</strong> Telah Ditemukan ,Klik Export Untuk Download!');
+        return view('pages/krsMahasiswa', $data);
     }
 
-    public function exportKrsAktif()
+    public function exportKrsMahasiswa()
     {
         $data = array(
             'fakultas' => trim($this->request->getPost('fakultas')),
@@ -95,7 +95,7 @@ class KrsAktif extends BaseController
             'tahunAngkatan' => trim($this->request->getPost('tahunAngkatan')),
         );
 
-        $lapKrsAktif = $this->krsAktifModel->getLapKrsAktif($data);
+        $lapKrsMahasiswa = $this->krsMahasiswaModel->getLapKrsMahasiswa($data);
         $row = 1;
         $this->spreadsheet->setActiveSheetIndex(0)->setCellValue('A' . $row, 'KRS Mahasiswa')->mergeCells("A" . $row . ":M" . $row)->getStyle("A" . $row . ":I" . $row)->getFont()->setBold(true);
         $row++;
@@ -115,7 +115,7 @@ class KrsAktif extends BaseController
             ->setCellValue('M' . $row, 'TAHUN AKADEMIK')->getStyle("A2:M2")->getFont()->setBold(true);
         $row++;
         $no = 1;
-        foreach ($lapKrsAktif as $krs) {
+        foreach ($lapKrsMahasiswa as $krs) {
             $this->spreadsheet->setActiveSheetIndex(0)
                 ->setCellValue('A' . $row, $no++)
                 ->setCellValue('B' . $row, $krs->NO_REGISTRASI)

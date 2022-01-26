@@ -58,10 +58,10 @@ $routes->get('/regulang/(:any)', 'Regulang::index');
 $routes->post('/regulang/proses', 'Regulang::proses');
 $routes->post('/regulang/cetak', 'Regulang::exportRegulang');
 
-//krs aktif
-$routes->get('/krsAktif/(:any)', 'KrsAktif::index');
-$routes->post('/krsAktif/proses', 'KrsAktif::proses');
-$routes->post('/krsAktif/cetak', 'KrsAktif::exportKrsAktif');
+//krs mahasiswa
+$routes->get('/krsMahasiswa/(:any)', 'KrsMahasiswa::index');
+$routes->post('/krsMahasiswa/proses', 'KrsMahasiswa::proses');
+$routes->post('/krsMahasiswa/cetak', 'KrsMahasiswa::exportKrsMahasiswa');
 
 //khs mahasiswa
 $routes->get('/khsMahasiswa/(:any)', 'KhsMahasiswa::index');

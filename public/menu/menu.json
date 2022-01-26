@@ -90,7 +90,7 @@
     },
     {
         "id": "6",
-        "nama": "Data Mahasiswa",
+        "nama": "Data KRS Dan Nilai",
         "parent": "12",
         "level": "parent",
         "status": true,
@@ -108,12 +108,12 @@
     },
     {
         "id": "9",
-        "nama": "KRS Aktif",
+        "nama": "KRS Mahasiswa",
         "parent": "6",
         "level": "child",
         "status": true,
         "icon": "",
-        "pages": "/krsAktif"
+        "pages": "/krsMahasiswa"
     },
     {
         "id": "10",
@@ -123,5 +123,14 @@
         "status": true,
         "icon": "",
         "pages": "/khsMahasiswa"
+    },
+    {
+        "id": "16",
+        "nama": "IPK Mahasiswa",
+        "parent": "6",
+        "level": "child",
+        "status": true,
+        "icon": "",
+        "pages": "/ipk"
     }
 ]

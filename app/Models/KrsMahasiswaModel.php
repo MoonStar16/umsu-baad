@@ -4,7 +4,7 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class KrsAktifModel extends Model
+class KrsMahasiswaModel extends Model
 {
     protected $curl;
 
@@ -34,7 +34,7 @@ class KrsAktifModel extends Model
         return json_decode($response->getBody())->data;
     }
 
-    public function getLapKrsAktif($data)
+    public function getLapKrsMahasiswa($data)
     {
         $response = $this->curl->request(
             "POST",

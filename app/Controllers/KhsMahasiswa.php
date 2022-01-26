@@ -22,7 +22,7 @@ class KhsMahasiswa extends BaseController
         $data = [
             'title' => "KHS Mahasiswa",
             'appName' => "UMSU",
-            'breadcrumb' => ['Laporan Mahasiswa', 'Data Mahasiswa', 'KHS Mahasiswa'],
+            'breadcrumb' => ['Laporan Mahasiswa', 'Data KRS Dan Nilai', 'KHS Mahasiswa'],
             'validation' => \Config\Services::validation(),
             'menu' => $this->fetchMenu(),
             'listProdi' => $this->khsMahasiswaModel->getProdi(),
@@ -73,7 +73,7 @@ class KhsMahasiswa extends BaseController
         $data = [
             'title' => "KHS Mahasiswa",
             'appName' => "UMSU",
-            'breadcrumb' => ['Laporan Mahasiswa', 'Data Mahasiswa', 'KHS Mahasiswa'],
+            'breadcrumb' => ['Laporan Mahasiswa', 'Data KRS Dan Nilai', 'KHS Mahasiswa'],
             'validation' => \Config\Services::validation(),
             'menu' => $this->fetchMenu(),
             'listProdi' => $this->khsMahasiswaModel->getProdi(),
