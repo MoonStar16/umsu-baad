@@ -43,7 +43,7 @@ class KrsAktif extends BaseController
             'fakultas' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => 'Fakultas Harus Dipilih!',
+                    'required' => 'Prodi Harus Dipilih!',
                 ]
             ],
             'tahunAngkatan' => [
