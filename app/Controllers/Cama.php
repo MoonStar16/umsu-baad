@@ -86,4 +86,58 @@ class Cama extends BaseController
         session()->setFlashdata('success', '<strong>' . count($lapCama) . ' Data' . '</strong> Telah Ditemukan ,Klik Export Untuk Download!');
         return view('pages/cama', $data);
     }
+
+    public function exportCama()
+    {
+        $data = array(
+            'fakultas' => trim($this->request->getVar('fakultas')),
+            'tahunAjar' => trim($this->request->getVar('tahunAjar')),
+            'tahunAngkatan' => trim($this->request->getVar('tahunAngkatan')),
+        );
+
+        $lapCama = $this->camaModel->getLapCama($data);
+        $row = 1;
+        $this->spreadsheet->setActiveSheetIndex(0)->setCellValue('A' . $row, 'Data Calon Mahasiswa')->mergeCells("A" . $row . ":I" . $row)->getStyle("A" . $row . ":I" . $row)->getFont()->setBold(true);
+        $row++;
+        $this->spreadsheet->setActiveSheetIndex(0)
+            ->setCellValue('A' . $row, 'No.')
+            ->setCellValue('B' . $row, 'Nomor Registrasi')
+            ->setCellValue('C' . $row, 'Nama Lengkap')
+            ->setCellValue('D' . $row, 'Email')
+            ->setCellValue('E' . $row, 'Kode Prodi')
+            ->setCellValue('F' . $row, 'Nama Prodi')
+            ->setCellValue('G' . $row, 'Nomor Hp')
+            ->setCellValue('H' . $row, 'Nama Ayah')
+            ->setCellValue('I' . $row, 'Nama Ibu')
+            ->setCellValue('J' . $row, 'Alamat')
+            ->setCellValue('K' . $row, 'Angkatan')->getStyle("A2:K2")->getFont()->setBold(true);
+        $row++;
+        $no = 1;
+        foreach ($lapCama as $cama) {
+            $noHp = (substr($cama->camaNoHp, 0, 3) == "+62") ? "0" . substr($cama->camaNoHp, 3, strlen($cama->camaNoHp)) : $cama->camaNoHp;
+            $mobile = (substr($noHp, 0, 2) == "62") ? "0" . substr($noHp, 2, strlen($noHp)) : $noHp;
+            $this->spreadsheet->setActiveSheetIndex(0)
+                ->setCellValue('A' . $row, $no++)
+                ->setCellValue('B' . $row, $cama->camaNoRegistrasi)
+                ->setCellValue('C' . $row, $cama->camaNamaLengkap)
+                ->setCellValue('D' . $row, $cama->camaEmail)
+                ->setCellValue('E' . $row, $cama->prodiBankId)
+                ->setCellValue('F' . $row, $cama->prodiNamaResmi)
+                ->setCellValue('G' . $row, $mobile)
+                ->setCellValue('H' . $row, $cama->camaNamaAyah)
+                ->setCellValue('I' . $row, $cama->camaNamaIbu)
+                ->setCellValue('J' . $row, $cama->camaAlamat)
+                ->setCellValue('K' . $row, $cama->camaAngkatan);
+            $row++;
+        }
+        $writer = new Xlsx($this->spreadsheet);
+        $fileName = 'Data Calon Mahasiswa ' . $cama->camaAngkatan;
+
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename=' . $fileName . '.xlsx');
+        header('Cache-Control: max-age=0');
+
+        // session()->setFlashdata('success', 'Berhasil Export Data Tunggakan !');
+        $writer->save('php://output');
+    }
 }

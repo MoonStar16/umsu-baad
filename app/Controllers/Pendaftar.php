@@ -114,6 +114,7 @@ class Pendaftar extends BaseController
         $no = 1;
         foreach ($lapPendaftar as $pendaftar) {
             $noHp = (substr($pendaftar->regNoHp, 0, 3) == "+62") ? "0" . substr($pendaftar->regNoHp, 3, strlen($pendaftar->regNoHp)) : $pendaftar->regNoHp;
+            $mobile = (substr($noHp, 0, 2) == "62") ? "0" . substr($noHp, 2, strlen($noHp)) : $noHp;
             $this->spreadsheet->setActiveSheetIndex(0)
                 ->setCellValue('A' . $row, $no++)
                 ->setCellValue('B' . $row, $pendaftar->regNoRegistrasi)
@@ -121,7 +122,7 @@ class Pendaftar extends BaseController
                 ->setCellValue('D' . $row, $pendaftar->regEmail)
                 ->setCellValue('E' . $row, $pendaftar->prodiBankId)
                 ->setCellValue('F' . $row, $pendaftar->prodiNamaResmi)
-                ->setCellValue('G' . $row, $noHp)
+                ->setCellValue('G' . $row, $mobile)
                 ->setCellValue('H' . $row, $pendaftar->regNamaAyah)
                 ->setCellValue('I' . $row, $pendaftar->regNamaIbu);
             $row++;

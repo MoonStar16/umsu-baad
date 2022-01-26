@@ -86,4 +86,64 @@ class KhsMahasiswa extends BaseController
         session()->setFlashdata('success', '<strong>' . count($lapKhs) . ' Data' . '</strong> Telah Ditemukan ,Klik Export Untuk Download!');
         return view('pages/khsMahasiswa', $data);
     }
+
+    public function exportKhsMahasiswa()
+    {
+        $data = array(
+            'fakultas' => trim($this->request->getPost('fakultas')),
+            'tahunAjar' => trim($this->request->getPost('tahunAjar')),
+            'tahunAngkatan' => trim($this->request->getPost('tahunAngkatan')),
+        );
+
+        $lapKhs = $this->khsMahasiswaModel->getLapKhsMahasiswa($data);
+        $row = 1;
+        $this->spreadsheet->setActiveSheetIndex(0)->setCellValue('A' . $row, 'KHS Mahasiswa')->mergeCells("A" . $row . ":O" . $row)->getStyle("A" . $row . ":I" . $row)->getFont()->setBold(true);
+        $row++;
+        $this->spreadsheet->setActiveSheetIndex(0)
+            ->setCellValue('A' . $row, 'No.')
+            ->setCellValue('B' . $row, 'Nomor Registrasi')
+            ->setCellValue('C' . $row, 'NPM')
+            ->setCellValue('D' . $row, 'Nama Mahasiswa')
+            ->setCellValue('E' . $row, 'Kode Prodi')
+            ->setCellValue('F' . $row, 'Nama Prodi')
+            ->setCellValue('G' . $row, 'Kelas')
+            ->setCellValue('H' . $row, 'Kode Matkul')
+            ->setCellValue('I' . $row, 'Matakuliah')
+            ->setCellValue('J' . $row, 'SKS')
+            ->setCellValue('K' . $row, 'NIDN')
+            ->setCellValue('L' . $row, 'NAMA DOSEN')
+            ->setCellValue('M' . $row, 'NILAI ANGKA')
+            ->setCellValue('N' . $row, 'NILAI HURUF')
+            ->setCellValue('O' . $row, 'TAHUN AKADEMIK')->getStyle("A2:O2")->getFont()->setBold(true);
+        $row++;
+        $no = 1;
+        foreach ($lapKhs as $khs) {
+            $this->spreadsheet->setActiveSheetIndex(0)
+                ->setCellValue('A' . $row, $no++)
+                ->setCellValue('B' . $row, $khs->NO_REGISTRASI)
+                ->setCellValue('C' . $row, $khs->NPM)
+                ->setCellValue('D' . $row, $khs->NAMA_LENGKAP)
+                ->setCellValue('E' . $row, $khs->Department_Id)
+                ->setCellValue('F' . $row, $khs->NAMA_PRODI)
+                ->setCellValue('G' . $row, $khs->KELAS)
+                ->setCellValue('H' . $row, $khs->KODE_MATKUL)
+                ->setCellValue('I' . $row, $khs->NAMA_MATKUL)
+                ->setCellValue('J' . $row, $khs->SKS)
+                ->setCellValue('K' . $row, $khs->NIDN)
+                ->setCellValue('L' . $row, $khs->NAMA_DOSEN)
+                ->setCellValue('M' . $row, $khs->NILAI_ANGKA)
+                ->setCellValue('N' . $row, $khs->NILAI_HURUF)
+                ->setCellValue('O' . $row, $khs->TAHUN_AKADEMIK);
+            $row++;
+        }
+        $writer = new Xlsx($this->spreadsheet);
+        $fileName = 'KHS Mahasiswa TA ' . $khs->TAHUN_AKADEMIK;
+
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename=' . $fileName . '.xlsx');
+        header('Cache-Control: max-age=0');
+
+        // session()->setFlashdata('success', 'Berhasil Export Data Tunggakan !');
+        $writer->save('php://output');
+    }
 }
