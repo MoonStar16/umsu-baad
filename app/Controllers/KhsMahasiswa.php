@@ -137,7 +137,7 @@ class KhsMahasiswa extends BaseController
             $row++;
         }
         $writer = new Xlsx($this->spreadsheet);
-        $fileName = 'KHS Mahasiswa TA ' . $khs->TAHUN_AKADEMIK;
+        $fileName = 'KHS Mahasiswa Prodi ' . $khs->AKRONIM_PRODI . ' TA ' . $khs->TAHUN_AKADEMIK;
 
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         header('Content-Disposition: attachment;filename=' . $fileName . '.xlsx');
