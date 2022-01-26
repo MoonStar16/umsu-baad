@@ -20,9 +20,9 @@ class Regulang extends BaseController
     public function index()
     {
         $data = [
-            'title' => "Data Registrasi Ulang",
+            'title' => "Per Angkatan",
             'appName' => "UMSU",
-            'breadcrumb' => ['Laporan Penmaru', 'Data Registrasi Ulang'],
+            'breadcrumb' => ['Laporan Penmaru', 'Data Regitrasi Ulang', 'Per Angkatan'],
             'validation' => \Config\Services::validation(),
             'menu' => $this->fetchMenu(),
             'listFakultas' => $this->regulangModel->getFakultas(),
@@ -71,9 +71,9 @@ class Regulang extends BaseController
         $lapRegulang = $this->regulangModel->getLapRegulang($data);
         // dd($lapRegulang);
         $data = [
-            'title' => "Data Registrasi Ulang",
+            'title' => "Per Angkatan",
             'appName' => "UMSU",
-            'breadcrumb' => ['Laporan Penmaru', 'Data Registrasi Ulang'],
+            'breadcrumb' => ['Laporan Penmaru', 'Data Regitrasi Ulang', 'Per Angkatan'],
             'validation' => \Config\Services::validation(),
             'menu' => $this->fetchMenu(),
             'listFakultas' => $this->regulangModel->getFakultas(),

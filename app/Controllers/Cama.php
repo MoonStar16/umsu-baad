@@ -20,9 +20,9 @@ class Cama extends BaseController
     public function index()
     {
         $data = [
-            'title' => "Data Calon Mahasiswa",
+            'title' => "Per Angkatan",
             'appName' => "UMSU",
-            'breadcrumb' => ['Laporan Penmaru', 'Data Calon Mahasiswa'],
+            'breadcrumb' => ['Laporan Penmaru', 'Data Calon Mahasiswa', 'Per Angkatan'],
             'validation' => \Config\Services::validation(),
             'menu' => $this->fetchMenu(),
             'listFakultas' => $this->camaModel->getFakultas(),
@@ -71,9 +71,9 @@ class Cama extends BaseController
         $lapCama = $this->camaModel->getLapCama($data);
         // dd($lapCama);
         $data = [
-            'title' => "Data Calon Mahasiswa",
+            'title' => "Per Angkatan",
             'appName' => "UMSU",
-            'breadcrumb' => ['Laporan Penmaru', 'Data Calon Mahasiswa'],
+            'breadcrumb' => ['Laporan Penmaru', 'Data Calon Mahasiswa', 'Per Angkatan'],
             'validation' => \Config\Services::validation(),
             'menu' => $this->fetchMenu(),
             'listFakultas' => $this->camaModel->getFakultas(),

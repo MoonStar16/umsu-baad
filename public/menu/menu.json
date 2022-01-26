@@ -65,9 +65,18 @@
         "id": "11",
         "nama": "Data Registrasi Ulang",
         "parent": "2",
-        "level": "child",
+        "level": "parent",
         "status": true,
         "icon": "fa fa-external-link",
+        "pages": ""
+    },
+    {
+        "id": "15",
+        "nama": "Per Angkatan",
+        "parent": "11",
+        "level": "child",
+        "status": true,
+        "icon": "",
         "pages": "/regulang"
     },
     {

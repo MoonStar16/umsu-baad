@@ -53,7 +53,7 @@ $routes->get('/cama/(:any)', 'Cama::index');
 $routes->post('/cama/proses', 'Cama::proses');
 $routes->post('/cama/cetak', 'Cama::exportCama');
 
-//registrasi ulang
+//registrasi ulang perangkatan
 $routes->get('/regulang/(:any)', 'Regulang::index');
 $routes->post('/regulang/proses', 'Regulang::proses');
 $routes->post('/regulang/cetak', 'Regulang::exportRegulang');
