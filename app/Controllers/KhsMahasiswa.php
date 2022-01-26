@@ -25,7 +25,7 @@ class KhsMahasiswa extends BaseController
             'breadcrumb' => ['Laporan Mahasiswa', 'Data Mahasiswa', 'KHS Mahasiswa'],
             'validation' => \Config\Services::validation(),
             'menu' => $this->fetchMenu(),
-            'listFakultas' => $this->khsMahasiswaModel->getFakultas(),
+            'listProdi' => $this->khsMahasiswaModel->getProdi(),
             'listTermYear' => $this->khsMahasiswaModel->getTermYear(),
             'filter' => null,
             'termYear' => null,
@@ -43,7 +43,7 @@ class KhsMahasiswa extends BaseController
             'fakultas' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => 'Fakultas Harus Dipilih!',
+                    'required' => 'Prodi Harus Dipilih!',
                 ]
             ],
             'tahunAngkatan' => [
@@ -76,7 +76,7 @@ class KhsMahasiswa extends BaseController
             'breadcrumb' => ['Laporan Mahasiswa', 'Data Mahasiswa', 'KHS Mahasiswa'],
             'validation' => \Config\Services::validation(),
             'menu' => $this->fetchMenu(),
-            'listFakultas' => $this->khsMahasiswaModel->getFakultas(),
+            'listProdi' => $this->khsMahasiswaModel->getProdi(),
             'listTermYear' => $this->khsMahasiswaModel->getTermYear(),
             'filter' => $data['fakultas'],
             'termYear' => $data['tahunAjar'],
