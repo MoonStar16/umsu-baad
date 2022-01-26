@@ -48,7 +48,7 @@ $routes->get('/pendaftar/(:any)', 'Pendaftar::index');
 $routes->post('/pendaftar/cetak', 'Pendaftar::exportPendaftar');
 $routes->post('/pendaftar/proses', 'Pendaftar::proses');
 
-//calon mahasiswa
+//calon mahasiswa perangkatan
 $routes->get('/cama/(:any)', 'Cama::index');
 $routes->post('/cama/proses', 'Cama::proses');
 $routes->post('/cama/cetak', 'Cama::exportCama');
@@ -62,6 +62,11 @@ $routes->post('/regulang/cetak', 'Regulang::exportRegulang');
 $routes->get('/krsAktif/(:any)', 'KrsAktif::index');
 $routes->post('/krsAktif/proses', 'KrsAktif::proses');
 $routes->post('/krsAktif/cetak', 'KrsAktif::exportKrsAktif');
+
+//khs mahasiswa
+$routes->get('/khsMahasiswa/(:any)', 'KhsMahasiswa::index');
+$routes->post('/khsMahasiswa/proses', 'KhsMahasiswa::proses');
+$routes->post('/khsMahasiswa/cetak', 'KhsMahasiswa::exportKhsMahasiswa');
 
 
 
