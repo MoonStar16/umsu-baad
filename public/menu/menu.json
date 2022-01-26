@@ -113,7 +113,7 @@
         "level": "child",
         "status": true,
         "icon": "",
-        "pages": "/krsMahasiswa"
+        "pages": "/krs"
     },
     {
         "id": "10",
@@ -122,7 +122,7 @@
         "level": "child",
         "status": true,
         "icon": "",
-        "pages": "/khsMahasiswa"
+        "pages": "/khs"
     },
     {
         "id": "16",

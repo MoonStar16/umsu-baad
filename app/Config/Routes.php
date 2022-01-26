@@ -59,14 +59,19 @@ $routes->post('/regulang/proses', 'Regulang::proses');
 $routes->post('/regulang/cetak', 'Regulang::exportRegulang');
 
 //krs mahasiswa
-$routes->get('/krsMahasiswa/(:any)', 'KrsMahasiswa::index');
-$routes->post('/krsMahasiswa/proses', 'KrsMahasiswa::proses');
-$routes->post('/krsMahasiswa/cetak', 'KrsMahasiswa::exportKrsMahasiswa');
+$routes->get('/krs/(:any)', 'Krs::index');
+$routes->post('/krs/proses', 'Krs::proses');
+$routes->post('/krs/cetak', 'Krs::exportKrs');
 
 //khs mahasiswa
-$routes->get('/khsMahasiswa/(:any)', 'KhsMahasiswa::index');
-$routes->post('/khsMahasiswa/proses', 'KhsMahasiswa::proses');
-$routes->post('/khsMahasiswa/cetak', 'KhsMahasiswa::exportKhsMahasiswa');
+$routes->get('/khs/(:any)', 'Khs::index');
+$routes->post('/khs/proses', 'Khs::proses');
+$routes->post('/khs/cetak', 'Khs::exportKhs');
+
+//ipk mahasiswa
+$routes->get('/ipk/(:any)', 'Ipk::index');
+$routes->post('/ipk/proses', 'Ipk::proses');
+$routes->post('/ipk/cetak', 'Ipk::exportIpk');
 
 
 

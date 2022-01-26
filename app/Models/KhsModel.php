@@ -4,7 +4,7 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class KhsMahasiswaModel extends Model
+class KhsModel extends Model
 {
     protected $curl;
 
@@ -34,7 +34,7 @@ class KhsMahasiswaModel extends Model
         return json_decode($response->getBody())->data;
     }
 
-    public function getLapKhsMahasiswa($data)
+    public function getLapKhs($data)
     {
         $response = $this->curl->request(
             "POST",
