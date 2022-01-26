@@ -47,9 +47,18 @@
         "id": "5",
         "nama": "Data Calon Mahasiswa",
         "parent": "2",
-        "level": "child",
+        "level": "parent",
         "status": true,
         "icon": "fa fa-graduation-cap",
+        "pages": ""
+    },
+    {
+        "id": "14",
+        "nama": "Per Angkatan",
+        "parent": "5",
+        "level": "child",
+        "status": true,
+        "icon": "",
         "pages": "/cama"
     },
     {

@@ -13,9 +13,9 @@ class KrsAktifModel extends Model
         $this->curl = service('curlrequest');
     }
 
-    public function getFakultas()
+    public function getProdi()
     {
-        $response = $this->curl->request("GET", "https://api.umsu.ac.id/baad/filter", [
+        $response = $this->curl->request("GET", "https://api.umsu.ac.id/baad/prodi", [
             "headers" => [
                 "Accept" => "application/json"
             ],

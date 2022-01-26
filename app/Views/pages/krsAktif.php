@@ -14,7 +14,8 @@
         <!-- START BREADCRUMB -->
         <ul class="breadcrumb">
             <li><a href="/home"><?= $breadcrumb[0]; ?></a></li>
-            <li class="active"><?= $breadcrumb[1]; ?></li>
+            <li><a href="/krsAktif"><?= $breadcrumb[1]; ?></a></li>
+            <li class="active"><?= $breadcrumb[2]; ?></li>
         </ul>
         <!-- END BREADCRUMB  ->getBody()-->
         <div class="row">
@@ -35,11 +36,11 @@
                     <div class="panel-heading">
                         <form autocomplete="off" class="form-horizontal" action="/krsAktif/proses" method="POST">
                             <div class="col-md-2">
-                                <label>Pilih Fakultas</label>
+                                <label>Pilih Prodi</label>
                                 <select class="form-control select" name="fakultas">
                                     <option value="">--Select--</option>
-                                    <?php foreach ($listFakultas as $rows) : ?>
-                                        <option value="<?= $rows->fakNamaSingkat ?>" <?php if ($rows->fakNamaSingkat == $filter) echo " selected" ?>><?= $rows->fakNamaResmi ?></option>
+                                    <?php foreach ($listProdi as $rows) : ?>
+                                        <option value="<?= $rows->Department_Acronym ?>" <?php if ($rows->Department_Acronym == $filter) echo " selected" ?>><?= $rows->Department_Name ?></option>
                                     <?php endforeach ?>
                                 </select>
                             </div>
