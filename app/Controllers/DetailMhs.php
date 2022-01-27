@@ -40,12 +40,6 @@ class DetailMhs extends BaseController
     public function proses()
     {
         if (!$this->validate([
-            'fakultas' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Fakultas Harus Dipilih!',
-                ]
-            ],
             'tahunAngkatan' => [
                 'rules' => 'required',
                 'errors' => [
