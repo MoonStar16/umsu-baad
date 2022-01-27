@@ -116,11 +116,11 @@ class DetailMhs extends BaseController
 
         $lapDetailMhs = $this->detailMhsModel->getDetailMhs($data);
         foreach ($lapDetailMhs as $mhsAktif) {
-            $prodi = $mhsAktif->NAMA_PRODI;
+            // $fakultas = $mhsAktif->FAKULTAS;
             $tahunAjaran = $mhsAktif->TAHUN_AJAR;
         }
         $row = 1;
-        $this->spreadsheet->setActiveSheetIndex(0)->setCellValue('A' . $row, 'Detail Mahasiswa Aktif ' . $prodi . ' TA. ' . $tahunAjaran)->mergeCells("A" . $row . ":G" . $row)->getStyle("A" . $row . ":I" . $row)->getFont()->setBold(true);
+        $this->spreadsheet->setActiveSheetIndex(0)->setCellValue('A' . $row, 'Detail Mahasiswa Aktif TA. ' . $tahunAjaran)->mergeCells("A" . $row . ":H" . $row)->getStyle("A" . $row . ":I" . $row)->getFont()->setBold(true);
         $row++;
         $this->spreadsheet->setActiveSheetIndex(0)
             ->setCellValue('A' . $row, 'No.')
@@ -129,7 +129,8 @@ class DetailMhs extends BaseController
             ->setCellValue('D' . $row, 'Fakultas')
             ->setCellValue('E' . $row, 'Nama Prodi')
             ->setCellValue('F' . $row, 'Angkatan')
-            ->setCellValue('G' . $row, 'Tahun Ajaran')->getStyle("A2:G2")->getFont()->setBold(true);
+            ->setCellValue('G' . $row, 'Tahun Ajaran')
+            ->setCellValue('H' . $row, 'Status Aktif')->getStyle("A2:H2")->getFont()->setBold(true);
         $row++;
         $no = 1;
         foreach ($lapDetailMhs as $detailMhs) {
@@ -140,11 +141,12 @@ class DetailMhs extends BaseController
                 ->setCellValue('D' . $row, $detailMhs->FAKULTAS)
                 ->setCellValue('E' . $row, $detailMhs->NAMA_PRODI)
                 ->setCellValue('F' . $row, $detailMhs->ANGKATAN)
-                ->setCellValue('G' . $row, $detailMhs->TAHUN_AJAR);
+                ->setCellValue('G' . $row, $detailMhs->TAHUN_AJAR)
+                ->setCellValue('H' . $row, $detailMhs->STATUS);
             $row++;
         }
         $writer = new Xlsx($this->spreadsheet);
-        $fileName = 'Detail Mahasiswa Aktif TA ' . $detailMhs->TAHUN_AJAR . ' Prodi ' . $detailMhs->NAMA_PRODI;
+        $fileName = 'Detail Mahasiswa Aktif TA ' . $detailMhs->TAHUN_AJAR;
 
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         header('Content-Disposition: attachment;filename=' . $fileName . '.xlsx');
