@@ -103,6 +103,7 @@
                                                     <th>Fakultas</th>
                                                     <th>Prodi</th>
                                                     <th>Stambuk</th>
+                                                    <th>Status</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -115,6 +116,7 @@
                                                         <td><?= $row->FAKULTAS; ?></td>
                                                         <td><?= $row->NAMA_PRODI; ?></td>
                                                         <td><?= $row->ANGKATAN; ?></td>
+                                                        <td><?= $row->STATUS; ?></td>
                                                     </tr>
                                                 <?php endforeach ?>
                                             </tbody>
