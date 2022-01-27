@@ -23,9 +23,6 @@
                 <?php if (!empty(session()->getFlashdata('success'))) : ?>
                     <?= view('layout/templateAlert', ['msg' => ['success', session()->getFlashdata('success')]]); ?>
                 <?php endif; ?>
-                <?php if ($validation->hasError('fakultas')) : ?>
-                    <?= view('layout/templateAlert', ['msg' => ['danger', "<strong>Failed ! </strong>" . $validation->getError('fakultas')]]); ?>
-                <?php endif; ?>
                 <?php if ($validation->hasError('tahunAjar')) : ?>
                     <?= view('layout/templateAlert', ['msg' => ['danger', "<strong>Failed ! </strong>" . $validation->getError('tahunAjar')]]); ?>
                 <?php endif; ?>

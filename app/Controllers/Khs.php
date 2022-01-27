@@ -40,7 +40,7 @@ class Khs extends BaseController
     public function proses()
     {
         if (!$this->validate([
-            'fakultas' => [
+            'prodi' => [
                 'rules' => 'required',
                 'errors' => [
                     'required' => 'Prodi Harus Dipilih!',
