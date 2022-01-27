@@ -53,20 +53,30 @@ $routes->get('/cama/(:any)', 'Cama::index');
 $routes->post('/cama/proses', 'Cama::proses');
 $routes->post('/cama/cetak', 'Cama::exportCama');
 
-//registrasi ulang
+//registrasi ulang perangkatan
 $routes->get('/regulang/(:any)', 'Regulang::index');
 $routes->post('/regulang/proses', 'Regulang::proses');
 $routes->post('/regulang/cetak', 'Regulang::exportRegulang');
 
-//krs aktif
-$routes->get('/krsAktif/(:any)', 'KrsAktif::index');
-$routes->post('/krsAktif/proses', 'KrsAktif::proses');
-$routes->post('/krsAktif/cetak', 'KrsAktif::exportKrsAktif');
+//krs mahasiswa
+$routes->get('/krs/(:any)', 'Krs::index');
+$routes->post('/krs/proses', 'Krs::proses');
+$routes->post('/krs/cetak', 'Krs::exportKrs');
 
 //khs mahasiswa
-$routes->get('/khsMahasiswa/(:any)', 'KhsMahasiswa::index');
-$routes->post('/khsMahasiswa/proses', 'KhsMahasiswa::proses');
-$routes->post('/khsMahasiswa/cetak', 'KhsMahasiswa::exportKhsMahasiswa');
+$routes->get('/khs/(:any)', 'Khs::index');
+$routes->post('/khs/proses', 'Khs::proses');
+$routes->post('/khs/cetak', 'Khs::exportKhs');
+
+//ipk mahasiswa
+$routes->get('/ipk/(:any)', 'Ipk::index');
+$routes->post('/ipk/proses', 'Ipk::proses');
+$routes->post('/ipk/cetak', 'Ipk::exportIpk');
+
+//detail mahasiswa aktif
+$routes->get('/detailMhs/(:any)', 'DetailMhs::index');
+$routes->post('/detailMhs/proses', 'DetailMhs::proses');
+$routes->post('/detailMhs/cetak', 'DetailMhs::exportDetailMhs');
 
 
 

@@ -14,7 +14,7 @@
         <!-- START BREADCRUMB -->
         <ul class="breadcrumb">
             <li><a href="/home"><?= $breadcrumb[0]; ?></a></li>
-            <li><a href="/regulang"><?= $breadcrumb[1]; ?></a></li>
+            <li><a href="/detailMhs"><?= $breadcrumb[1]; ?></a></li>
             <li class="active"><?= $breadcrumb[2]; ?></li>
         </ul>
         <!-- END BREADCRUMB  ->getBody()-->
@@ -34,13 +34,13 @@
                 <?php endif; ?>
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <form autocomplete="off" class="form-horizontal" action="/regulang/proses" method="POST">
+                        <form name="proses" autocomplete="off" class="form-horizontal" action="/detailMhs/proses" method="POST" id="proses">
                             <div class="col-md-2">
                                 <label>Pilih Fakultas</label>
                                 <select class="form-control select" name="fakultas">
                                     <option value="">--Select--</option>
                                     <?php foreach ($listFakultas as $rows) : ?>
-                                        <option value="<?= $rows->fakNamaSingkat ?>" <?php if ($rows->fakNamaSingkat == $filter) echo " selected" ?>><?= $rows->fakNamaResmi ?></option>
+                                        <option value="<?= $rows->Faculty_Acronym ?>" <?php if ($rows->Faculty_Acronym == $filter) echo " selected" ?>><?= $rows->Faculty_Name ?></option>
                                     <?php endforeach ?>
                                 </select>
                             </div>
@@ -65,30 +65,63 @@
                             </div>
                             <ul class="panel-controls">
                                 <?php if ($filter != null  && $termYear != null  && $entryYear != null) : ?>
+
                                     <button style="display: inline-block; margin-top: 11px;;margin-right: 5px;" type="submit" form="cetak" class="btn btn-info"><span class="glyphicon glyphicon-print"></span>
                                         Export</button>
                                 <?php endif ?>
-                                <button style="display: inline-block; margin-top: 11px" type="submit" class="btn btn-success"><span class="fa fa-arrow-circle-right"></span>
+                                <button style="display: inline-block; margin-top: 11px" type="submit" class="btn btn-success"><span class=" fa fa-arrow-circle-right"></span>
                                     Proses</button>
                             </ul>
                         </form>
                     </div>
                     <div class="panel-body col-md-12">
-                        <?php if (count($dataResult) < 1) : ?>
+                        <?php if (count($detailMhs) < 1) : ?>
                             <center>
                                 <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_s6bvy00o.json" background="transparent" speed="1" style="width: 500px; height: 500px;" loop autoplay></lottie-player>
                             </center>
                         <?php else : ?>
-                            <center>
-                                <lottie-player src="https://assets8.lottiefiles.com/packages/lf20_y2hxPc.json" background="transparent" speed="1" style="width: 500px; height: 500px;" loop autoplay></lottie-player>
-                                <?php if ($filter != null  && $termYear != null  && $entryYear != null) : ?>
-                                    <form name="cetak" action="/regulang/cetak" method="POST" id="cetak">
-                                        <input type="hidden" name="fakultas" value="<?= $filter; ?>">
-                                        <input type="hidden" name="tahunAjar" value="<?= $termYear; ?>">
-                                        <input type="hidden" name="tahunAngkatan" value="<?= $entryYear; ?>">
-                                    </form>
-                                <?php endif ?>
-                            </center>
+                            <?php if ($filter != null  && $termYear != null  && $entryYear != null) : ?>
+                                <form name="cetak" action="/detailMhs/cetak" method="POST" id="cetak">
+                                    <?= csrf_field() ?>
+                                    <input type="hidden" name="fakultas" value="<?= $filter; ?>">
+                                    <input type="hidden" name="tahunAjar" value="<?= $termYear; ?>">
+                                    <input type="hidden" name="tahunAngkatan" value="<?= $entryYear; ?>">
+                                </form>
+                            <?php endif ?>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Detail Mahasiswa Aktif</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-striped table-actions table datatable">
+                                            <thead>
+                                                <tr>
+                                                    <th>No.</th>
+                                                    <th>NPM</th>
+                                                    <th>Nama Lengkap</th>
+                                                    <th>Fakultas</th>
+                                                    <th>Prodi</th>
+                                                    <th>Stambuk</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php $no = 1;
+                                                foreach ($detailMhs as $row) : ?>
+                                                    <tr>
+                                                        <td><?= $no++; ?></td>
+                                                        <td><?= $row->NPM; ?></td>
+                                                        <td><?= $row->NAMA_LENGKAP; ?></td>
+                                                        <td><?= $row->FAKULTAS; ?></td>
+                                                        <td><?= $row->NAMA_PRODI; ?></td>
+                                                        <td><?= $row->ANGKATAN; ?></td>
+                                                    </tr>
+                                                <?php endforeach ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
                         <?php endif ?>
                     </div>
                 </div>

@@ -14,7 +14,7 @@
         <!-- START BREADCRUMB -->
         <ul class="breadcrumb">
             <li><a href="/home"><?= $breadcrumb[0]; ?></a></li>
-            <li><a href="/krsAktif"><?= $breadcrumb[1]; ?></a></li>
+            <li><a href="/khs"><?= $breadcrumb[1]; ?></a></li>
             <li class="active"><?= $breadcrumb[2]; ?></li>
         </ul>
         <!-- END BREADCRUMB  ->getBody()-->
@@ -34,7 +34,7 @@
                 <?php endif; ?>
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <form autocomplete="off" class="form-horizontal" action="/krsAktif/proses" method="POST">
+                        <form autocomplete="off" class="form-horizontal" action="/khs/proses" method="POST">
                             <div class="col-md-2">
                                 <label>Pilih Prodi</label>
                                 <select class="form-control select" name="fakultas">
@@ -82,7 +82,7 @@
                             <center>
                                 <lottie-player src="https://assets8.lottiefiles.com/packages/lf20_y2hxPc.json" background="transparent" speed="1" style="width: 500px; height: 500px;" loop autoplay></lottie-player>
                                 <?php if ($filter != null  && $termYear != null  && $entryYear != null) : ?>
-                                    <form name="cetak" action="/krsAktif/cetak" method="POST" id="cetak">
+                                    <form name="cetak" action="/khs/cetak" method="POST" id="cetak">
                                         <input type="hidden" name="fakultas" value="<?= $filter; ?>">
                                         <input type="hidden" name="tahunAjar" value="<?= $termYear; ?>">
                                         <input type="hidden" name="tahunAngkatan" value="<?= $entryYear; ?>">

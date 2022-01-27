@@ -14,7 +14,7 @@
         <!-- START BREADCRUMB -->
         <ul class="breadcrumb">
             <li><a href="/home"><?= $breadcrumb[0]; ?></a></li>
-            <li><a href="/regulang"><?= $breadcrumb[1]; ?></a></li>
+            <li><a href="/ipk"><?= $breadcrumb[1]; ?></a></li>
             <li class="active"><?= $breadcrumb[2]; ?></li>
         </ul>
         <!-- END BREADCRUMB  ->getBody()-->
@@ -22,9 +22,6 @@
             <div class="col-md-12">
                 <?php if (!empty(session()->getFlashdata('success'))) : ?>
                     <?= view('layout/templateAlert', ['msg' => ['success', session()->getFlashdata('success')]]); ?>
-                <?php endif; ?>
-                <?php if ($validation->hasError('fakultas')) : ?>
-                    <?= view('layout/templateAlert', ['msg' => ['danger', "<strong>Failed ! </strong>" . $validation->getError('fakultas')]]); ?>
                 <?php endif; ?>
                 <?php if ($validation->hasError('tahunAjar')) : ?>
                     <?= view('layout/templateAlert', ['msg' => ['danger', "<strong>Failed ! </strong>" . $validation->getError('tahunAjar')]]); ?>
@@ -34,17 +31,7 @@
                 <?php endif; ?>
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <form autocomplete="off" class="form-horizontal" action="/regulang/proses" method="POST">
-                            <div class="col-md-2">
-                                <label>Pilih Fakultas</label>
-                                <select class="form-control select" name="fakultas">
-                                    <option value="">--Select--</option>
-                                    <?php foreach ($listFakultas as $rows) : ?>
-                                        <option value="<?= $rows->fakNamaSingkat ?>" <?php if ($rows->fakNamaSingkat == $filter) echo " selected" ?>><?= $rows->fakNamaResmi ?></option>
-                                    <?php endforeach ?>
-                                </select>
-                            </div>
-
+                        <form autocomplete="off" class="form-horizontal" action="/ipk/proses" method="POST">
                             <div class="col-md-2">
                                 <label>Tahun Ajar</label>
                                 <select class="form-control select" name="tahunAjar">
@@ -64,7 +51,7 @@
                                 </select>
                             </div>
                             <ul class="panel-controls">
-                                <?php if ($filter != null  && $termYear != null  && $entryYear != null) : ?>
+                                <?php if ($termYear != null  && $entryYear != null) : ?>
                                     <button style="display: inline-block; margin-top: 11px;;margin-right: 5px;" type="submit" form="cetak" class="btn btn-info"><span class="glyphicon glyphicon-print"></span>
                                         Export</button>
                                 <?php endif ?>
@@ -81,9 +68,8 @@
                         <?php else : ?>
                             <center>
                                 <lottie-player src="https://assets8.lottiefiles.com/packages/lf20_y2hxPc.json" background="transparent" speed="1" style="width: 500px; height: 500px;" loop autoplay></lottie-player>
-                                <?php if ($filter != null  && $termYear != null  && $entryYear != null) : ?>
-                                    <form name="cetak" action="/regulang/cetak" method="POST" id="cetak">
-                                        <input type="hidden" name="fakultas" value="<?= $filter; ?>">
+                                <?php if ($termYear != null  && $entryYear != null) : ?>
+                                    <form name="cetak" action="/ipk/cetak" method="POST" id="cetak">
                                         <input type="hidden" name="tahunAjar" value="<?= $termYear; ?>">
                                         <input type="hidden" name="tahunAngkatan" value="<?= $entryYear; ?>">
                                     </form>

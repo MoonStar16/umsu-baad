@@ -4,7 +4,7 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class KrsAktifModel extends Model
+class DetailMhsModel extends Model
 {
     protected $curl;
 
@@ -13,12 +13,13 @@ class KrsAktifModel extends Model
         $this->curl = service('curlrequest');
     }
 
-    public function getProdi()
+    public function getFakultas()
     {
-        $response = $this->curl->request("GET", "https://api.umsu.ac.id/baad/prodi", [
+        $response = $this->curl->request("GET", "https://api.umsu.ac.id/Laporankeu/getFakultas", [
             "headers" => [
                 "Accept" => "application/json"
             ],
+
         ]);
         return json_decode($response->getBody())->data;
     }
@@ -29,23 +30,22 @@ class KrsAktifModel extends Model
             "headers" => [
                 "Accept" => "application/json"
             ],
-
         ]);
         return json_decode($response->getBody())->data;
     }
 
-    public function getLapKrsAktif($data)
+    public function getDetailMhs($data)
     {
         $response = $this->curl->request(
             "POST",
-            "https://api.umsu.ac.id/baad/lapKrsAktif",
+            "https://api.umsu.ac.id/Laporankeu/getMhsKrsAktif",
             [
                 "headers" => [
                     "Accept" => "application/json"
                 ],
                 "form_params" => [
                     "filter" => $data['fakultas'],
-                    "termYearId" => $data['tahunAjar'],
+                    "tahunAjar" => $data['tahunAjar'],
                     "entryYearId" => $data['tahunAngkatan'],
                 ]
             ]

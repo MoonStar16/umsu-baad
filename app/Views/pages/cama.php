@@ -14,7 +14,8 @@
         <!-- START BREADCRUMB -->
         <ul class="breadcrumb">
             <li><a href="/home"><?= $breadcrumb[0]; ?></a></li>
-            <li class="active"><?= $breadcrumb[1]; ?></li>
+            <li><a href="/cama"><?= $breadcrumb[1]; ?></a></li>
+            <li class="active"><?= $breadcrumb[2]; ?></li>
         </ul>
         <!-- END BREADCRUMB  ->getBody()-->
         <div class="row">

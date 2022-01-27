@@ -65,9 +65,18 @@
         "id": "11",
         "nama": "Data Registrasi Ulang",
         "parent": "2",
-        "level": "child",
+        "level": "parent",
         "status": true,
         "icon": "fa fa-external-link",
+        "pages": ""
+    },
+    {
+        "id": "15",
+        "nama": "Per Angkatan",
+        "parent": "11",
+        "level": "child",
+        "status": true,
+        "icon": "",
         "pages": "/regulang"
     },
     {
@@ -80,12 +89,39 @@
         "pages": ""
     },
     {
-        "id": "6",
+        "id": "16",
         "nama": "Data Mahasiswa",
         "parent": "12",
         "level": "parent",
         "status": true,
         "icon": "fa fa-user",
+        "pages": ""
+    },
+    {
+        "id": "17",
+        "nama": "Detail Mahasiswa Aktif",
+        "parent": "16",
+        "level": "child",
+        "status": true,
+        "icon": "",
+        "pages": "/detailMhs"
+    },
+    {
+        "id": "18",
+        "nama": "Total Mahasiswa Aktif",
+        "parent": "16",
+        "level": "child",
+        "status": true,
+        "icon": "",
+        "pages": "/totalMhs"
+    },
+    {
+        "id": "6",
+        "nama": "Data KRS Dan Nilai",
+        "parent": "12",
+        "level": "parent",
+        "status": true,
+        "icon": "fa fa-pencil",
         "pages": ""
     },
     {
@@ -99,12 +135,12 @@
     },
     {
         "id": "9",
-        "nama": "KRS Aktif",
+        "nama": "KRS Mahasiswa",
         "parent": "6",
         "level": "child",
         "status": true,
         "icon": "",
-        "pages": "/krsAktif"
+        "pages": "/krs"
     },
     {
         "id": "10",
@@ -113,6 +149,15 @@
         "level": "child",
         "status": true,
         "icon": "",
-        "pages": "/khsMahasiswa"
+        "pages": "/khs"
+    },
+    {
+        "id": "16",
+        "nama": "IPK Mahasiswa",
+        "parent": "6",
+        "level": "child",
+        "status": true,
+        "icon": "",
+        "pages": "/ipk"
     }
 ]

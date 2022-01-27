@@ -2,31 +2,31 @@
 
 namespace App\Controllers;
 
-use App\Models\KrsAktifModel;
+use App\Models\KhsModel;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
-class KrsAktif extends BaseController
+class Khs extends BaseController
 {
-    protected $krsAktifModel;
+    protected $khsModel;
     protected $spreadsheet;
 
     public function __construct()
     {
-        $this->krsAktifModel = new KrsAktifModel();
+        $this->khsModel = new KhsModel();
         $this->spreadsheet = new Spreadsheet();
     }
 
     public function index()
     {
         $data = [
-            'title' => "KRS Aktif",
+            'title' => "KHS Mahasiswa",
             'appName' => "UMSU",
-            'breadcrumb' => ['Laporan Mahasiswa', 'Data Mahasiswa', 'KRS Aktif'],
+            'breadcrumb' => ['Laporan Mahasiswa', 'Data KRS Dan Nilai', 'KHS Mahasiswa'],
             'validation' => \Config\Services::validation(),
             'menu' => $this->fetchMenu(),
-            'listProdi' => $this->krsAktifModel->getProdi(),
-            'listTermYear' => $this->krsAktifModel->getTermYear(),
+            'listProdi' => $this->khsModel->getProdi(),
+            'listTermYear' => $this->khsModel->getTermYear(),
             'filter' => null,
             'termYear' => null,
             'entryYear' => null,
@@ -34,7 +34,7 @@ class KrsAktif extends BaseController
         ];
         // dd($data);
 
-        return view('pages/krsAktif', $data);
+        return view('pages/khs', $data);
     }
 
     public function proses()
@@ -59,7 +59,7 @@ class KrsAktif extends BaseController
                 ]
             ],
         ])) {
-            return redirect()->to('krsAktif')->withInput();
+            return redirect()->to('khs')->withInput();
         }
 
         $data = array(
@@ -68,26 +68,26 @@ class KrsAktif extends BaseController
             'tahunAngkatan' => trim($this->request->getPost('tahunAngkatan')),
         );
 
-        $lapKrsAktif = $this->krsAktifModel->getLapKrsAktif($data);
-        // dd($lapKrsAktif);
+        $lapKhs = $this->khsModel->getLapKhs($data);
+        // dd($lapKhs);
         $data = [
-            'title' => "KRS Aktif",
+            'title' => "KHS Mahasiswa",
             'appName' => "UMSU",
-            'breadcrumb' => ['Laporan Mahasiswa', 'Data Mahasiswa', 'KRS Aktif'],
+            'breadcrumb' => ['Laporan Mahasiswa', 'Data KRS Dan Nilai', 'KHS Mahasiswa'],
             'validation' => \Config\Services::validation(),
             'menu' => $this->fetchMenu(),
-            'listProdi' => $this->krsAktifModel->getProdi(),
-            'listTermYear' => $this->krsAktifModel->getTermYear(),
+            'listProdi' => $this->khsModel->getProdi(),
+            'listTermYear' => $this->khsModel->getTermYear(),
             'filter' => $data['fakultas'],
             'termYear' => $data['tahunAjar'],
             'entryYear' => $data['tahunAngkatan'],
-            'dataResult' => $lapKrsAktif
+            'dataResult' => $lapKhs
         ];
-        session()->setFlashdata('success', '<strong>' . count($lapKrsAktif) . ' Data' . '</strong> Telah Ditemukan ,Klik Export Untuk Download!');
-        return view('pages/krsAktif', $data);
+        session()->setFlashdata('success', '<strong>' . count($lapKhs) . ' Data' . '</strong> Telah Ditemukan ,Klik Export Untuk Download!');
+        return view('pages/khs', $data);
     }
 
-    public function exportKrsAktif()
+    public function exportKhs()
     {
         $data = array(
             'fakultas' => trim($this->request->getPost('fakultas')),
@@ -95,9 +95,9 @@ class KrsAktif extends BaseController
             'tahunAngkatan' => trim($this->request->getPost('tahunAngkatan')),
         );
 
-        $lapKrsAktif = $this->krsAktifModel->getLapKrsAktif($data);
+        $lapKhs = $this->khsModel->getLapKhs($data);
         $row = 1;
-        $this->spreadsheet->setActiveSheetIndex(0)->setCellValue('A' . $row, 'KRS Mahasiswa')->mergeCells("A" . $row . ":M" . $row)->getStyle("A" . $row . ":I" . $row)->getFont()->setBold(true);
+        $this->spreadsheet->setActiveSheetIndex(0)->setCellValue('A' . $row, 'KHS Mahasiswa')->mergeCells("A" . $row . ":O" . $row)->getStyle("A" . $row . ":I" . $row)->getFont()->setBold(true);
         $row++;
         $this->spreadsheet->setActiveSheetIndex(0)
             ->setCellValue('A' . $row, 'No.')
@@ -112,28 +112,32 @@ class KrsAktif extends BaseController
             ->setCellValue('J' . $row, 'SKS')
             ->setCellValue('K' . $row, 'NIDN')
             ->setCellValue('L' . $row, 'NAMA DOSEN')
-            ->setCellValue('M' . $row, 'TAHUN AKADEMIK')->getStyle("A2:M2")->getFont()->setBold(true);
+            ->setCellValue('M' . $row, 'NILAI ANGKA')
+            ->setCellValue('N' . $row, 'NILAI HURUF')
+            ->setCellValue('O' . $row, 'TAHUN AKADEMIK')->getStyle("A2:O2")->getFont()->setBold(true);
         $row++;
         $no = 1;
-        foreach ($lapKrsAktif as $krs) {
+        foreach ($lapKhs as $khs) {
             $this->spreadsheet->setActiveSheetIndex(0)
                 ->setCellValue('A' . $row, $no++)
-                ->setCellValue('B' . $row, $krs->NO_REGISTRASI)
-                ->setCellValue('C' . $row, $krs->NPM)
-                ->setCellValue('D' . $row, $krs->NAMA_LENGKAP)
-                ->setCellValue('E' . $row, $krs->Department_Id)
-                ->setCellValue('F' . $row, $krs->NAMA_PRODI)
-                ->setCellValue('G' . $row, $krs->KELAS)
-                ->setCellValue('H' . $row, $krs->KODE_MATKUL)
-                ->setCellValue('I' . $row, $krs->NAMA_MATKUL)
-                ->setCellValue('J' . $row, $krs->SKS)
-                ->setCellValue('K' . $row, $krs->NIDN)
-                ->setCellValue('L' . $row, $krs->NAMA_DOSEN)
-                ->setCellValue('M' . $row, $krs->TAHUN_AKADEMIK);
+                ->setCellValue('B' . $row, $khs->NO_REGISTRASI)
+                ->setCellValue('C' . $row, $khs->NPM)
+                ->setCellValue('D' . $row, $khs->NAMA_LENGKAP)
+                ->setCellValue('E' . $row, $khs->Department_Id)
+                ->setCellValue('F' . $row, $khs->NAMA_PRODI)
+                ->setCellValue('G' . $row, $khs->KELAS)
+                ->setCellValue('H' . $row, $khs->KODE_MATKUL)
+                ->setCellValue('I' . $row, $khs->NAMA_MATKUL)
+                ->setCellValue('J' . $row, $khs->SKS)
+                ->setCellValue('K' . $row, $khs->NIDN)
+                ->setCellValue('L' . $row, $khs->NAMA_DOSEN)
+                ->setCellValue('M' . $row, $khs->NILAI_ANGKA)
+                ->setCellValue('N' . $row, $khs->NILAI_HURUF)
+                ->setCellValue('O' . $row, $khs->TAHUN_AKADEMIK);
             $row++;
         }
         $writer = new Xlsx($this->spreadsheet);
-        $fileName = 'KRS Mahasiswa Prodi ' . $krs->AKRONIM_PRODI . ' TA ' . $krs->TAHUN_AKADEMIK;
+        $fileName = 'KHS Mahasiswa Prodi ' . $khs->AKRONIM_PRODI . ' TA ' . $khs->TAHUN_AKADEMIK;
 
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         header('Content-Disposition: attachment;filename=' . $fileName . '.xlsx');
