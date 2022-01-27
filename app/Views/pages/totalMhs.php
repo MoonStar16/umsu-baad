@@ -14,7 +14,7 @@
         <!-- START BREADCRUMB -->
         <ul class="breadcrumb">
             <li><a href="/home"><?= $breadcrumb[0]; ?></a></li>
-            <li><a href="/detailMhs"><?= $breadcrumb[1]; ?></a></li>
+            <li><a href="/totalMhs"><?= $breadcrumb[1]; ?></a></li>
             <li class="active"><?= $breadcrumb[2]; ?></li>
         </ul>
         <!-- END BREADCRUMB  ->getBody()-->
@@ -23,18 +23,12 @@
                 <?php if (!empty(session()->getFlashdata('success'))) : ?>
                     <?= view('layout/templateAlert', ['msg' => ['success', session()->getFlashdata('success')]]); ?>
                 <?php endif; ?>
-                <?php if ($validation->hasError('fakultas')) : ?>
-                    <?= view('layout/templateAlert', ['msg' => ['danger', "<strong>Failed ! </strong>" . $validation->getError('fakultas')]]); ?>
-                <?php endif; ?>
                 <?php if ($validation->hasError('tahunAjar')) : ?>
                     <?= view('layout/templateAlert', ['msg' => ['danger', "<strong>Failed ! </strong>" . $validation->getError('tahunAjar')]]); ?>
                 <?php endif; ?>
-                <?php if ($validation->hasError('tahunAngkatan')) : ?>
-                    <?= view('layout/templateAlert', ['msg' => ['danger', "<strong>Failed ! </strong>" . $validation->getError('tahunAngkatan')]]); ?>
-                <?php endif; ?>
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <form name="proses" autocomplete="off" class="form-horizontal" action="/detailMhs/proses" method="POST" id="proses">
+                        <form name="proses" autocomplete="off" class="form-horizontal" action="/totalMhs/proses" method="POST" id="proses">
                             <div class="col-md-2">
                                 <label>Pilih Fakultas</label>
                                 <select class="form-control select" name="fakultas">
@@ -44,7 +38,6 @@
                                     <?php endforeach ?>
                                 </select>
                             </div>
-
                             <div class="col-md-2">
                                 <label>Tahun Ajar</label>
                                 <select class="form-control select" name="tahunAjar">
@@ -54,18 +47,8 @@
                                     <?php endforeach ?>
                                 </select>
                             </div>
-                            <div class="col-md-2">
-                                <label>Tahun Angkatan</label>
-                                <select class="form-control select" name="tahunAngkatan">
-                                    <option value="">--Select--</option>
-                                    <?php for ($i = date("Y"); $i >= 2016; $i--) : ?>
-                                        <option value="<?= $i ?>" <?php if ($i == $entryYear) echo " selected" ?>><?= $i ?></option>
-                                    <?php endfor ?>
-                                </select>
-                            </div>
                             <ul class="panel-controls">
-                                <?php if ($filter != null  && $termYear != null  && $entryYear != null) : ?>
-
+                                <?php if ($termYear != null) : ?>
                                     <button style="display: inline-block; margin-top: 11px;;margin-right: 5px;" type="submit" form="cetak" class="btn btn-info"><span class="glyphicon glyphicon-print"></span>
                                         Export</button>
                                 <?php endif ?>
@@ -75,48 +58,78 @@
                         </form>
                     </div>
                     <div class="panel-body col-md-12">
-                        <?php if (count($detailMhs) < 1) : ?>
+                        <?php if (count($totalMhs) < 1) : ?>
                             <center>
                                 <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_s6bvy00o.json" background="transparent" speed="1" style="width: 500px; height: 500px;" loop autoplay></lottie-player>
                             </center>
                         <?php else : ?>
-                            <?php if ($filter != null  && $termYear != null  && $entryYear != null) : ?>
-                                <form name="cetak" action="/detailMhs/cetak" method="POST" id="cetak">
+                            <?php if ($termYear != null) : ?>
+                                <form name="cetak" action="/totalMhs/cetak" method="POST" id="cetak">
                                     <?= csrf_field() ?>
                                     <input type="hidden" name="fakultas" value="<?= $filter; ?>">
                                     <input type="hidden" name="tahunAjar" value="<?= $termYear; ?>">
-                                    <input type="hidden" name="tahunAngkatan" value="<?= $entryYear; ?>">
                                 </form>
                             <?php endif ?>
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title">Detail Mahasiswa Aktif</h3>
+                                    <h3 class="panel-title">Total Mahasiswa Aktif</h3>
                                 </div>
                                 <div class="panel-body">
                                     <div class="table-responsive">
-                                        <table class="table table-bordered table-striped table-actions table datatable">
+                                        <table class="table table-bordered table-striped table-actions">
                                             <thead>
                                                 <tr>
-                                                    <th>No.</th>
-                                                    <th>NPM</th>
-                                                    <th>Nama Lengkap</th>
-                                                    <th>Fakultas</th>
-                                                    <th>Prodi</th>
-                                                    <th>Stambuk</th>
-                                                    <th>Status</th>
+                                                    <th rowspan="2" style="text-align:center" valign="center">No.</th>
+                                                    <th style="text-align:center">Fakultas / Prodi</th>
+                                                    <th colspan=<?= count($angkatan) ?> style="text-align:center">Stambuk</th>
+                                                </tr>
+                                                <tr>
+                                                    <th></th>
+                                                    <?php $a = [];
+                                                    foreach ($angkatan as $ang) : ?>
+                                                        <?php
+                                                        $a[$ang] = 0;
+                                                        ?>
+                                                        <th style="text-align:center"><?= $ang ?></th>
+                                                    <?php endforeach ?>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php $no = 1;
-                                                foreach ($detailMhs as $row) : ?>
+                                                <?php foreach ($fakultas as $fak) : ?>
                                                     <tr>
-                                                        <td><?= $no++; ?></td>
-                                                        <td><?= $row->NPM; ?></td>
-                                                        <td><?= $row->NAMA_LENGKAP; ?></td>
-                                                        <td><?= $row->FAKULTAS; ?></td>
-                                                        <td><?= $row->NAMA_PRODI; ?></td>
-                                                        <td><?= $row->ANGKATAN; ?></td>
-                                                        <td><?= $row->STATUS; ?></td>
+                                                        <td></td>
+                                                        <td><strong><?= $fak ?></strong></td>
+                                                        <?php foreach ($angkatan as $ang) : ?>
+                                                            <td></td>
+                                                        <?php endforeach ?>
+                                                    </tr>
+                                                    <?php $no = 1;
+                                                    foreach ($prodi as $prd) : ?>
+                                                        <?php if ($fak == $prd['fakultas']) : ?>
+                                                            <tr>
+                                                                <td><?= $no++ ?></td>
+                                                                <td><?= $prd['prodi'] ?></td>
+                                                                <?php foreach ($angkatan as $ang) : ?>
+                                                                    <?php $nilai = 0;
+                                                                    foreach ($totalMhs as $total) : ?>
+                                                                        <?php ($ang == $total->ANGKATAN && $prd['prodi'] == $total->NAMA_PRODI) ? $nilai = $total->JUMLAH : $nilai = $nilai ?>
+                                                                        <?php if ($ang == $total->ANGKATAN && $prd['prodi'] == $total->NAMA_PRODI) {
+                                                                            $a[$ang] = $a[$ang] + $total->JUMLAH;
+                                                                        }
+                                                                        ?>
+                                                                    <?php endforeach ?>
+                                                                    <td><?= $nilai ?></td>
+                                                                <?php endforeach ?>
+                                                            </tr>
+                                                        <?php endif ?>
+                                                    <?php endforeach ?>
+                                                    <tr>
+                                                        <td></td>
+                                                        <td><strong>Jumlah Per Fakultas</strong></td>
+                                                        <?php foreach ($angkatan as $ang) : ?>
+                                                            <td><strong><?= $a[$ang] ?></strong></td>
+                                                            <?php $a[$ang] = 0; ?>
+                                                        <?php endforeach ?>
                                                     </tr>
                                                 <?php endforeach ?>
                                             </tbody>

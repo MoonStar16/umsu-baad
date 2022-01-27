@@ -78,6 +78,11 @@ $routes->get('/detailMhs/(:any)', 'DetailMhs::index');
 $routes->post('/detailMhs/proses', 'DetailMhs::proses');
 $routes->post('/detailMhs/cetak', 'DetailMhs::exportDetailMhs');
 
+//total mahasiswa aktif
+$routes->get('/totalMhs/(:any)', 'TotalMhs::index');
+$routes->post('/totalMhs/proses', 'TotalMhs::proses');
+$routes->post('/totalMhs/cetak', 'TotalMhs::exportTotalMhs');
+
 
 
 /*

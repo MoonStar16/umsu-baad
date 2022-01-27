@@ -8,7 +8,7 @@ class Home extends BaseController
     {
         $data = [
             'title' => "Home",
-            'appName' => "Rekap BAAD",
+            'appName' => "UMSU",
             'breadcrumb' => ['Home', 'Dashboard'],
             'validation' => \Config\Services::validation(),
             'menu' => $this->fetchMenu()
