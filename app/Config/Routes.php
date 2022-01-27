@@ -73,6 +73,11 @@ $routes->get('/ipk/(:any)', 'Ipk::index');
 $routes->post('/ipk/proses', 'Ipk::proses');
 $routes->post('/ipk/cetak', 'Ipk::exportIpk');
 
+//detail mahasiswa aktif
+$routes->get('/detailMhs/(:any)', 'DetailMhs::index');
+$routes->post('/detailMhs/proses', 'DetailMhs::proses');
+$routes->post('/detailMhs/cetak', 'DetailMhs::exportDetailMhs');
+
 
 
 /*

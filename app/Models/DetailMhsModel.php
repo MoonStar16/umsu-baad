@@ -4,7 +4,7 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class CamaModel extends Model
+class DetailMhsModel extends Model
 {
     protected $curl;
 
@@ -15,10 +15,11 @@ class CamaModel extends Model
 
     public function getFakultas()
     {
-        $response = $this->curl->request("GET", "https://api.umsu.ac.id/baad/filter", [
+        $response = $this->curl->request("GET", "https://api.umsu.ac.id/Laporankeu/getFakultas", [
             "headers" => [
                 "Accept" => "application/json"
             ],
+
         ]);
         return json_decode($response->getBody())->data;
     }
@@ -33,19 +34,19 @@ class CamaModel extends Model
         return json_decode($response->getBody())->data;
     }
 
-    public function getLapCama($data)
+    public function getDetailMhs($data)
     {
         $response = $this->curl->request(
             "POST",
-            "https://api.umsu.ac.id/baad/lapCama",
+            "https://api.umsu.ac.id/Laporankeu/getMhsKrsAktif",
             [
                 "headers" => [
                     "Accept" => "application/json"
                 ],
                 "form_params" => [
                     "filter" => $data['fakultas'],
-                    "tahunAjaran" => $data['tahunAjar'],
-                    "angkatan" => $data['tahunAngkatan'],
+                    "tahunAjar" => $data['tahunAjar'],
+                    "entryYearId" => $data['tahunAngkatan'],
                 ]
             ]
         );
