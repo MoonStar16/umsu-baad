@@ -44,7 +44,7 @@ class KrsModel extends Model
                     "Accept" => "application/json"
                 ],
                 "form_params" => [
-                    "filter" => $data['fakultas'],
+                    "filter" => $data['prodi'],
                     "termYearId" => $data['tahunAjar'],
                     "entryYearId" => $data['tahunAngkatan'],
                 ]

@@ -63,7 +63,7 @@ class Khs extends BaseController
         }
 
         $data = array(
-            'fakultas' => trim($this->request->getPost('fakultas')),
+            'prodi' => trim($this->request->getPost('prodi')),
             'tahunAjar' => trim($this->request->getPost('tahunAjar')),
             'tahunAngkatan' => trim($this->request->getPost('tahunAngkatan')),
         );
@@ -78,7 +78,7 @@ class Khs extends BaseController
             'menu' => $this->fetchMenu(),
             'listProdi' => $this->khsModel->getProdi(),
             'listTermYear' => $this->khsModel->getTermYear(),
-            'filter' => $data['fakultas'],
+            'filter' => $data['prodi'],
             'termYear' => $data['tahunAjar'],
             'entryYear' => $data['tahunAngkatan'],
             'dataResult' => $lapKhs
@@ -90,7 +90,7 @@ class Khs extends BaseController
     public function exportKhs()
     {
         $data = array(
-            'fakultas' => trim($this->request->getPost('fakultas')),
+            'prodi' => trim($this->request->getPost('prodi')),
             'tahunAjar' => trim($this->request->getPost('tahunAjar')),
             'tahunAngkatan' => trim($this->request->getPost('tahunAngkatan')),
         );

@@ -23,8 +23,8 @@
                 <?php if (!empty(session()->getFlashdata('success'))) : ?>
                     <?= view('layout/templateAlert', ['msg' => ['success', session()->getFlashdata('success')]]); ?>
                 <?php endif; ?>
-                <?php if ($validation->hasError('fakultas')) : ?>
-                    <?= view('layout/templateAlert', ['msg' => ['danger', "<strong>Failed ! </strong>" . $validation->getError('fakultas')]]); ?>
+                <?php if ($validation->hasError('prodi')) : ?>
+                    <?= view('layout/templateAlert', ['msg' => ['danger', "<strong>Failed ! </strong>" . $validation->getError('prodi')]]); ?>
                 <?php endif; ?>
                 <?php if ($validation->hasError('tahunAjar')) : ?>
                     <?= view('layout/templateAlert', ['msg' => ['danger', "<strong>Failed ! </strong>" . $validation->getError('tahunAjar')]]); ?>
@@ -83,7 +83,7 @@
                                 <lottie-player src="https://assets8.lottiefiles.com/packages/lf20_y2hxPc.json" background="transparent" speed="1" style="width: 500px; height: 500px;" loop autoplay></lottie-player>
                                 <?php if ($filter != null  && $termYear != null  && $entryYear != null) : ?>
                                     <form name="cetak" action="/krs/cetak" method="POST" id="cetak">
-                                        <input type="hidden" name="fakultas" value="<?= $filter; ?>">
+                                        <input type="hidden" name="prodi" value="<?= $filter; ?>">
                                         <input type="hidden" name="tahunAjar" value="<?= $termYear; ?>">
                                         <input type="hidden" name="tahunAngkatan" value="<?= $entryYear; ?>">
                                     </form>

@@ -63,7 +63,7 @@ class Krs extends BaseController
         }
 
         $data = array(
-            'fakultas' => trim($this->request->getPost('fakultas')),
+            'prodi' => trim($this->request->getPost('prodi')),
             'tahunAjar' => trim($this->request->getPost('tahunAjar')),
             'tahunAngkatan' => trim($this->request->getPost('tahunAngkatan')),
         );
@@ -78,7 +78,7 @@ class Krs extends BaseController
             'menu' => $this->fetchMenu(),
             'listProdi' => $this->krsModel->getProdi(),
             'listTermYear' => $this->krsModel->getTermYear(),
-            'filter' => $data['fakultas'],
+            'filter' => $data['prodi'],
             'termYear' => $data['tahunAjar'],
             'entryYear' => $data['tahunAngkatan'],
             'dataResult' => $lapKrs
@@ -90,7 +90,7 @@ class Krs extends BaseController
     public function exportKrs()
     {
         $data = array(
-            'fakultas' => trim($this->request->getPost('fakultas')),
+            'prodi' => trim($this->request->getPost('prodi')),
             'tahunAjar' => trim($this->request->getPost('tahunAjar')),
             'tahunAngkatan' => trim($this->request->getPost('tahunAngkatan')),
         );
