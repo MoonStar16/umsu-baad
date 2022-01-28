@@ -85,6 +85,7 @@ $routes->post('/totalMhs/cetak', 'TotalMhs::exportTotalMhs');
 
 //feeder
 $routes->get('/feeder/(:any)', 'Feeder::index');
+$routes->post('/feeder/proses', 'Feeder::proses');
 $routes->post('/feeder/cetak', 'Feeder::exportFeeder');
 
 

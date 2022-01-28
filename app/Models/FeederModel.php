@@ -13,15 +13,15 @@ class FeederModel extends Model
         $this->curl = service('curlrequest');
     }
 
-    // public function getFakultas()
-    // {
-    //     $response = $this->curl->request("GET", "https://api.umsu.ac.id/baad/filter", [
-    //         "headers" => [
-    //             "Accept" => "application/json"
-    //         ],
-    //     ]);
-    //     return json_decode($response->getBody())->data;
-    // }
+    public function getProdi()
+    {
+        $response = $this->curl->request("GET", "https://api.umsu.ac.id/baad/prodi", [
+            "headers" => [
+                "Accept" => "application/json"
+            ],
+        ]);
+        return json_decode($response->getBody())->data;
+    }
 
     public function getTermYear()
     {
@@ -33,23 +33,23 @@ class FeederModel extends Model
         return json_decode($response->getBody())->data;
     }
 
-    // public function getLapFeeder($data)
-    // {
-    //     $response = $this->curl->request(
-    //         "POST",
-    //         "https://api.umsu.ac.id/baad/lapFeeder",
-    //         [
-    //             "headers" => [
-    //                 "Accept" => "application/json"
-    //             ],
-    //             "form_params" => [
-    //                 "filter" => $data['fakultas'],
-    //                 "tahunAjaran" => $data['tahunAjar'],
-    //                 "angkatan" => $data['tahunAngkatan'],
-    //             ]
-    //         ]
-    //     );
+    public function getLapFeeder($data)
+    {
+        $response = $this->curl->request(
+            "POST",
+            "https://api.umsu.ac.id/baad/lapFeeder",
+            [
+                "headers" => [
+                    "Accept" => "application/json"
+                ],
+                "form_params" => [
+                    "filter" => $data['prodi'],
+                    "termYearId" => $data['tahunAjar'],
+                    "entryYearId" => $data['tahunAngkatan'],
+                ]
+            ]
+        );
 
-    //     return json_decode($response->getBody())->data;
-    // }
+        return json_decode($response->getBody())->data;
+    }
 }

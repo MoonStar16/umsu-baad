@@ -14,7 +14,8 @@
         <!-- START BREADCRUMB -->
         <ul class="breadcrumb">
             <li><a href="/home"><?= $breadcrumb[0]; ?></a></li>
-            <li class="active"><?= $breadcrumb[1]; ?></li>
+            <li><a href="/feeder"><?= $breadcrumb[1]; ?></a></li>
+            <li class="active"><?= $breadcrumb[2]; ?></li>
         </ul>
         <!-- END BREADCRUMB  ->getBody()-->
         <div class="row">
@@ -22,12 +23,27 @@
                 <?php if (!empty(session()->getFlashdata('success'))) : ?>
                     <?= view('layout/templateAlert', ['msg' => ['success', session()->getFlashdata('success')]]); ?>
                 <?php endif; ?>
+                <?php if ($validation->hasError('prodi')) : ?>
+                    <?= view('layout/templateAlert', ['msg' => ['danger', "<strong>Failed ! </strong>" . $validation->getError('prodi')]]); ?>
+                <?php endif; ?>
                 <?php if ($validation->hasError('tahunAjar')) : ?>
                     <?= view('layout/templateAlert', ['msg' => ['danger', "<strong>Failed ! </strong>" . $validation->getError('tahunAjar')]]); ?>
                 <?php endif; ?>
+                <?php if ($validation->hasError('tahunAngkatan')) : ?>
+                    <?= view('layout/templateAlert', ['msg' => ['danger', "<strong>Failed ! </strong>" . $validation->getError('tahunAngkatan')]]); ?>
+                <?php endif; ?>
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <form name="proses" autocomplete="off" class="form-horizontal" action="/feeder/cetak" method="POST" id="cetak">
+                        <form autocomplete="off" class="form-horizontal" action="/feeder/proses" method="POST">
+                            <div class="col-md-2">
+                                <label>Pilih Prodi</label>
+                                <select class="form-control select" name="prodi">
+                                    <option value="">--Select--</option>
+                                    <?php foreach ($listProdi as $rows) : ?>
+                                        <option value="<?= $rows->Department_Acronym ?>" <?php if ($rows->Department_Acronym == $filter) echo " selected" ?>><?= $rows->Department_Name ?></option>
+                                    <?php endforeach ?>
+                                </select>
+                            </div>
                             <div class="col-md-2">
                                 <label>Tahun Ajar</label>
                                 <select class="form-control select" name="tahunAjar">
@@ -37,16 +53,42 @@
                                     <?php endforeach ?>
                                 </select>
                             </div>
+                            <div class="col-md-2">
+                                <label>Tahun Angkatan</label>
+                                <select class="form-control select" name="tahunAngkatan">
+                                    <option value="">--Select--</option>
+                                    <?php for ($i = date("Y"); $i >= 2016; $i--) : ?>
+                                        <option value="<?= $i ?>" <?php if ($i == $entryYear) echo " selected" ?>><?= $i ?></option>
+                                    <?php endfor ?>
+                                </select>
+                            </div>
                             <ul class="panel-controls">
-                                <button style="display: inline-block; margin-top: 11px;;margin-right: 5px;" type="submit" form="cetak" class="btn btn-info"><span class="glyphicon glyphicon-print"></span>
-                                    Export</button>
+                                <?php if ($filter != null  && $termYear != null  && $entryYear != null) : ?>
+                                    <button style="display: inline-block; margin-top: 11px;;margin-right: 5px;" type="submit" form="cetak" class="btn btn-info"><span class="glyphicon glyphicon-print"></span>
+                                        Export</button>
+                                <?php endif ?>
+                                <button style="display: inline-block; margin-top: 11px" type="submit" class="btn btn-success"><span class="fa fa-arrow-circle-right"></span>
+                                    Proses</button>
                             </ul>
                         </form>
                     </div>
                     <div class="panel-body col-md-12">
-                        <center>
-                            <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_s6bvy00o.json" background="transparent" speed="1" style="width: 500px; height: 500px;" loop autoplay></lottie-player>
-                        </center>
+                        <?php if (count($dataResult) < 1) : ?>
+                            <center>
+                                <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_s6bvy00o.json" background="transparent" speed="1" style="width: 500px; height: 500px;" loop autoplay></lottie-player>
+                            </center>
+                        <?php else : ?>
+                            <center>
+                                <lottie-player src="https://assets8.lottiefiles.com/packages/lf20_y2hxPc.json" background="transparent" speed="1" style="width: 500px; height: 500px;" loop autoplay></lottie-player>
+                                <?php if ($filter != null  && $termYear != null  && $entryYear != null) : ?>
+                                    <form name="cetak" action="/feeder/cetak" method="POST" id="cetak">
+                                        <input type="hidden" name="prodi" value="<?= $filter; ?>">
+                                        <input type="hidden" name="tahunAjar" value="<?= $termYear; ?>">
+                                        <input type="hidden" name="tahunAngkatan" value="<?= $entryYear; ?>">
+                                    </form>
+                                <?php endif ?>
+                            </center>
+                        <?php endif ?>
                     </div>
                 </div>
             </div>

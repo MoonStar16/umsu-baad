@@ -128,9 +128,18 @@
         "id": "7",
         "nama": "Data Feeder",
         "parent": "12",
-        "level": "child",
+        "level": "parent",
         "status": true,
         "icon": "fa fa-database",
+        "pages": ""
+    },
+    {
+        "id": "17",
+        "nama": "Per Angkatan",
+        "parent": "7",
+        "level": "child",
+        "status": true,
+        "icon": "",
         "pages": "/feeder"
     },
     {
