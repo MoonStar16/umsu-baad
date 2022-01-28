@@ -84,44 +84,44 @@ class Ipk extends BaseController
         );
 
         $lapIpk = $this->ipkModel->getLapIpk($data);
+        foreach ($lapIpk as $ipkMahasiswa) {
+            $stambuk = $ipkMahasiswa->ANGKATAN;
+            $tahunAjaran = $ipkMahasiswa->TAHUN_AKADEMIK;
+        }
         $row = 1;
-        $this->spreadsheet->setActiveSheetIndex(0)->setCellValue('A' . $row, 'IPK Mahasiswa')->mergeCells("A" . $row . ":M" . $row)->getStyle("A" . $row . ":I" . $row)->getFont()->setBold(true);
+        $this->spreadsheet->setActiveSheetIndex(0)->setCellValue('A' . $row, 'IPK Mahasiswa Stambuk ' . $stambuk . ' TA. ' . $tahunAjaran)->mergeCells("A" . $row . ":K" . $row)->getStyle("A" . $row . ":I" . $row)->getFont()->setBold(true);
         $row++;
         $this->spreadsheet->setActiveSheetIndex(0)
             ->setCellValue('A' . $row, 'No.')
             ->setCellValue('B' . $row, 'Nomor Registrasi')
             ->setCellValue('C' . $row, 'NPM')
             ->setCellValue('D' . $row, 'Nama Mahasiswa')
-            ->setCellValue('E' . $row, 'Kode Prodi')
-            ->setCellValue('F' . $row, 'Nama Prodi')
-            ->setCellValue('G' . $row, 'Kelas')
-            ->setCellValue('H' . $row, 'Kode Matkul')
-            ->setCellValue('I' . $row, 'Matakuliah')
-            ->setCellValue('J' . $row, 'SKS')
-            ->setCellValue('K' . $row, 'NIDN')
-            ->setCellValue('L' . $row, 'NAMA DOSEN')
-            ->setCellValue('M' . $row, 'TAHUN AKADEMIK')->getStyle("A2:M2")->getFont()->setBold(true);
+            ->setCellValue('E' . $row, 'Nama Prodi')
+            ->setCellValue('F' . $row, 'Kelas')
+            ->setCellValue('G' . $row, 'SKS Diambil')
+            ->setCellValue('H' . $row, 'SKS Diperoleh')
+            ->setCellValue('I' . $row, 'IPS')
+            ->setCellValue('J' . $row, 'IPK')
+            ->setCellValue('K' . $row, 'TAHUN AJARAN')->getStyle("A2:K2")->getFont()->setBold(true);
         $row++;
         $no = 1;
         foreach ($lapIpk as $ipk) {
             $this->spreadsheet->setActiveSheetIndex(0)
                 ->setCellValue('A' . $row, $no++)
-                ->setCellValue('B' . $row, $ipk->NO_REGISTRASI)
+                ->setCellValue('B' . $row, $ipk->Register_Number)
                 ->setCellValue('C' . $row, $ipk->NPM)
                 ->setCellValue('D' . $row, $ipk->NAMA_LENGKAP)
-                ->setCellValue('E' . $row, $ipk->Department_Id)
-                ->setCellValue('F' . $row, $ipk->NAMA_PRODI)
-                ->setCellValue('G' . $row, $ipk->KELAS)
-                ->setCellValue('H' . $row, $ipk->KODE_MATKUL)
-                ->setCellValue('I' . $row, $ipk->NAMA_MATKUL)
-                ->setCellValue('J' . $row, $ipk->SKS)
-                ->setCellValue('K' . $row, $ipk->NIDN)
-                ->setCellValue('L' . $row, $ipk->NAMA_DOSEN)
-                ->setCellValue('M' . $row, $ipk->TAHUN_AKADEMIK);
+                ->setCellValue('E' . $row, $ipk->PRODI)
+                ->setCellValue('F' . $row, $ipk->KELAS . $ipk->WAKTU)
+                ->setCellValue('G' . $row, $ipk->SKS_DIAMBIL)
+                ->setCellValue('H' . $row, $ipk->SKS_DIPEROLEH)
+                ->setCellValue('I' . $row, $ipk->IPS)
+                ->setCellValue('J' . $row, $ipk->IPK)
+                ->setCellValue('K' . $row, $ipk->TAHUN_AKADEMIK);
             $row++;
         }
         $writer = new Xlsx($this->spreadsheet);
-        $fileName = 'IPK Mahasiswa TA ' . $ipk->TAHUN_AKADEMIK;
+        $fileName = 'IPK Mahasiswa Stambuk ' . $ipk->ANGKATAN . ' TA. ' . $ipk->TAHUN_AKADEMIK;
 
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         header('Content-Disposition: attachment;filename=' . $fileName . '.xlsx');

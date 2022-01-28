@@ -61,7 +61,7 @@
                                 </select>
                             </div>
                             <ul class="panel-controls">
-                                <?php if ($filter != null  && $termYear != null  && $entryYear != null) : ?>
+                                <?php if ($termYear != null  && $entryYear != null) : ?>
 
                                     <button style="display: inline-block; margin-top: 11px;;margin-right: 5px;" type="submit" form="cetak" class="btn btn-info"><span class="glyphicon glyphicon-print"></span>
                                         Export</button>
@@ -77,7 +77,7 @@
                                 <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_s6bvy00o.json" background="transparent" speed="1" style="width: 500px; height: 500px;" loop autoplay></lottie-player>
                             </center>
                         <?php else : ?>
-                            <?php if ($filter != null  && $termYear != null  && $entryYear != null) : ?>
+                            <?php if ($termYear != null  && $entryYear != null) : ?>
                                 <form name="cetak" action="/detailMhs/cetak" method="POST" id="cetak">
                                     <?= csrf_field() ?>
                                     <input type="hidden" name="fakultas" value="<?= $filter; ?>">

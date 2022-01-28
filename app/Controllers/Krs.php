@@ -133,7 +133,7 @@ class Krs extends BaseController
             $row++;
         }
         $writer = new Xlsx($this->spreadsheet);
-        $fileName = 'KRS Mahasiswa TA ' . $krs->TAHUN_AKADEMIK;
+        $fileName = 'KRS Mahasiswa Prodi ' . $krs->AKRONIM_PRODI . ' TA ' . $krs->TAHUN_AKADEMIK;
 
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         header('Content-Disposition: attachment;filename=' . $fileName . '.xlsx');

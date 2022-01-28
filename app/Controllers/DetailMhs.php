@@ -106,59 +106,53 @@ class DetailMhs extends BaseController
         return view('pages/detailMhs', $data);
     }
 
-    // public function exportDetailMhs()
-    // {
-    //     $data = array(
-    //         'fakultas' => trim($this->request->getPost('fakultas')),
-    //         'tahunAjar' => trim($this->request->getPost('tahunAjar')),
-    //         'tahunAngkatan' => trim($this->request->getPost('tahunAngkatan')),
-    //     );
+    public function exportDetailMhs()
+    {
+        $data = array(
+            'fakultas' => trim($this->request->getPost('fakultas')),
+            'tahunAjar' => trim($this->request->getPost('tahunAjar')),
+            'tahunAngkatan' => trim($this->request->getPost('tahunAngkatan')),
+        );
 
-    //     $lapDetailMhs = $this->detailMhsModel->getLapDetailMhs($data);
-    //     $row = 1;
-    //     $this->spreadsheet->setActiveSheetIndex(0)->setCellValue('A' . $row, 'Detail Mahasiswa Aktif')->mergeCells("A" . $row . ":M" . $row)->getStyle("A" . $row . ":I" . $row)->getFont()->setBold(true);
-    //     $row++;
-    //     $this->spreadsheet->setActiveSheetIndex(0)
-    //         ->setCellValue('A' . $row, 'No.')
-    //         ->setCellValue('B' . $row, 'Nomor Registrasi')
-    //         ->setCellValue('C' . $row, 'NPM')
-    //         ->setCellValue('D' . $row, 'Nama Mahasiswa')
-    //         ->setCellValue('E' . $row, 'Kode Prodi')
-    //         ->setCellValue('F' . $row, 'Nama Prodi')
-    //         ->setCellValue('G' . $row, 'Kelas')
-    //         ->setCellValue('H' . $row, 'Kode Matkul')
-    //         ->setCellValue('I' . $row, 'Matakuliah')
-    //         ->setCellValue('J' . $row, 'SKS')
-    //         ->setCellValue('K' . $row, 'NIDN')
-    //         ->setCellValue('L' . $row, 'NAMA DOSEN')
-    //         ->setCellValue('M' . $row, 'TAHUN AKADEMIK')->getStyle("A2:M2")->getFont()->setBold(true);
-    //     $row++;
-    //     $no = 1;
-    //     foreach ($lapDetailMhs as $detailMhs) {
-    //         $this->spreadsheet->setActiveSheetIndex(0)
-    //             ->setCellValue('A' . $row, $no++)
-    //             ->setCellValue('B' . $row, $detailMhs->NO_REGISTRASI)
-    //             ->setCellValue('C' . $row, $detailMhs->NPM)
-    //             ->setCellValue('D' . $row, $detailMhs->NAMA_LENGKAP)
-    //             ->setCellValue('E' . $row, $detailMhs->Department_Id)
-    //             ->setCellValue('F' . $row, $detailMhs->NAMA_PRODI)
-    //             ->setCellValue('G' . $row, $detailMhs->KELAS)
-    //             ->setCellValue('H' . $row, $detailMhs->KODE_MATKUL)
-    //             ->setCellValue('I' . $row, $detailMhs->NAMA_MATKUL)
-    //             ->setCellValue('J' . $row, $detailMhs->SKS)
-    //             ->setCellValue('K' . $row, $detailMhs->NIDN)
-    //             ->setCellValue('L' . $row, $detailMhs->NAMA_DOSEN)
-    //             ->setCellValue('M' . $row, $detailMhs->TAHUN_AKADEMIK);
-    //         $row++;
-    //     }
-    //     $writer = new Xlsx($this->spreadsheet);
-    //     $fileName = 'Detail Mahasiswa Aktif TA ' . $detailMhs->TAHUN_AKADEMIK;
+        $lapDetailMhs = $this->detailMhsModel->getDetailMhs($data);
+        foreach ($lapDetailMhs as $mhsAktif) {
+            // $fakultas = $mhsAktif->FAKULTAS;
+            $tahunAjaran = $mhsAktif->TAHUN_AJAR;
+        }
+        $row = 1;
+        $this->spreadsheet->setActiveSheetIndex(0)->setCellValue('A' . $row, 'Detail Mahasiswa Aktif TA. ' . $tahunAjaran)->mergeCells("A" . $row . ":H" . $row)->getStyle("A" . $row . ":I" . $row)->getFont()->setBold(true);
+        $row++;
+        $this->spreadsheet->setActiveSheetIndex(0)
+            ->setCellValue('A' . $row, 'No.')
+            ->setCellValue('B' . $row, 'NPM')
+            ->setCellValue('C' . $row, 'Nama Mahasiswa')
+            ->setCellValue('D' . $row, 'Fakultas')
+            ->setCellValue('E' . $row, 'Nama Prodi')
+            ->setCellValue('F' . $row, 'Angkatan')
+            ->setCellValue('G' . $row, 'Tahun Ajaran')
+            ->setCellValue('H' . $row, 'Status Aktif')->getStyle("A2:H2")->getFont()->setBold(true);
+        $row++;
+        $no = 1;
+        foreach ($lapDetailMhs as $detailMhs) {
+            $this->spreadsheet->setActiveSheetIndex(0)
+                ->setCellValue('A' . $row, $no++)
+                ->setCellValue('B' . $row, $detailMhs->NPM)
+                ->setCellValue('C' . $row, $detailMhs->NAMA_LENGKAP)
+                ->setCellValue('D' . $row, $detailMhs->FAKULTAS)
+                ->setCellValue('E' . $row, $detailMhs->NAMA_PRODI)
+                ->setCellValue('F' . $row, $detailMhs->ANGKATAN)
+                ->setCellValue('G' . $row, $detailMhs->TAHUN_AJAR)
+                ->setCellValue('H' . $row, $detailMhs->STATUS);
+            $row++;
+        }
+        $writer = new Xlsx($this->spreadsheet);
+        $fileName = 'Detail Mahasiswa Aktif TA ' . $detailMhs->TAHUN_AJAR;
 
-    //     header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-    //     header('Content-Disposition: attachment;filename=' . $fileName . '.xlsx');
-    //     header('Cache-Control: max-age=0');
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename=' . $fileName . '.xlsx');
+        header('Cache-Control: max-age=0');
 
-    //     // session()->setFlashdata('success', 'Berhasil Export Data Tunggakan !');
-    //     $writer->save('php://output');
-    // }
+        // session()->setFlashdata('success', 'Berhasil Export Data Tunggakan !');
+        $writer->save('php://output');
+    }
 }
