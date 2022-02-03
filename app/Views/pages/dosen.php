@@ -50,7 +50,7 @@
                                 </select>
                             </div>
                             <ul class="panel-controls">
-                                <?php if ($termYear != null  && $entryYear != null) : ?>
+                                <?php if ($termYear != null  && $filter != null) : ?>
                                     <button style="display: inline-block; margin-top: 11px;;margin-right: 5px;" type="submit" form="cetak" class="btn btn-info"><span class="glyphicon glyphicon-print"></span>
                                         Export</button>
                                 <?php endif ?>
@@ -65,15 +65,51 @@
                                 <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_s6bvy00o.json" background="transparent" speed="1" style="width: 500px; height: 500px;" loop autoplay></lottie-player>
                             </center>
                         <?php else : ?>
-                            <center>
-                                <lottie-player src="https://assets8.lottiefiles.com/packages/lf20_y2hxPc.json" background="transparent" speed="1" style="width: 500px; height: 500px;" loop autoplay></lottie-player>
-                                <?php if ($termYear != null  && $filter != null) : ?>
-                                    <form name="cetak" action="/dosen/cetak" method="POST" id="cetak">
-                                        <input type="hidden" name="tahunAjar" value="<?= $termYear; ?>">
-                                        <input type="hidden" name="fakultas" value="<?= $filter; ?>">
-                                    </form>
-                                <?php endif ?>
-                            </center>
+                            <?php if ($filter != null  && $termYear != null) : ?>
+                                <form name="cetak" action="/dosen/cetak" method="POST" id="cetak">
+                                    <?= csrf_field() ?>
+                                    <input type="hidden" name="fakultas" value="<?= $filter; ?>">
+                                    <input type="hidden" name="tahunAjar" value="<?= $termYear; ?>">
+                                </form>
+                            <?php endif ?>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Penugasan Dosen</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-striped table-actions table datatable">
+                                            <thead>
+                                                <tr>
+                                                    <th>No.</th>
+                                                    <th>Username</th>
+                                                    <th>Password</th>
+                                                    <th>Firstname</th>
+                                                    <th>Lastname</th>
+                                                    <th>Email</th>
+                                                    <th>Course</th>
+                                                    <th>Role</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php $no = 1;
+                                                foreach ($dataResult as $row) : ?>
+                                                    <tr>
+                                                        <td><?= $no++; ?></td>
+                                                        <td><?= $row->username; ?></td>
+                                                        <td><?= $row->password; ?></td>
+                                                        <td><?= $row->firstname; ?></td>
+                                                        <td><?= $row->lastname; ?></td>
+                                                        <td><?= $row->email; ?></td>
+                                                        <td><?= $row->course1; ?></td>
+                                                        <td><?= $row->role1; ?></td>
+                                                    </tr>
+                                                <?php endforeach ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
                         <?php endif ?>
                     </div>
                 </div>

@@ -22,7 +22,7 @@ class Dosen extends BaseController
         $data = [
             'title' => "Penugasan Dosen",
             'appName' => "UMSU",
-            'breadcrumb' => ['Laporan Roster Akademik', 'Penugasan Dosen'],
+            'breadcrumb' => ['Elearning', 'Penugasan Dosen'],
             'validation' => \Config\Services::validation(),
             'menu' => $this->fetchMenu(),
             'listFakultas' => $this->dosenModel->getFakultas(),
@@ -55,6 +55,7 @@ class Dosen extends BaseController
             return redirect()->to('dosen')->withInput();
         }
 
+        // dd($_POST);
         $data = array(
             'tahunAjar' => trim($this->request->getPost('tahunAjar')),
             'fakultas' => trim($this->request->getPost('fakultas')),
@@ -65,7 +66,7 @@ class Dosen extends BaseController
         $data = [
             'title' => "Penugasan Dosen",
             'appName' => "UMSU",
-            'breadcrumb' => ['Laporan Roster Akademik', 'Penugasan Dosen'],
+            'breadcrumb' => ['Elearning', 'Penugasan Dosen'],
             'validation' => \Config\Services::validation(),
             'menu' => $this->fetchMenu(),
             'listFakultas' => $this->dosenModel->getFakultas(),
@@ -74,6 +75,7 @@ class Dosen extends BaseController
             'termYear' => $data['tahunAjar'],
             'dataResult' => $lapDosen
         ];
+        // dd($lapDosen);
         session()->setFlashdata('success', '<strong>' . count($lapDosen) . ' Data' . '</strong> Telah Ditemukan ,Klik Export Untuk Download!');
         return view('pages/dosen', $data);
     }
@@ -86,44 +88,29 @@ class Dosen extends BaseController
         );
 
         $lapDosen = $this->dosenModel->getLapDosen($data);
-        foreach ($lapDosen as $dosenMahasiswa) {
-            $stambuk = $dosenMahasiswa->ANGKATAN;
-            $tahunAjaran = $dosenMahasiswa->TAHUN_AKADEMIK;
-        }
         $row = 1;
-        $this->spreadsheet->setActiveSheetIndex(0)->setCellValue('A' . $row, 'Penugasan Dosen Stambuk ' . $stambuk . ' TA. ' . $tahunAjaran)->mergeCells("A" . $row . ":K" . $row)->getStyle("A" . $row . ":I" . $row)->getFont()->setBold(true);
-        $row++;
         $this->spreadsheet->setActiveSheetIndex(0)
-            ->setCellValue('A' . $row, 'No.')
-            ->setCellValue('B' . $row, 'Nomor Registrasi')
-            ->setCellValue('C' . $row, 'NPM')
-            ->setCellValue('D' . $row, 'Nama Mahasiswa')
-            ->setCellValue('E' . $row, 'Nama Prodi')
-            ->setCellValue('F' . $row, 'Kelas')
-            ->setCellValue('G' . $row, 'SKS Diambil')
-            ->setCellValue('H' . $row, 'SKS Diperoleh')
-            ->setCellValue('I' . $row, 'IPS')
-            ->setCellValue('J' . $row, 'IPK')
-            ->setCellValue('K' . $row, 'TAHUN AJARAN')->getStyle("A2:K2")->getFont()->setBold(true);
+            ->setCellValue('A' . $row, 'username')
+            ->setCellValue('B' . $row, 'password')
+            ->setCellValue('C' . $row, 'firstname')
+            ->setCellValue('D' . $row, 'lastname')
+            ->setCellValue('E' . $row, 'email')
+            ->setCellValue('F' . $row, 'course1')
+            ->setCellValue('G' . $row, 'role1');
         $row++;
-        $no = 1;
         foreach ($lapDosen as $dosen) {
             $this->spreadsheet->setActiveSheetIndex(0)
-                ->setCellValue('A' . $row, $no++)
-                ->setCellValue('B' . $row, $dosen->Register_Number)
-                ->setCellValue('C' . $row, $dosen->NPM)
-                ->setCellValue('D' . $row, $dosen->NAMA_LENGKAP)
-                ->setCellValue('E' . $row, $dosen->PRODI)
-                ->setCellValue('F' . $row, $dosen->KELAS . $dosen->WAKTU)
-                ->setCellValue('G' . $row, $dosen->SKS_DIAMBIL)
-                ->setCellValue('H' . $row, $dosen->SKS_DIPEROLEH)
-                ->setCellValue('I' . $row, $dosen->IPS)
-                ->setCellValue('J' . $row, $dosen->IPK)
-                ->setCellValue('K' . $row, $dosen->TAHUN_AKADEMIK);
+                ->setCellValue('A' . $row, $dosen->username)
+                ->setCellValue('B' . $row, $dosen->password)
+                ->setCellValue('C' . $row, $dosen->firstname)
+                ->setCellValue('D' . $row, $dosen->lastname)
+                ->setCellValue('E' . $row, $dosen->email)
+                ->setCellValue('F' . $row, $dosen->course1)
+                ->setCellValue('G' . $row, $dosen->role1);
             $row++;
         }
         $writer = new Xlsx($this->spreadsheet);
-        $fileName = 'Penugasan Dosen Stambuk ' . $dosen->ANGKATAN . ' TA. ' . $dosen->TAHUN_AKADEMIK;
+        $fileName = 'Dosen Elearning';
 
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         header('Content-Disposition: attachment;filename=' . $fileName . '.xlsx');

@@ -93,6 +93,11 @@ $routes->get('/matkul/(:any)', 'Matkul::index');
 $routes->post('/matkul/proses', 'Matkul::proses');
 $routes->post('/matkul/cetak', 'Matkul::exportMatkul');
 
+//penugasan dosen
+$routes->get('/dosen/(:any)', 'Dosen::index');
+$routes->post('/dosen/proses', 'Dosen::proses');
+$routes->post('/dosen/cetak', 'Dosen::exportDosen');
+
 
 
 /*
