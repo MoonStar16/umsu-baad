@@ -60,8 +60,8 @@ class Dosen extends BaseController
             'fakultas' => trim($this->request->getPost('fakultas')),
         );
 
+
         $lapDosen = $this->dosenModel->getLapDosen($data);
-        // dd($lapDosen);
         $data = [
             'title' => "Penugasan Dosen",
             'appName' => "UMSU",

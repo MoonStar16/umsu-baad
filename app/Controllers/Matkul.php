@@ -61,7 +61,6 @@ class Matkul extends BaseController
         );
 
         $lapMatkul = $this->matkulModel->getLapMatkul($data);
-        // dd($lapMatkul);
         $data = [
             'title' => "Mata Kuliah",
             'appName' => "UMSU",
