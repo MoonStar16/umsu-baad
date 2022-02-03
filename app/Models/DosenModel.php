@@ -37,14 +37,14 @@ class DosenModel extends Model
     {
         $response = $this->curl->request(
             "POST",
-            "https://api.umsu.ac.id/baad/lapDosen",
+            "https://api.umsu.ac.id/Elearning/dosen",
             [
                 "headers" => [
                     "Accept" => "application/json"
                 ],
                 "form_params" => [
                     "filter" => $data['fakultas'],
-                    "tahunAjaran" => $data['tahunAjar'],
+                    "tahunajar" => $data['tahunAjar'],
                 ]
             ]
         );

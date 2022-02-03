@@ -37,18 +37,17 @@ class MatkulModel extends Model
     {
         $response = $this->curl->request(
             "POST",
-            "https://api.umsu.ac.id/baad/lapMatkul",
+            "https://api.umsu.ac.id/Elearning/course",
             [
                 "headers" => [
                     "Accept" => "application/json"
                 ],
                 "form_params" => [
                     "filter" => $data['fakultas'],
-                    "tahunAjaran" => $data['tahunAjar'],
+                    "tahunajar" => $data['tahunAjar'],
                 ]
             ]
         );
-
         return json_decode($response->getBody())->data;
     }
 }

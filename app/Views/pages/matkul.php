@@ -50,7 +50,7 @@
                                 </select>
                             </div>
                             <ul class="panel-controls">
-                                <?php if ($termYear != null  && $entryYear != null) : ?>
+                                <?php if ($filter != null  && $termYear != null) : ?>
                                     <button style="display: inline-block; margin-top: 11px;;margin-right: 5px;" type="submit" form="cetak" class="btn btn-info"><span class="glyphicon glyphicon-print"></span>
                                         Export</button>
                                 <?php endif ?>
