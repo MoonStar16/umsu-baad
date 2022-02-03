@@ -88,6 +88,11 @@ $routes->get('/feeder/(:any)', 'Feeder::index');
 $routes->post('/feeder/proses', 'Feeder::proses');
 $routes->post('/feeder/cetak', 'Feeder::exportFeeder');
 
+//matkul
+$routes->get('/matkul/(:any)', 'Matkul::index');
+$routes->post('/matkul/proses', 'Matkul::proses');
+$routes->post('/matkul/cetak', 'Matkul::exportMatkul');
+
 
 
 /*

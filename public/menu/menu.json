@@ -168,5 +168,32 @@
         "status": true,
         "icon": "",
         "pages": "/ipk"
+    },
+    {
+        "id": "19",
+        "nama": "Laporan Roster Akademik",
+        "parent": "0",
+        "level": "title",
+        "status": true,
+        "icon": "",
+        "pages": ""
+    },
+    {
+        "id": "21",
+        "nama": "Mata Kuliah",
+        "parent": "19",
+        "level": "child",
+        "status": true,
+        "icon": "glyphicon glyphicon-book",
+        "pages": "/matkul"
+    },
+    {
+        "id": "20",
+        "nama": "Penugasan Dosen",
+        "parent": "19",
+        "level": "child",
+        "status": true,
+        "icon": "fa fa-user-md",
+        "pages": "/dosen"
     }
 ]

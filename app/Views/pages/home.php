@@ -24,10 +24,120 @@
                                 <span>Aplikasi UMSU BAAD</span>
                             </div>
                         </div>
-                        <div class="panel-body panel-body-table">
-                            <center>
-                                <lottie-player src="https://assets5.lottiefiles.com/packages/lf20_tljjahng.json" background="transparent" speed="1" style="width: 800px; height: 800px;" loop autoplay></lottie-player>
-                            </center>
+                        <div class="panel-body ">
+                            <blockquote class="blockquote-info">
+                                <p>Dibawah ini merupakan jumlah data di tahun ajar berjalan</p>
+                            </blockquote>
+                            <div class="row">
+
+                                <div class=" col-md-4">
+                                    <div class="widget widget-primary widget-item-icon">
+                                        <div class="widget-item-left">
+                                            <span class="fa fa-users"></span>
+                                        </div>
+                                        <div class="widget-data">
+                                            <div class="widget-int num-count">1750</div>
+                                            <div class="widget-title">Jumlah</div>
+                                            <div class="widget-subtitle">Pendaftar</div>
+                                        </div>
+                                        <div class="widget-controls">
+                                            <a href="#!" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="widget widget-primary widget-item-icon">
+                                        <div class="widget-item-left">
+                                            <span class="fa fa-graduation-cap"></span>
+                                        </div>
+                                        <div class="widget-data">
+                                            <div class="widget-int num-count">1750</div>
+                                            <div class="widget-title">Jumlah</div>
+                                            <div class="widget-subtitle">Calon Mahasiswa</div>
+                                        </div>
+                                        <div class="widget-controls">
+                                            <a href="#!" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="widget widget-primary widget-item-icon">
+                                        <div class="widget-item-left">
+                                            <span class="fa fa-external-link"></span>
+                                        </div>
+                                        <div class="widget-data">
+                                            <div class="widget-int num-count">1750</div>
+                                            <div class="widget-title">Jumlah</div>
+                                            <div class="widget-subtitle">Registrasi Ulang</div>
+                                        </div>
+                                        <div class="widget-controls">
+                                            <a href="#!" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="widget widget-primary widget-item-icon">
+                                        <div class="widget-item-left">
+                                            <span class="fa fa-external-link"></span>
+                                        </div>
+                                        <div class="widget-data">
+                                            <div class="widget-int num-count">1750</div>
+                                            <div class="widget-title">Jumlah</div>
+                                            <div class="widget-subtitle">Registrasi Ulang</div>
+                                        </div>
+                                        <div class="widget-controls">
+                                            <a href="#!" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="widget widget-primary widget-item-icon">
+                                        <div class="widget-item-left">
+                                            <span class="fa fa-external-link"></span>
+                                        </div>
+                                        <div class="widget-data">
+                                            <div class="widget-int num-count">1750</div>
+                                            <div class="widget-title">Jumlah</div>
+                                            <div class="widget-subtitle">Registrasi Ulang</div>
+                                        </div>
+                                        <div class="widget-controls">
+                                            <a href="#!" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="widget widget-primary widget-item-icon">
+                                        <div class="widget-item-left">
+                                            <span class="fa fa-external-link"></span>
+                                        </div>
+                                        <div class="widget-data">
+                                            <div class="widget-int num-count">1750</div>
+                                            <div class="widget-title">Jumlah</div>
+                                            <div class="widget-subtitle">Registrasi Ulang</div>
+                                        </div>
+                                        <div class="widget-controls">
+                                            <a href="#!" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="widget widget-primary widget-item-icon">
+                                        <div class="widget-item-left">
+                                            <span class="fa fa-external-link"></span>
+                                        </div>
+                                        <div class="widget-data">
+                                            <div class="widget-int num-count">1750</div>
+                                            <div class="widget-title">Jumlah</div>
+                                            <div class="widget-subtitle">Registrasi Ulang</div>
+                                        </div>
+                                        <div class="widget-controls">
+                                            <a href="#!" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

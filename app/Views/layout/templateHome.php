@@ -57,7 +57,7 @@
     <!-- END PLUGINS -->
 
     <!-- START THIS PAGE PLUGINS-->
-    <script type='text/javascript' src='theme/js/plugins/icheck/icheck.min.js'></script>
+    <script type='text/javascript' src='<?= base_url("theme/js/plugins/icheck/icheck.min.js"); ?>'></script>
     <script type="text/javascript" src="<?= base_url('theme/js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js'); ?>"></script>
     <script type="text/javascript" src="<?= base_url('theme/js/plugins/scrolltotop/scrolltopcontrol.js'); ?>"></script>
 
@@ -72,10 +72,10 @@
     <script type="text/javascript" src="<?= base_url('theme/js/plugins/bootstrap/bootstrap-timepicker.min.js'); ?>"></script>
     <script type="text/javascript" src="<?= base_url('theme/js/plugins/bootstrap/bootstrap-datepicker.js'); ?>"></script>
     <script type="text/javascript" src="<?= base_url('theme/js/plugins/dropzone/dropzone.min.js'); ?>"></script>
-    <script type='text/javascript' src='<?= base_url("theme/js/plugins/icheck/icheck.min.js"); ?>'></script>
-    <script type="text/javascript" src="<?= base_url('theme/js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js'); ?>"></script>
     <script type="text/javascript" src="<?= base_url('theme/js/plugins/fileinput/fileinput.min.js'); ?>"></script>
     <script type='text/javascript' src="<?= base_url('theme/js/plugins/datatables/jquery.dataTables.min.js'); ?>"></script>
+    <script type="text/javascript" src="<?= base_url('theme/js/plugins/knob/jquery.knob.min.js'); ?>"></script>
+    <script type="text/javascript" src="<?= base_url('theme/js/plugins/tagsinput/jquery.tagsinput.min.js'); ?>"></script>
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <script>
         $(function() {
