@@ -76,11 +76,11 @@
                     <div class="panel-body col-md-12">
                         <?php if (count($dataResult) < 1) : ?>
                             <center>
-                                <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_s6bvy00o.json" background="transparent" speed="1" style="width: 500px; height: 500px;" loop autoplay></lottie-player>
+                                <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_s6bvy00o.json" background="transparent" speed="1" style="width: 100%; height: 500px;" loop autoplay></lottie-player>
                             </center>
                         <?php else : ?>
                             <center>
-                                <lottie-player src="https://assets8.lottiefiles.com/packages/lf20_y2hxPc.json" background="transparent" speed="1" style="width: 500px; height: 500px;" loop autoplay></lottie-player>
+                                <lottie-player src="https://assets8.lottiefiles.com/packages/lf20_y2hxPc.json" background="transparent" speed="1" style="width: 100%; height: 500px;" loop autoplay></lottie-player>
                                 <?php if ($filter != null  && $termYear != null  && $entryYear != null) : ?>
                                     <form name="cetak" action="/cama/cetak" method="POST" id="cetak">
                                         <input type="hidden" name="fakultas" value="<?= $filter; ?>">
