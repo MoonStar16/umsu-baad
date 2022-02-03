@@ -65,15 +65,47 @@
                                 <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_s6bvy00o.json" background="transparent" speed="1" style="width: 500px; height: 500px;" loop autoplay></lottie-player>
                             </center>
                         <?php else : ?>
-                            <center>
-                                <lottie-player src="https://assets8.lottiefiles.com/packages/lf20_y2hxPc.json" background="transparent" speed="1" style="width: 500px; height: 500px;" loop autoplay></lottie-player>
-                                <?php if ($termYear != null  && $filter != null) : ?>
-                                    <form name="cetak" action="/matkul/cetak" method="POST" id="cetak">
-                                        <input type="hidden" name="tahunAjar" value="<?= $termYear; ?>">
-                                        <input type="hidden" name="fakultas" value="<?= $filter; ?>">
-                                    </form>
-                                <?php endif ?>
-                            </center>
+                            <?php if ($filter != null  && $termYear != null) : ?>
+                                <form name="cetak" action="/matkul/cetak" method="POST" id="cetak">
+                                    <?= csrf_field() ?>
+                                    <input type="hidden" name="fakultas" value="<?= $filter; ?>">
+                                    <input type="hidden" name="tahunAjar" value="<?= $termYear; ?>">
+                                </form>
+                            <?php endif ?>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Mata Kuliah</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-striped table-actions table datatable">
+                                            <thead>
+                                                <tr>
+                                                    <th>No.</th>
+                                                    <th>Fullname</th>
+                                                    <th>Shortname</th>
+                                                    <th>Category</th>
+                                                    <th>Start Date</th>
+                                                    <th>End Date</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php $no = 1;
+                                                foreach ($dataResult as $row) : ?>
+                                                    <tr>
+                                                        <td><?= $no++; ?></td>
+                                                        <td><?= $row->fullname; ?></td>
+                                                        <td><?= $row->shortname; ?></td>
+                                                        <td><?= $row->category; ?></td>
+                                                        <td><?= $row->startdate; ?></td>
+                                                        <td><?= $row->date; ?></td>
+                                                    </tr>
+                                                <?php endforeach ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
                         <?php endif ?>
                     </div>
                 </div>

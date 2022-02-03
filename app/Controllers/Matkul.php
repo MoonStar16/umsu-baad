@@ -22,7 +22,7 @@ class Matkul extends BaseController
         $data = [
             'title' => "Mata Kuliah",
             'appName' => "UMSU",
-            'breadcrumb' => ['Laporan Roster Akademik', 'Mata Kuliah'],
+            'breadcrumb' => ['Elearning', 'Mata Kuliah'],
             'validation' => \Config\Services::validation(),
             'menu' => $this->fetchMenu(),
             'listFakultas' => $this->matkulModel->getFakultas(),
@@ -64,7 +64,7 @@ class Matkul extends BaseController
         $data = [
             'title' => "Mata Kuliah",
             'appName' => "UMSU",
-            'breadcrumb' => ['Laporan Roster Akademik', 'Mata Kuliah'],
+            'breadcrumb' => ['Elearning', 'Mata Kuliah'],
             'validation' => \Config\Services::validation(),
             'menu' => $this->fetchMenu(),
             'listFakultas' => $this->matkulModel->getFakultas(),
@@ -73,6 +73,7 @@ class Matkul extends BaseController
             'termYear' => $data['tahunAjar'],
             'dataResult' => $lapMatkul
         ];
+        // dd($lapMatkul);
         session()->setFlashdata('success', '<strong>' . count($lapMatkul) . ' Data' . '</strong> Telah Ditemukan ,Klik Export Untuk Download!');
         return view('pages/matkul', $data);
     }
@@ -85,44 +86,25 @@ class Matkul extends BaseController
         );
 
         $lapMatkul = $this->matkulModel->getLapMatkul($data);
-        foreach ($lapMatkul as $matkulMahasiswa) {
-            $stambuk = $matkulMahasiswa->ANGKATAN;
-            $tahunAjaran = $matkulMahasiswa->TAHUN_AKADEMIK;
-        }
         $row = 1;
-        $this->spreadsheet->setActiveSheetIndex(0)->setCellValue('A' . $row, 'Mata Kuliah Stambuk ' . $stambuk . ' TA. ' . $tahunAjaran)->mergeCells("A" . $row . ":K" . $row)->getStyle("A" . $row . ":I" . $row)->getFont()->setBold(true);
-        $row++;
         $this->spreadsheet->setActiveSheetIndex(0)
-            ->setCellValue('A' . $row, 'No.')
-            ->setCellValue('B' . $row, 'Nomor Registrasi')
-            ->setCellValue('C' . $row, 'NPM')
-            ->setCellValue('D' . $row, 'Nama Mahasiswa')
-            ->setCellValue('E' . $row, 'Nama Prodi')
-            ->setCellValue('F' . $row, 'Kelas')
-            ->setCellValue('G' . $row, 'SKS Diambil')
-            ->setCellValue('H' . $row, 'SKS Diperoleh')
-            ->setCellValue('I' . $row, 'IPS')
-            ->setCellValue('J' . $row, 'IPK')
-            ->setCellValue('K' . $row, 'TAHUN AJARAN')->getStyle("A2:K2")->getFont()->setBold(true);
+            ->setCellValue('A' . $row, 'fullname')
+            ->setCellValue('B' . $row, 'shortname')
+            ->setCellValue('C' . $row, 'category')
+            ->setCellValue('D' . $row, 'startdate')
+            ->setCellValue('E' . $row, 'enddate');
         $row++;
-        $no = 1;
         foreach ($lapMatkul as $matkul) {
             $this->spreadsheet->setActiveSheetIndex(0)
-                ->setCellValue('A' . $row, $no++)
-                ->setCellValue('B' . $row, $matkul->Register_Number)
-                ->setCellValue('C' . $row, $matkul->NPM)
-                ->setCellValue('D' . $row, $matkul->NAMA_LENGKAP)
-                ->setCellValue('E' . $row, $matkul->PRODI)
-                ->setCellValue('F' . $row, $matkul->KELAS . $matkul->WAKTU)
-                ->setCellValue('G' . $row, $matkul->SKS_DIAMBIL)
-                ->setCellValue('H' . $row, $matkul->SKS_DIPEROLEH)
-                ->setCellValue('I' . $row, $matkul->IPS)
-                ->setCellValue('J' . $row, $matkul->IPK)
-                ->setCellValue('K' . $row, $matkul->TAHUN_AKADEMIK);
+                ->setCellValue('A' . $row, $matkul->fullname)
+                ->setCellValue('B' . $row, $matkul->shortname)
+                ->setCellValue('C' . $row, $matkul->category)
+                ->setCellValue('D' . $row, $matkul->startdate)
+                ->setCellValue('E' . $row, $matkul->date);
             $row++;
         }
         $writer = new Xlsx($this->spreadsheet);
-        $fileName = 'Mata Kuliah Stambuk ' . $matkul->ANGKATAN . ' TA. ' . $matkul->TAHUN_AKADEMIK;
+        $fileName = 'Mata Kuliah Elearning';
 
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         header('Content-Disposition: attachment;filename=' . $fileName . '.xlsx');
