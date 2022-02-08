@@ -100,7 +100,7 @@ class Matkul extends BaseController
                 ->setCellValue('B' . $row, $matkul->shortname)
                 ->setCellValue('C' . $row, $matkul->category)
                 ->setCellValue('D' . $row, $matkul->startdate)
-                ->setCellValue('E' . $row, $matkul->date);
+                ->setCellValue('E' . $row, $matkul->enddate);
             $row++;
         }
         $writer = new Xlsx($this->spreadsheet);

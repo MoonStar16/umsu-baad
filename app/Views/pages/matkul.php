@@ -98,7 +98,7 @@
                                                         <td><?= $row->shortname; ?></td>
                                                         <td><?= $row->category; ?></td>
                                                         <td><?= $row->startdate; ?></td>
-                                                        <td><?= $row->date; ?></td>
+                                                        <td><?= $row->enddate; ?></td>
                                                     </tr>
                                                 <?php endforeach ?>
                                             </tbody>
