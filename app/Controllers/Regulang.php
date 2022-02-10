@@ -97,20 +97,21 @@ class Regulang extends BaseController
 
         $lapRegulang = $this->regulangModel->getLapRegulang($data);
         $row = 1;
-        $this->spreadsheet->setActiveSheetIndex(0)->setCellValue('A' . $row, 'Data Mahasiswa')->mergeCells("A" . $row . ":I" . $row)->getStyle("A" . $row . ":I" . $row)->getFont()->setBold(true);
+        $this->spreadsheet->setActiveSheetIndex(0)->setCellValue('A' . $row, 'Data Mahasiswa')->mergeCells("A" . $row . ":L" . $row)->getStyle("A" . $row . ":L" . $row)->getFont()->setBold(true);
         $row++;
         $this->spreadsheet->setActiveSheetIndex(0)
             ->setCellValue('A' . $row, 'No.')
             ->setCellValue('B' . $row, 'Nomor Registrasi')
-            ->setCellValue('C' . $row, 'Nama Lengkap')
-            ->setCellValue('D' . $row, 'Email')
-            ->setCellValue('E' . $row, 'Kode Prodi')
-            ->setCellValue('F' . $row, 'Nama Prodi')
-            ->setCellValue('G' . $row, 'Nomor Hp')
-            ->setCellValue('H' . $row, 'Nama Ayah')
-            ->setCellValue('I' . $row, 'Nama Ibu')
-            ->setCellValue('J' . $row, 'Alamat')
-            ->setCellValue('K' . $row, 'Angkatan')->getStyle("A2:K2")->getFont()->setBold(true);
+            ->setCellValue('C' . $row, 'NPM')
+            ->setCellValue('D' . $row, 'Nama Lengkap')
+            ->setCellValue('E' . $row, 'Email')
+            ->setCellValue('F' . $row, 'Kode Prodi')
+            ->setCellValue('G' . $row, 'Nama Prodi')
+            ->setCellValue('H' . $row, 'Nomor Hp')
+            ->setCellValue('I' . $row, 'Nama Ayah')
+            ->setCellValue('J' . $row, 'Nama Ibu')
+            ->setCellValue('K' . $row, 'Alamat')
+            ->setCellValue('L' . $row, 'Angkatan')->getStyle("A2:L2")->getFont()->setBold(true);
         $row++;
         $no = 1;
         foreach ($lapRegulang as $mhs) {
@@ -119,15 +120,16 @@ class Regulang extends BaseController
             $this->spreadsheet->setActiveSheetIndex(0)
                 ->setCellValue('A' . $row, $no++)
                 ->setCellValue('B' . $row, $mhs->mhsNomorRegistrasi)
-                ->setCellValue('C' . $row, $mhs->mhsNamaLengkap)
-                ->setCellValue('D' . $row, $mhs->mhsEmail)
-                ->setCellValue('E' . $row, $mhs->mhsProdiBankId)
-                ->setCellValue('F' . $row, $mhs->prodiNamaResmi)
-                ->setCellValue('G' . $row, $mobile)
-                ->setCellValue('H' . $row, $mhs->mhsNamaAyah)
-                ->setCellValue('I' . $row, $mhs->mhsNamaIbu)
-                ->setCellValue('J' . $row, $mhs->mhsAlamat)
-                ->setCellValue('K' . $row, $mhs->mhsAngkatan);
+                ->setCellValue('C' . $row, $mhs->mhsNpm)
+                ->setCellValue('D' . $row, $mhs->mhsNamaLengkap)
+                ->setCellValue('E' . $row, $mhs->mhsEmail)
+                ->setCellValue('F' . $row, $mhs->mhsProdiBankId)
+                ->setCellValue('G' . $row, $mhs->prodiNamaResmi)
+                ->setCellValue('H' . $row, $mobile)
+                ->setCellValue('I' . $row, $mhs->mhsNamaAyah)
+                ->setCellValue('J' . $row, $mhs->mhsNamaIbu)
+                ->setCellValue('K' . $row, $mhs->mhsAlamat)
+                ->setCellValue('L' . $row, $mhs->mhsAngkatan);
             $row++;
         }
         $writer = new Xlsx($this->spreadsheet);
