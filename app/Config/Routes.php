@@ -88,15 +88,20 @@ $routes->get('/feeder/(:any)', 'Feeder::index');
 $routes->post('/feeder/proses', 'Feeder::proses');
 $routes->post('/feeder/cetak', 'Feeder::exportFeeder');
 
-//matkul
+//matkul elearning 
 $routes->get('/matkul/(:any)', 'Matkul::index');
 $routes->post('/matkul/proses', 'Matkul::proses');
 $routes->post('/matkul/cetak', 'Matkul::exportMatkul');
 
-//penugasan dosen
+//penugasan dosen elearning
 $routes->get('/dosen/(:any)', 'Dosen::index');
 $routes->post('/dosen/proses', 'Dosen::proses');
 $routes->post('/dosen/cetak', 'Dosen::exportDosen');
+
+//mahasiswa elearning
+$routes->get('/mhs/(:any)', 'Mhs::index');
+$routes->post('/mhs/proses', 'Mhs::proses');
+$routes->post('/mhs/cetak', 'Mhs::exportMhs');
 
 
 

@@ -1,4 +1,5 @@
-[{
+[
+    {
         "id": "1",
         "nama": "Home",
         "parent": "0",
@@ -177,6 +178,15 @@
         "status": true,
         "icon": "",
         "pages": ""
+    },
+    {
+        "id": "22",
+        "nama": "Mahasiswa",
+        "parent": "19",
+        "level": "child",
+        "status": true,
+        "icon": "fa fa-user",
+        "pages": "/mhs"
     },
     {
         "id": "21",
