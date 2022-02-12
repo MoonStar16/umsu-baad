@@ -104,7 +104,7 @@ class Mhs extends BaseController
             $row++;
         }
         $writer = new Xlsx($this->spreadsheet);
-        $fileName = 'Mahasiswa Baru Elearning';
+        $fileName = 'Mahasiswa Baru Elearning Tanggal ' . $this->request->getVar('tanggalDaftar');
 
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         header('Content-Disposition: attachment;filename=' . $fileName . '.xlsx');
