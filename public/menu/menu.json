@@ -180,15 +180,6 @@
         "pages": ""
     },
     {
-        "id": "23",
-        "nama": "Keaktifan Dosen",
-        "parent": "19",
-        "level": "parent",
-        "status": true,
-        "icon": "fa fa-check-circle",
-        "pages": ""
-    },
-    {
         "id": "22",
         "nama": "Mahasiswa",
         "parent": "19",
@@ -214,5 +205,14 @@
         "status": true,
         "icon": "fa fa-user-md",
         "pages": "/dosen"
+    },
+    {
+        "id": "23",
+        "nama": "Keaktifan Dosen",
+        "parent": "19",
+        "level": "child",
+        "status": true,
+        "icon": "fa fa-check-circle",
+        "pages": "/aktifDosen"
     }
 ]
