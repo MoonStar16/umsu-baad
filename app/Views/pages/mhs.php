@@ -22,35 +22,33 @@
                 <?php if (!empty(session()->getFlashdata('success'))) : ?>
                     <?= view('layout/templateAlert', ['msg' => ['success', session()->getFlashdata('success')]]); ?>
                 <?php endif; ?>
-                <?php if ($validation->hasError('fakultas')) : ?>
-                    <?= view('layout/templateAlert', ['msg' => ['danger', "<strong>Failed ! </strong>" . $validation->getError('fakultas')]]); ?>
+                <?php if ($validation->hasError('tahunAngkatan')) : ?>
+                    <?= view('layout/templateAlert', ['msg' => ['danger', "<strong>Failed ! </strong>" . $validation->getError('tahunAngkatan')]]); ?>
                 <?php endif; ?>
-                <?php if ($validation->hasError('tahunAjar')) : ?>
-                    <?= view('layout/templateAlert', ['msg' => ['danger', "<strong>Failed ! </strong>" . $validation->getError('tahunAjar')]]); ?>
+                <?php if ($validation->hasError('tanggalDaftar')) : ?>
+                    <?= view('layout/templateAlert', ['msg' => ['danger', "<strong>Failed ! </strong>" . $validation->getError('tanggalDaftar')]]); ?>
                 <?php endif; ?>
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <form autocomplete="off" class="form-horizontal" action="/matkul/proses" method="POST">
+                        <form autocomplete="off" class="form-horizontal" action="/mhs/proses" method="POST">
                             <div class="col-md-2">
-                                <label>Pilih Fakultas</label>
-                                <select class="form-control select" name="fakultas">
+                                <label>Tahun Angkatan</label>
+                                <select class="form-control select" name="tahunAngkatan">
                                     <option value="">--Select--</option>
-                                    <?php foreach ($listFakultas as $rows) : ?>
-                                        <option value="<?= $rows->fakNamaSingkat ?>" <?php if ($rows->fakNamaSingkat == $filter) echo " selected" ?>><?= $rows->fakNamaResmi ?></option>
-                                    <?php endforeach ?>
+                                    <?php for ($i = date("Y"); $i >= 2016; $i--) : ?>
+                                        <option value="<?= $i ?>" <?php if ($i == $tahunAngkatan) echo " selected" ?>><?= $i ?></option>
+                                    <?php endfor ?>
                                 </select>
                             </div>
                             <div class="col-md-2">
-                                <label>Tahun Ajar</label>
-                                <select class="form-control select" name="tahunAjar">
-                                    <option value="">-- Select --</option>
-                                    <?php foreach ($listTermYear as $rows) : ?>
-                                        <option value="<?= $rows->Term_Year_Id ?>" <?php if ($rows->Term_Year_Id == $termYear) echo " selected" ?>><?= $rows->Term_Year_Name ?></option> -->
-                                    <?php endforeach ?>
-                                </select>
+                                <label>Tanggal Daftar Ulang</label>
+                                <div class="input-group date" id="dp-2" data-date-format="yyyy-mm-dd">
+                                    <input type="text" class="form-control datepicker" value="<?= date("Y-m-d", strtotime(($tanggalDaftar != null) ? $tanggalDaftar : "now"));  ?>" name="tanggalDaftar" />
+                                    <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+                                </div>
                             </div>
                             <ul class="panel-controls">
-                                <?php if ($filter != null  && $termYear != null) : ?>
+                                <?php if ($tahunAngkatan != null  && $tanggalDaftar != null) : ?>
                                     <button style="display: inline-block; margin-top: 11px;;margin-right: 5px;" type="submit" form="cetak" class="btn btn-info"><span class="glyphicon glyphicon-print"></span>
                                         Export</button>
                                 <?php endif ?>
@@ -65,16 +63,16 @@
                                 <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_s6bvy00o.json" background="transparent" speed="1" style="width: 100%; height: 500px;" loop autoplay></lottie-player>
                             </center>
                         <?php else : ?>
-                            <?php if ($filter != null  && $termYear != null) : ?>
-                                <form name="cetak" action="/matkul/cetak" method="POST" id="cetak">
+                            <?php if ($tahunAngkatan != null  && $tanggalDaftar != null) : ?>
+                                <form name="cetak" action="/mhs/cetak" method="POST" id="cetak">
                                     <?= csrf_field() ?>
-                                    <input type="hidden" name="fakultas" value="<?= $filter; ?>">
-                                    <input type="hidden" name="tahunAjar" value="<?= $termYear; ?>">
+                                    <input type="hidden" name="tahunAngkatan" value="<?= $tahunAngkatan; ?>">
+                                    <input type="hidden" name="tanggalDaftar" value="<?= $tanggalDaftar; ?>">
                                 </form>
                             <?php endif ?>
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title">Mata Kuliah</h3>
+                                    <h3 class="panel-title">Mahasiswa</h3>
                                 </div>
                                 <div class="panel-body">
                                     <div class="table-responsive">
@@ -82,11 +80,13 @@
                                             <thead>
                                                 <tr>
                                                     <th>No.</th>
-                                                    <th>Fullname</th>
-                                                    <th>Shortname</th>
-                                                    <th>Category</th>
-                                                    <th>Start Date</th>
-                                                    <th>End Date</th>
+                                                    <th>Username</th>
+                                                    <th>Password</th>
+                                                    <th>Firstname</th>
+                                                    <th>Lastname</th>
+                                                    <th>Email</th>
+                                                    <th>Course</th>
+                                                    <th>Role</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -94,11 +94,13 @@
                                                 foreach ($dataResult as $row) : ?>
                                                     <tr>
                                                         <td><?= $no++; ?></td>
-                                                        <td><?= $row->fullname; ?></td>
-                                                        <td><?= $row->shortname; ?></td>
-                                                        <td><?= $row->category; ?></td>
-                                                        <td><?= $row->startdate; ?></td>
-                                                        <td><?= $row->enddate; ?></td>
+                                                        <td><?= $row->username; ?></td>
+                                                        <td><?= $row->password; ?></td>
+                                                        <td><?= $row->firstname; ?></td>
+                                                        <td><?= $row->lastname; ?></td>
+                                                        <td><?= $row->email; ?></td>
+                                                        <td><?= ($row->course1 == null) ? "-" : $row->course1; ?></td>
+                                                        <td><?= ($row->role1 == null) ? "-" : $row->role1; ?></td>
                                                     </tr>
                                                 <?php endforeach ?>
                                             </tbody>

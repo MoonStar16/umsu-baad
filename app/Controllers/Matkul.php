@@ -100,11 +100,13 @@ class Matkul extends BaseController
                 ->setCellValue('B' . $row, $matkul->shortname)
                 ->setCellValue('C' . $row, $matkul->category)
                 ->setCellValue('D' . $row, $matkul->startdate)
-                ->setCellValue('E' . $row, $matkul->date);
+                ->setCellValue('E' . $row, $matkul->enddate);
             $row++;
         }
         $writer = new Xlsx($this->spreadsheet);
-        $fileName = 'Mata Kuliah Elearning';
+
+
+        $fileName = 'Mata Kuliah Elearning ' . $this->request->getVar('fakultas') . ' ' . $this->request->getVar('tahunAjar');
 
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         header('Content-Disposition: attachment;filename=' . $fileName . '.xlsx');

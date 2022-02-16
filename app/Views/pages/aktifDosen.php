@@ -30,7 +30,7 @@
                 <?php endif; ?>
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <form autocomplete="off" class="form-horizontal" action="/matkul/proses" method="POST">
+                        <form autocomplete="off" class="form-horizontal" action="/aktifDosen/proses" method="POST">
                             <div class="col-md-2">
                                 <label>Pilih Fakultas</label>
                                 <select class="form-control select" name="fakultas">
@@ -50,7 +50,7 @@
                                 </select>
                             </div>
                             <ul class="panel-controls">
-                                <?php if ($filter != null  && $termYear != null) : ?>
+                                <?php if ($termYear != null  && $filter != null) : ?>
                                     <button style="display: inline-block; margin-top: 11px;;margin-right: 5px;" type="submit" form="cetak" class="btn btn-info"><span class="glyphicon glyphicon-print"></span>
                                         Export</button>
                                 <?php endif ?>
@@ -66,7 +66,7 @@
                             </center>
                         <?php else : ?>
                             <?php if ($filter != null  && $termYear != null) : ?>
-                                <form name="cetak" action="/matkul/cetak" method="POST" id="cetak">
+                                <form name="cetak" action="/aktifDosen/cetak" method="POST" id="cetak">
                                     <?= csrf_field() ?>
                                     <input type="hidden" name="fakultas" value="<?= $filter; ?>">
                                     <input type="hidden" name="tahunAjar" value="<?= $termYear; ?>">
@@ -74,7 +74,7 @@
                             <?php endif ?>
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title">Mata Kuliah</h3>
+                                    <h3 class="panel-title">Keaktifan Dosen</h3>
                                 </div>
                                 <div class="panel-body">
                                     <div class="table-responsive">
@@ -82,11 +82,18 @@
                                             <thead>
                                                 <tr>
                                                     <th>No.</th>
-                                                    <th>Fullname</th>
-                                                    <th>Shortname</th>
-                                                    <th>Category</th>
-                                                    <th>Start Date</th>
-                                                    <th>End Date</th>
+                                                    <th>Nama Dosen</th>
+                                                    <th width="125px">Last Access</th>
+                                                    <th>Mata Kuliah</th>
+                                                    <th>Absensi</th>
+                                                    <th>Materi</th>
+                                                    <th>Tugas</th>
+                                                    <th>Forum</th>
+                                                    <th>Quiz</th>
+                                                    <th>GMeet</th>
+                                                    <th>URL</th>
+                                                    <th>Book</th>
+                                                    <th>Page</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -94,11 +101,18 @@
                                                 foreach ($dataResult as $row) : ?>
                                                     <tr>
                                                         <td><?= $no++; ?></td>
-                                                        <td><?= $row->fullname; ?></td>
-                                                        <td><?= $row->shortname; ?></td>
-                                                        <td><?= $row->category; ?></td>
-                                                        <td><?= $row->startdate; ?></td>
-                                                        <td><?= $row->enddate; ?></td>
+                                                        <td><?= $row->Nama_Dosen; ?></td>
+                                                        <td><?= $row->Terakhir_Akses; ?></td>
+                                                        <td><?= $row->Matakuliah; ?></td>
+                                                        <td><?= $row->Jumlah_Absensi; ?></td>
+                                                        <td><?= $row->Jumlah_Materi; ?></td>
+                                                        <td><?= $row->Jumlah_Tugas; ?></td>
+                                                        <td><?= $row->Jumlah_Forum; ?></td>
+                                                        <td><?= $row->Jumlah_Quiz; ?></td>
+                                                        <td><?= $row->Jumlah_Gmeet; ?></td>
+                                                        <td><?= $row->Jumlah_URL; ?></td>
+                                                        <td><?= $row->Jumlah_Book; ?></td>
+                                                        <td><?= $row->Jumlah_Page; ?></td>
                                                     </tr>
                                                 <?php endforeach ?>
                                             </tbody>
