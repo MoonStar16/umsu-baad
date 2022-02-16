@@ -195,5 +195,22 @@
         "status": true,
         "icon": "fa fa-user-md",
         "pages": "/dosen"
+    },
+    {
+        "id": "21",
+        "nama": "Simakad",
+        "parent": "0",
+        "level": "title",
+        "status": true,
+        "icon": "",
+        "pages": ""
+    },{
+        "id": "22",
+        "nama": "Penginputan Nilai",
+        "parent": "21",
+        "level": "child",
+        "status": true,
+        "icon": "fa fa-file",
+        "pages": "/nilai"
     }
 ]

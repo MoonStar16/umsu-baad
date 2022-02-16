@@ -98,6 +98,9 @@ $routes->get('/dosen/(:any)', 'Dosen::index');
 $routes->post('/dosen/proses', 'Dosen::proses');
 $routes->post('/dosen/cetak', 'Dosen::exportDosen');
 
+//penginputan nilai
+$routes->get('/nilai/(:any)', 'Nilai::index');
+
 
 
 /*
