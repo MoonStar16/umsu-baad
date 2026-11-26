@@ -55,16 +55,13 @@ class BaseController extends Controller
 
     public function fetchMenu()
     {
-        $file = "public/menu/menu.json";
-        $data = file_get_contents(ROOTPATH . $file);
-
-        $data = json_decode($data, false);
+        $data = file_get_contents(ROOTPATH . $this->getFile());
 
         $titles = [];
         $parents = [];
         $childs = [];
 
-        foreach ($data as $resource) {
+        foreach (json_decode($data, false) as $resource) {
             if ($resource->parent == 0 && $resource->level == 'title') {
                 $titles[] = $resource;
             }
@@ -132,5 +129,20 @@ class BaseController extends Controller
         }
 
         return $menu;
+    }
+
+    public function getFile()
+    {
+        $file = "public/menu/menuGeneral.json";
+        if (in_groups('superadmin')) {
+            $file = "public/menu/menu.json";
+        } elseif (in_groups('bdi')) {
+            $file = "public/menu/menuBdi.json";
+        } elseif (in_groups('lms')) {
+            $file = "public/menu/menuLms.json";
+        } elseif (in_groups('general')) {
+            $file = "public/menu/menuGeneral.json";
+        }
+        return $file;
     }
 }

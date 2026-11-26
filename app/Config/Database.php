@@ -32,10 +32,10 @@ class Database extends Config
      */
     public $default = [
         'DSN'      => '',
-        'hostname' => 'rekapkeuangan.umsu.ac.id:8306',
-        'username' => 'web_rekapkeuangan',
-        'password' => '.M1H7nI(V[@y27bh',
-        'database' => 'web_rekapkeuangan',
+        'hostname' => 'rekapbaad.umsu.ac.id:8306',
+        'username' => 'web_rekapbaad',
+        'password' => 'mYMgoHPl@0WjPxPO',
+        'database' => 'web_rekapbaad',
         'DBDriver' => 'MySQLi',
         'DBPrefix' => '',
         'pConnect' => false,

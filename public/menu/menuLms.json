@@ -1,0 +1,74 @@
+[
+  {
+    "id": "1",
+    "nama": "Home",
+    "parent": "0",
+    "level": "title",
+    "status": true,
+    "icon": "",
+    "pages": "#"
+  },
+  {
+    "id": "3",
+    "nama": "Dashboard",
+    "parent": "1",
+    "level": "child",
+    "status": true,
+    "icon": "fa fa-home",
+    "pages": "/home"
+  },
+  {
+    "id": "19",
+    "nama": "Elearning",
+    "parent": "0",
+    "level": "title",
+    "status": true,
+    "icon": "",
+    "pages": ""
+  },
+  {
+    "id": "22",
+    "nama": "Mahasiswa",
+    "parent": "19",
+    "level": "child",
+    "status": true,
+    "icon": "fa fa-user",
+    "pages": "/mhs"
+  },
+  {
+    "id": "21",
+    "nama": "Mata Kuliah",
+    "parent": "19",
+    "level": "child",
+    "status": true,
+    "icon": "glyphicon glyphicon-book",
+    "pages": "/matkul"
+  },
+  {
+    "id": "20",
+    "nama": "Penugasan Dosen",
+    "parent": "19",
+    "level": "child",
+    "status": true,
+    "icon": "fa fa-user-md",
+    "pages": "/dosen"
+  },
+  {
+    "id": "23",
+    "nama": "Keaktifan Dosen",
+    "parent": "19",
+    "level": "child",
+    "status": true,
+    "icon": "fa fa-check-circle",
+    "pages": "/aktifDosen"
+  },
+  {
+    "id": "24",
+    "nama": "Jumlah Pengakses",
+    "parent": "19",
+    "level": "child",
+    "status": true,
+    "icon": "fa fa-user",
+    "pages": "/pengakses"
+  }
+]

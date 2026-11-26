@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Models\CamaModel;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use PhpOffice\PhpSpreadsheet\Writer\Xls;
 
 class Cama extends BaseController
 {
@@ -130,11 +130,11 @@ class Cama extends BaseController
                 ->setCellValue('K' . $row, $cama->camaAngkatan);
             $row++;
         }
-        $writer = new Xlsx($this->spreadsheet);
+        $writer = new Xls($this->spreadsheet);
         $fileName = 'Data Calon Mahasiswa ' . $cama->camaAngkatan;
 
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-        header('Content-Disposition: attachment;filename=' . $fileName . '.xlsx');
+        header('Content-Disposition: attachment;filename=' . $fileName . '.xls');
         header('Cache-Control: max-age=0');
 
         // session()->setFlashdata('success', 'Berhasil Export Data Tunggakan !');

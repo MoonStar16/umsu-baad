@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Models\DetailMhsModel;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use PhpOffice\PhpSpreadsheet\Writer\Xls;
 
 class DetailMhs extends BaseController
 {
@@ -145,11 +145,11 @@ class DetailMhs extends BaseController
                 ->setCellValue('H' . $row, $detailMhs->STATUS);
             $row++;
         }
-        $writer = new Xlsx($this->spreadsheet);
+        $writer = new Xls($this->spreadsheet);
         $fileName = 'Detail Mahasiswa Aktif TA ' . $detailMhs->TAHUN_AJAR;
 
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-        header('Content-Disposition: attachment;filename=' . $fileName . '.xlsx');
+        header('Content-Disposition: attachment;filename=' . $fileName . '.xls');
         header('Cache-Control: max-age=0');
 
         // session()->setFlashdata('success', 'Berhasil Export Data Tunggakan !');

@@ -17,7 +17,8 @@ class IpkModel extends Model
     {
         $response = $this->curl->request("GET", "https://api.umsu.ac.id/Laporankeu/getTermYear", [
             "headers" => [
-                "Accept" => "application/json"
+                "Accept" => "application/json",
+                'Authorization' => 'Bearer ' . getenv('client.id'),
             ],
 
         ]);
@@ -31,7 +32,8 @@ class IpkModel extends Model
             "https://api.umsu.ac.id/baad/lapIpk",
             [
                 "headers" => [
-                    "Accept" => "application/json"
+                    "Accept" => "application/json",
+                    'Authorization' => 'Bearer ' . getenv('client.id'),
                 ],
                 "form_params" => [
                     "termYearId" => $data['tahunAjar'],

@@ -1,0 +1,70 @@
+<?php
+
+namespace App\Models;
+
+use CodeIgniter\Model;
+
+class AktifDosenModel extends Model
+{
+    protected $curl;
+
+    public function __construct()
+    {
+        $this->curl = service('curlrequest');
+    }
+
+    public function getFakultas()
+    {
+        $response = $this->curl->request("GET", "https://api.umsu.ac.id/baad/filter", [
+            "headers" => [
+                "Accept" => "application/json",
+                'Authorization' => 'Bearer ' . getenv('client.id'),
+            ],
+        ]);
+        return json_decode($response->getBody())->data;
+    }
+
+    public function getTermYear()
+    {
+        $response = $this->curl->request("GET", "https://api.umsu.ac.id/Laporankeu/getTermYear", [
+            "headers" => [
+                "Accept" => "application/json",
+                'Authorization' => 'Bearer ' . getenv('client.id'),
+            ],
+        ]);
+        return json_decode($response->getBody())->data;
+    }
+
+    public function getLapAktifDosen($data)
+    {
+        // $response = $this->curl->request(
+        //     "POST",
+        //     "https://api.umsu.ac.id/elearning/keaktifanDosen",
+        //     [
+        //         "headers" => [
+        //             "Accept" => "application/json",
+        //             'Authorization' => 'Bearer ' . getenv('client.id'),
+        //         ],
+        //         "form_params" => [
+        //             "fakultas" => $data['fakultas'],
+        //             "termYear" => $data['tahunAjar'],
+        //         ]
+        //     ]
+        // );
+
+        $response = $this->curl->request(
+            "POST",
+            "https://developer.umsu.ac.id/elearning/lecturer/activities",
+            [
+                "headers" => [
+                    "Accept" => "application/json",
+                    'x-api-key' =>  getenv('api.key'),
+                    'x-secret-key' =>  getenv('secret.key'),
+                ],
+                "json" => $data
+            ]
+        );
+
+        return json_decode($response->getBody())->data;
+    }
+}

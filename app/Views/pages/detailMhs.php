@@ -74,7 +74,7 @@
                     <div class="panel-body col-md-12">
                         <?php if (count($detailMhs) < 1) : ?>
                             <center>
-                                <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_s6bvy00o.json" background="transparent" speed="1" style="width: 500px; height: 500px;" loop autoplay></lottie-player>
+                                <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_s6bvy00o.json" background="transparent" speed="1" style="width: 100%; height: 500px;" loop autoplay></lottie-player>
                             </center>
                         <?php else : ?>
                             <?php if ($termYear != null  && $entryYear != null) : ?>

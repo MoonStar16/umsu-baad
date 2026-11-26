@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Models\IpkModel;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use PhpOffice\PhpSpreadsheet\Writer\Xls;
 
 class Ipk extends BaseController
 {
@@ -120,11 +120,11 @@ class Ipk extends BaseController
                 ->setCellValue('K' . $row, $ipk->TAHUN_AKADEMIK);
             $row++;
         }
-        $writer = new Xlsx($this->spreadsheet);
+        $writer = new Xls($this->spreadsheet);
         $fileName = 'IPK Mahasiswa Stambuk ' . $ipk->ANGKATAN . ' TA. ' . $ipk->TAHUN_AKADEMIK;
 
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-        header('Content-Disposition: attachment;filename=' . $fileName . '.xlsx');
+        header('Content-Disposition: attachment;filename=' . $fileName . '.xls');
         header('Cache-Control: max-age=0');
 
         // session()->setFlashdata('success', 'Berhasil Export Data Tunggakan !');

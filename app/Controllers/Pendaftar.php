@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Models\PendaftarModel;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use PhpOffice\PhpSpreadsheet\Writer\Xls;
 
 class Pendaftar extends BaseController
 {
@@ -127,11 +127,11 @@ class Pendaftar extends BaseController
                 ->setCellValue('I' . $row, $pendaftar->regNamaIbu);
             $row++;
         }
-        $writer = new Xlsx($this->spreadsheet);
+        $writer = new Xls($this->spreadsheet);
         $fileName = 'Data Pendaftar';
 
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-        header('Content-Disposition: attachment;filename=' . $fileName . '.xlsx');
+        header('Content-Disposition: attachment;filename=' . $fileName . '.xls');
         header('Cache-Control: max-age=0');
 
         // session()->setFlashdata('success', 'Berhasil Export Data Tunggakan !');

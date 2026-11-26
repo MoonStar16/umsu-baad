@@ -38,54 +38,98 @@ $routes->setAutoRoute(true);
 // $routes->get('/logout', 'Login::logout');
 
 // Route Home
-$routes->get('/home/(:any)', 'Home::index');
+$routes->get('/home', 'Home::index');
 
 // Route Maintenance
-$routes->get('/maintenance/(:any)', 'Maintenance::index');
+$routes->get('/maintenance', 'Maintenance::index');
 
 //pendaftar perangkatan
-$routes->get('/pendaftar/(:any)', 'Pendaftar::index');
+$routes->get('/pendaftar', 'Pendaftar::index');
 $routes->post('/pendaftar/cetak', 'Pendaftar::exportPendaftar');
 $routes->post('/pendaftar/proses', 'Pendaftar::proses');
 
 //calon mahasiswa perangkatan
-$routes->get('/cama/(:any)', 'Cama::index');
+$routes->get('/cama', 'Cama::index');
 $routes->post('/cama/proses', 'Cama::proses');
 $routes->post('/cama/cetak', 'Cama::exportCama');
 
+//cama cbt
+$routes->get('/camaCbt', 'CamaCbt::index');
+$routes->post('/camaCbt/proses', 'CamaCbt::proses');
+$routes->post('/camaCbt/cetak', 'CamaCbt::exportCamaCbt');
+
 //registrasi ulang perangkatan
-$routes->get('/regulang/(:any)', 'Regulang::index');
+$routes->get('/regulang', 'Regulang::index');
 $routes->post('/regulang/proses', 'Regulang::proses');
 $routes->post('/regulang/cetak', 'Regulang::exportRegulang');
 
 //krs mahasiswa
-$routes->get('/krs/(:any)', 'Krs::index');
+$routes->get('/krs', 'Krs::index');
 $routes->post('/krs/proses', 'Krs::proses');
 $routes->post('/krs/cetak', 'Krs::exportKrs');
 
 //khs mahasiswa
-$routes->get('/khs/(:any)', 'Khs::index');
+$routes->get('/khs', 'Khs::index');
 $routes->post('/khs/proses', 'Khs::proses');
 $routes->post('/khs/cetak', 'Khs::exportKhs');
 
 //ipk mahasiswa
-$routes->get('/ipk/(:any)', 'Ipk::index');
+$routes->get('/ipk', 'Ipk::index');
 $routes->post('/ipk/proses', 'Ipk::proses');
 $routes->post('/ipk/cetak', 'Ipk::exportIpk');
 
 //detail mahasiswa aktif
-$routes->get('/detailMhs/(:any)', 'DetailMhs::index');
+$routes->get('/detailMhs', 'DetailMhs::index');
 $routes->post('/detailMhs/proses', 'DetailMhs::proses');
 $routes->post('/detailMhs/cetak', 'DetailMhs::exportDetailMhs');
 
 //total mahasiswa aktif
-$routes->get('/totalMhs/(:any)', 'TotalMhs::index');
+$routes->get('/totalMhs', 'TotalMhs::index');
 $routes->post('/totalMhs/proses', 'TotalMhs::proses');
 $routes->post('/totalMhs/cetak', 'TotalMhs::exportTotalMhs');
 
 //feeder
-$routes->get('/feeder/(:any)', 'Feeder::index');
+$routes->get('/feeder', 'Feeder::index');
+$routes->post('/feeder/proses', 'Feeder::proses');
 $routes->post('/feeder/cetak', 'Feeder::exportFeeder');
+
+//matkul elearning 
+$routes->get('/matkul', 'Matkul::index');
+$routes->post('/matkul/proses', 'Matkul::proses');
+$routes->post('/matkul/cetak', 'Matkul::exportMatkul');
+
+//penugasan dosen elearning
+$routes->get('/dosen', 'Dosen::index');
+$routes->post('/dosen/proses', 'Dosen::proses');
+$routes->post('/dosen/cetak', 'Dosen::exportDosen');
+
+//mahasiswa elearning
+$routes->get('/mhs', 'Mhs::index');
+$routes->post('/mhs/proses', 'Mhs::proses');
+$routes->post('/mhs/cetak', 'Mhs::exportMhs');
+
+//keaktifan dosen
+$routes->get('/aktifDosen', 'AktifDosen::index');
+$routes->post('/aktifDosen/proses', 'AktifDosen::proses');
+$routes->post('/aktifDosen/cetak', 'AktifDosen::exportAktifDosen');
+
+//data pengakses
+$routes->get('/pengakses', 'Pengakses::index');
+$routes->post('/pengakses/proses', 'Pengakses::proses');
+$routes->post('/pengakses/cetak', 'Pengakses::exportPengakses');
+
+//ubah email
+$routes->get('/ubahEmail', 'UbahEmail::index');
+$routes->get('/ubahEmail/getMahasiswa', 'UbahEmail::getMahasiswa');
+$routes->post('/ubahEmail/update', 'UbahEmail::update');
+
+//hapus tagihan
+$routes->get('/hapusTagihan', 'HapusTagihan::index');
+$routes->delete('/hapusTagihan/delete', 'HapusTagihan::delete');
+
+//manajemen akun
+$routes->get('/manajemenAkun', 'ManajemenAkun::index');
+$routes->put('/manajemenAkun/edit/(:num)', 'ManajemenAkun::edit/$1');
 
 
 

@@ -17,7 +17,8 @@ class KrsModel extends Model
     {
         $response = $this->curl->request("GET", "https://api.umsu.ac.id/baad/prodi", [
             "headers" => [
-                "Accept" => "application/json"
+                "Accept" => "application/json",
+                'Authorization' => 'Bearer ' . getenv('client.id'),
             ],
         ]);
         return json_decode($response->getBody())->data;
@@ -27,7 +28,8 @@ class KrsModel extends Model
     {
         $response = $this->curl->request("GET", "https://api.umsu.ac.id/Laporankeu/getTermYear", [
             "headers" => [
-                "Accept" => "application/json"
+                "Accept" => "application/json",
+                'Authorization' => 'Bearer ' . getenv('client.id'),
             ],
 
         ]);
@@ -41,10 +43,11 @@ class KrsModel extends Model
             "https://api.umsu.ac.id/baad/lapKrsAktif",
             [
                 "headers" => [
-                    "Accept" => "application/json"
+                    "Accept" => "application/json",
+                    'Authorization' => 'Bearer ' . getenv('client.id'),
                 ],
                 "form_params" => [
-                    "filter" => $data['fakultas'],
+                    "filter" => $data['prodi'],
                     "termYearId" => $data['tahunAjar'],
                     "entryYearId" => $data['tahunAngkatan'],
                 ]

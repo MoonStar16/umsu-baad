@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Models\KhsModel;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use PhpOffice\PhpSpreadsheet\Writer\Xls;
 
 class Khs extends BaseController
 {
@@ -63,7 +63,7 @@ class Khs extends BaseController
         }
 
         $data = array(
-            'fakultas' => trim($this->request->getPost('fakultas')),
+            'prodi' => trim($this->request->getPost('prodi')),
             'tahunAjar' => trim($this->request->getPost('tahunAjar')),
             'tahunAngkatan' => trim($this->request->getPost('tahunAngkatan')),
         );
@@ -78,7 +78,7 @@ class Khs extends BaseController
             'menu' => $this->fetchMenu(),
             'listProdi' => $this->khsModel->getProdi(),
             'listTermYear' => $this->khsModel->getTermYear(),
-            'filter' => $data['fakultas'],
+            'filter' => $data['prodi'],
             'termYear' => $data['tahunAjar'],
             'entryYear' => $data['tahunAngkatan'],
             'dataResult' => $lapKhs
@@ -90,7 +90,7 @@ class Khs extends BaseController
     public function exportKhs()
     {
         $data = array(
-            'fakultas' => trim($this->request->getPost('fakultas')),
+            'prodi' => trim($this->request->getPost('prodi')),
             'tahunAjar' => trim($this->request->getPost('tahunAjar')),
             'tahunAngkatan' => trim($this->request->getPost('tahunAngkatan')),
         );
@@ -136,11 +136,11 @@ class Khs extends BaseController
                 ->setCellValue('O' . $row, $khs->TAHUN_AKADEMIK);
             $row++;
         }
-        $writer = new Xlsx($this->spreadsheet);
+        $writer = new Xls($this->spreadsheet);
         $fileName = 'KHS Mahasiswa Prodi ' . $khs->AKRONIM_PRODI . ' TA ' . $khs->TAHUN_AKADEMIK;
 
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-        header('Content-Disposition: attachment;filename=' . $fileName . '.xlsx');
+        header('Content-Disposition: attachment;filename=' . $fileName . '.xls');
         header('Cache-Control: max-age=0');
 
         // session()->setFlashdata('success', 'Berhasil Export Data Tunggakan !');

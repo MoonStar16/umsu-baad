@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Models\TotalMhsModel;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use PhpOffice\PhpSpreadsheet\Writer\Xls;
 
 class TotalMhs extends BaseController
 {
@@ -206,11 +206,11 @@ class TotalMhs extends BaseController
             $row++;
         }
 
-        $writer = new Xlsx($spreadsheet);
+        $writer = new Xls($spreadsheet);
         $fileName = 'Data Jumlah KRS Aktif';
 
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-        header('Content-Disposition: attachment;filename=' . $fileName . '.xlsx');
+        header('Content-Disposition: attachment;filename=' . $fileName . '.xls');
         header('Cache-Control: max-age=0');
 
         // session()->setFlashdata('success', 'Berhasil Export Data Tunggakan !');
